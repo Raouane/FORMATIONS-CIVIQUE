@@ -93,6 +93,8 @@ export default async function handler(
         // Vérifier que l'ID est bien un UUID
         console.log('🔍 [Webhook] Type de userId:', typeof userId, 'Longueur:', userId?.length);
         
+        // Mise à jour simple : uniquement is_premium, pas de updatedAt/updated_at
+        // Le trigger SQL gérera automatiquement updated_at
         const { data: updateData, error: updateError } = await supabaseAdmin
           .from('fc_profiles')
           .update({ is_premium: true })
