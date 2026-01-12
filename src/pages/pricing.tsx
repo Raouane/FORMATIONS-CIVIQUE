@@ -13,7 +13,7 @@ import { useAuth } from '@/providers/AuthProvider';
 export default function PricingPage() {
   const router = useRouter();
   const { t } = useTranslation('common');
-  const { user, authLoading } = useAuth();
+  const { user } = useAuth();
   const [loading, setLoading] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState<'one-time' | 'monthly'>('one-time');
 
