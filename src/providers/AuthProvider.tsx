@@ -83,25 +83,101 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const signUp = async (email: string, password: string, fullName: string) => {
+    // Essayer d'abord de créer le compte
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
+      options: {
+        data: {
+          full_name: fullName,
+          objective: 'A2',
+        },
+      },
     });
 
-    if (!error && data.user) {
-      // Créer le profil dans fc_profiles
-      const { error: profileError } = await supabase
-        .from('fc_profiles')
-        .insert({
-          id: data.user.id,
-          email: data.user.email!,
-          full_name: fullName,
-          objective: 'A2', // Par défaut
-          is_premium: false,
-        });
+    // Si l'erreur indique que l'email existe déjà, essayer de se connecter
+    if (error && error.message.includes('already registered')) {
+      console.log('⚠️ [Auth] Email déjà enregistré, tentative de connexion...');
+      
+      // Essayer de se connecter avec ce compte
+      const { data: signInData, error: signInError } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
 
-      if (profileError) {
-        console.error('Error creating profile:', profileError);
+      if (signInError) {
+        // Si la connexion échoue, retourner l'erreur originale
+        return { error };
+      }
+
+      // Si la connexion réussit, vérifier si le profil fc_profiles existe
+      if (signInData.user) {
+        const { data: existingProfile, error: profileCheckError } = await supabase
+          .from('fc_profiles')
+          .select('id')
+          .eq('id', signInData.user.id)
+          .single();
+
+        // Si le profil n'existe pas, le créer
+        if (profileCheckError || !existingProfile) {
+          console.log('📝 [Auth] Création du profil fc_profiles pour utilisateur existant...');
+          const { error: profileError } = await supabase
+            .from('fc_profiles')
+            .insert({
+              id: signInData.user.id,
+              email: signInData.user.email!,
+              full_name: fullName,
+              objective: 'A2',
+              is_premium: false,
+            })
+            .select()
+            .single();
+
+          if (profileError) {
+            // Si l'insertion échoue (peut-être à cause d'un trigger), ignorer l'erreur
+            // car le trigger SQL peut avoir déjà créé le profil
+            console.warn('⚠️ [Auth] Erreur lors de la création du profil (peut être normal si trigger existe):', profileError.message);
+          } else {
+            console.log('✅ [Auth] Profil fc_profiles créé avec succès');
+          }
+        } else {
+          console.log('✅ [Auth] Profil fc_profiles existe déjà');
+        }
+
+        // Retourner un succès car l'utilisateur est maintenant connecté
+        return { error: null };
+      }
+    }
+
+    // Si l'inscription a réussi, créer le profil (le trigger SQL peut aussi le faire)
+    if (!error && data.user) {
+      // Vérifier d'abord si le profil existe déjà (créé par le trigger)
+      const { data: existingProfile } = await supabase
+        .from('fc_profiles')
+        .select('id')
+        .eq('id', data.user.id)
+        .single();
+
+      // Si le profil n'existe pas, le créer manuellement
+      if (!existingProfile) {
+        console.log('📝 [Auth] Création manuelle du profil fc_profiles...');
+        const { error: profileError } = await supabase
+          .from('fc_profiles')
+          .insert({
+            id: data.user.id,
+            email: data.user.email!,
+            full_name: fullName,
+            objective: 'A2',
+            is_premium: false,
+          });
+
+        if (profileError) {
+          console.error('❌ [Auth] Erreur lors de la création du profil:', profileError);
+        } else {
+          console.log('✅ [Auth] Profil fc_profiles créé avec succès');
+        }
+      } else {
+        console.log('✅ [Auth] Profil fc_profiles déjà créé par le trigger SQL');
       }
     }
 

@@ -16,13 +16,14 @@ import {
   SheetDescription,
 } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
+import { PremiumBadge } from '@/components/features/premium/PremiumBadge';
 import { Menu, Book, Play, FileText, Users } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export function MobileNav() {
   const router = useRouter();
   const { t } = useTranslation('common');
-  const { user } = useAuth();
+  const { user, isPremium } = useAuth();
   const { startPath } = useNavigation();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -80,7 +81,10 @@ export function MobileNav() {
                   <span className="text-white font-bold text-xl">RF</span>
                 </div>
                 <div className={cn("flex-1", isRTL(router.locale) ? "text-right" : "text-left")}>
-                  <h2 className="font-bold text-lg leading-tight">{t('app.name', { ns: 'common' })}</h2>
+                  <div className="flex items-center gap-2">
+                    <h2 className="font-bold text-lg leading-tight">{t('app.name', { ns: 'common' })}</h2>
+                    {user && isPremium && <PremiumBadge size="sm" />}
+                  </div>
                   <p className="text-xs text-muted-foreground">{t('app.year', { ns: 'common' })}</p>
                 </div>
               </button>

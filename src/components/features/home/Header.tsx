@@ -5,13 +5,14 @@ import { useTranslation } from 'next-i18next';
 import { useAuth } from '@/providers/AuthProvider';
 import { isRTL } from '@/lib/rtl';
 import { Button } from '@/components/ui/button';
+import { PremiumBadge } from '@/components/features/premium/PremiumBadge';
 import { MobileNav } from '../navigation/MobileNav';
 import { LanguageSelector } from '../navigation/LanguageSelector';
 
 export function Header() {
   const router = useRouter();
   const { t } = useTranslation('common');
-  const { user } = useAuth();
+  const { user, isPremium } = useAuth();
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -36,9 +37,12 @@ export function Header() {
             <LanguageSelector />
             <div className="hidden md:flex items-center gap-2">
               {user ? (
-                <Button variant="ghost" onClick={() => router.push('/auth/login')}>
-                  {t('nav.logout')}
-                </Button>
+                <>
+                  {isPremium && <PremiumBadge size="sm" />}
+                  <Button variant="ghost" onClick={() => router.push('/auth/login')}>
+                    {t('nav.logout')}
+                  </Button>
+                </>
               ) : (
                 <>
                   <Button variant="ghost" onClick={() => router.push('/auth/login')}>

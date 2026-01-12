@@ -6,6 +6,8 @@ import { Header } from '@/components/features/home/Header';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Toast } from '@/components/ui/toast';
+import { Confetti } from '@/components/features/premium/Confetti';
 import { CheckCircle2, Sparkles, ArrowLeft, Users, Shield } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/providers/AuthProvider';
@@ -14,9 +16,13 @@ import { supabase } from '@/lib/supabase';
 export default function PricingPage() {
   const router = useRouter();
   const { t } = useTranslation('common');
-  const { user, session: authSession, loading: authLoading } = useAuth();
-  const [loading, setLoading] = useState(false);
-  const [selectedPlan, setSelectedPlan] = useState<'one-time' | 'monthly'>('one-time');
+  const { user, session: authSession, loading: authLoading, refreshPremiumStatus } = useAuth();
+  const [loading, setLoading] = useState<{ oneTime: boolean; monthly: boolean }>({
+    oneTime: false,
+    monthly: false,
+  });
+  const [showToast, setShowToast] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(false);
 
   // Vérifier si l'utilisateur revient d'un paiement réussi
   useEffect(() => {
@@ -42,9 +48,16 @@ export default function PricingPage() {
     
     if (success === 'true' && session_id) {
       console.log('✅ [Pricing] Paiement réussi, session_id:', session_id);
+      
+      // Afficher la notification et les confettis immédiatement
+      setShowConfetti(true);
+      setShowToast(true);
+      
       console.log('⏳ [Pricing] Attente de 2 secondes pour le webhook...');
-      // Rafraîchir la page après un court délai pour que le webhook ait le temps de s'exécuter
-      setTimeout(() => {
+      // Rafraîchir le statut premium après un court délai pour que le webhook ait le temps de s'exécuter
+      setTimeout(async () => {
+        console.log('🔄 [Pricing] Rafraîchissement du statut premium...');
+        await refreshPremiumStatus();
         console.log('🚀 [Pricing] Redirection vers la page d\'accueil');
         router.push('/?premium_activated=true');
       }, 2000);
@@ -54,6 +67,11 @@ export default function PricingPage() {
   }, [router.isReady, router.query]);
 
   const handleCheckout = async (planType: 'one-time' | 'monthly') => {
+    // Mettre à jour le loading pour le plan spécifique
+    setLoading(prev => ({
+      ...prev,
+      [planType === 'one-time' ? 'oneTime' : 'monthly']: true,
+    }));
     console.log('🛒 [Pricing] Début du checkout - Plan:', planType);
     console.log('👤 [Pricing] État auth:', { 
       hasUser: !!user, 
@@ -77,7 +95,7 @@ export default function PricingPage() {
     // Vérifier si l'utilisateur est connecté (depuis user OU session)
     const currentUser = user || authSession?.user;
     
-    if (!currentUser) {
+      if (!currentUser) {
       console.error('❌ [Pricing] Utilisateur non connecté - État complet:', {
         user: user,
         authSession: authSession,
@@ -86,13 +104,15 @@ export default function PricingPage() {
         hasUserFromSession: !!authSession?.user
       });
       console.log('🔄 [Pricing] Redirection vers inscription...');
+      setLoading(prev => ({
+        ...prev,
+        [planType === 'one-time' ? 'oneTime' : 'monthly']: false,
+      }));
       router.push(`/auth/register?redirect=${encodeURIComponent('/pricing')}`);
       return;
     }
 
     console.log('✅ [Pricing] Utilisateur connecté:', currentUser.id);
-
-    setLoading(true);
     try {
       // Utiliser la session depuis AuthProvider (déjà chargée, plus rapide et fiable)
       console.log('🔑 [Pricing] Utilisation de la session depuis AuthProvider...');
@@ -111,7 +131,10 @@ export default function PricingPage() {
           if (refreshError) {
             console.error('❌ [Pricing] Erreur lors de la récupération:', refreshError);
             router.push(`/auth/login?redirect=${encodeURIComponent('/pricing')}`);
-            setLoading(false);
+            setLoading(prev => ({
+              ...prev,
+              [planType === 'one-time' ? 'oneTime' : 'monthly']: false,
+            }));
             return;
           }
           
@@ -121,13 +144,19 @@ export default function PricingPage() {
           } else {
             console.error('❌ [Pricing] Aucun token disponible après rafraîchissement');
             router.push(`/auth/login?redirect=${encodeURIComponent('/pricing')}`);
-            setLoading(false);
+            setLoading(prev => ({
+              ...prev,
+              [planType === 'one-time' ? 'oneTime' : 'monthly']: false,
+            }));
             return;
           }
         } catch (sessionError) {
           console.error('❌ [Pricing] Exception lors de la récupération de session:', sessionError);
           router.push(`/auth/login?redirect=${encodeURIComponent('/pricing')}`);
-          setLoading(false);
+          setLoading(prev => ({
+            ...prev,
+            [planType === 'one-time' ? 'oneTime' : 'monthly']: false,
+          }));
           return;
         }
       }
@@ -135,7 +164,10 @@ export default function PricingPage() {
       if (!accessToken) {
         console.error('❌ [Pricing] Aucun token d\'accès dans la session AuthProvider');
         router.push(`/auth/login?redirect=${encodeURIComponent('/pricing')}`);
-        setLoading(false);
+        setLoading(prev => ({
+          ...prev,
+          [planType === 'one-time' ? 'oneTime' : 'monthly']: false,
+        }));
         return;
       }
 
@@ -148,7 +180,10 @@ export default function PricingPage() {
         console.error('❌ [Pricing] Message d\'erreur:', error.message);
         console.error('❌ [Pricing] Stack:', error.stack);
       }
-      setLoading(false);
+      setLoading(prev => ({
+        ...prev,
+        [planType === 'one-time' ? 'oneTime' : 'monthly']: false,
+      }));
     }
   };
 
@@ -175,7 +210,10 @@ export default function PricingPage() {
         console.error('❌ [Pricing] Erreur HTTP:', response.status, response.statusText);
         const errorText = await response.text();
         console.error('❌ [Pricing] Contenu de l\'erreur:', errorText);
-        setLoading(false);
+        setLoading(prev => ({
+          ...prev,
+          [planType === 'one-time' ? 'oneTime' : 'monthly']: false,
+        }));
         return;
       }
 
@@ -192,7 +230,10 @@ export default function PricingPage() {
         if (data.error.includes('connecté') || data.error.includes('authentification')) {
           router.push(`/auth/login?redirect=${encodeURIComponent('/pricing')}`);
         }
-        setLoading(false);
+        setLoading(prev => ({
+          ...prev,
+          [planType === 'one-time' ? 'oneTime' : 'monthly']: false,
+        }));
         return;
       }
 
@@ -203,14 +244,20 @@ export default function PricingPage() {
       } else {
         console.error('❌ [Pricing] Aucune URL de checkout reçue dans la réponse');
         console.error('❌ [Pricing] Réponse complète:', data);
-        setLoading(false);
+        setLoading(prev => ({
+          ...prev,
+          [planType === 'one-time' ? 'oneTime' : 'monthly']: false,
+        }));
       }
     } catch (error) {
       console.error('❌ [Pricing] Erreur dans proceedWithCheckout:', error);
       if (error instanceof Error) {
         console.error('❌ [Pricing] Message:', error.message);
       }
-      setLoading(false);
+      setLoading(prev => ({
+        ...prev,
+        [planType === 'one-time' ? 'oneTime' : 'monthly']: false,
+      }));
     }
   };
 
@@ -250,68 +297,32 @@ export default function PricingPage() {
         </div>
 
         {/* Social Proof */}
-        <div className="flex justify-center items-center gap-2 mb-6 text-sm text-muted-foreground">
+        <div className="flex justify-center items-center gap-2 mb-8 text-sm text-muted-foreground">
           <Users className="h-4 w-4" />
           <span>Rejoint par <strong className="text-foreground">+500 candidats</strong> ce mois-ci</span>
         </div>
 
-        {/* Sélecteur de plan */}
-        <div className="flex justify-center mb-8">
-          <div className="inline-flex rounded-lg border p-1 bg-background">
-            <button
-              onClick={() => setSelectedPlan('one-time')}
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                selectedPlan === 'one-time'
-                  ? 'bg-primary text-primary-foreground'
-                  : 'text-muted-foreground hover:text-foreground'
-              }`}
-            >
-              Paiement unique
-            </button>
-            <button
-              onClick={() => setSelectedPlan('monthly')}
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                selectedPlan === 'monthly'
-                  ? 'bg-primary text-primary-foreground'
-                  : 'text-muted-foreground hover:text-foreground'
-              }`}
-            >
-              Abonnement mensuel
-            </button>
-          </div>
-        </div>
-
-        {/* Carte d'offre */}
-        <div className="max-w-2xl mx-auto">
-          <Card className="border-2 border-primary relative">
-            {/* Badge "Recommandé" pour paiement unique */}
-            {selectedPlan === 'one-time' && (
-              <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground">
-                Recommandé
-              </Badge>
-            )}
+        {/* Grille des deux offres côte à côte */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto mb-8">
+          {/* Carte de gauche : Abonnement mensuel */}
+          <Card className="border-2 border-border relative">
+            <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-500 text-white">
+              Flexible
+            </Badge>
             
-            <CardHeader className="text-center pb-4">
-              <CardTitle className="text-3xl mb-2">Accès Illimité</CardTitle>
+            <CardHeader className="text-center pb-4 pt-6">
+              <CardTitle className="text-2xl mb-2">Accès Mensuel</CardTitle>
               <CardDescription className="text-lg">
-                {selectedPlan === 'one-time' ? (
-                  <>
-                    <span className="text-4xl font-bold text-foreground">29€</span>
-                    <span className="text-muted-foreground"> une fois</span>
-                  </>
-                ) : (
-                  <>
-                    <span className="text-4xl font-bold text-foreground">9€</span>
-                    <span className="text-muted-foreground"> / mois</span>
-                  </>
-                )}
+                <span className="text-4xl font-bold text-foreground">9€</span>
+                <span className="text-muted-foreground"> / mois</span>
               </CardDescription>
+              <p className="text-xs text-muted-foreground mt-2">Annulable à tout moment</p>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-3">
                 {features.map((feature, index) => (
                   <div key={index} className="flex items-start gap-3">
-                    <CheckCircle2 className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                    <CheckCircle2 className="h-5 w-5 text-blue-500 mt-0.5 flex-shrink-0" />
                     <span className="text-sm">{feature}</span>
                   </div>
                 ))}
@@ -319,16 +330,61 @@ export default function PricingPage() {
             </CardContent>
             <CardFooter className="flex-col gap-2 pt-6">
               <Button
-                onClick={() => handleCheckout(selectedPlan)}
-                disabled={loading}
+                onClick={() => handleCheckout('monthly')}
+                disabled={loading.monthly}
                 className="w-full text-lg h-12"
                 size="lg"
+                variant="outline"
               >
-                {loading ? 'Redirection...' : selectedPlan === 'one-time' ? 'Acheter maintenant' : 'S\'abonner'}
+                {loading.monthly ? 'Redirection...' : 'S\'abonner'}
               </Button>
               <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground mt-2">
                 <Shield className="h-3 w-3" />
-                <span>Paiement sécurisé via Stripe. Annulation possible à tout moment.</span>
+                <span>Paiement sécurisé via Stripe</span>
+              </div>
+            </CardFooter>
+          </Card>
+
+          {/* Carte de droite : Paiement unique (Recommandé) */}
+          <Card className="border-4 border-primary relative shadow-lg">
+            <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-sm px-3 py-1">
+              ⭐ Recommandé
+            </Badge>
+            
+            <CardHeader className="text-center pb-4 pt-6">
+              <CardTitle className="text-2xl mb-2">Accès Illimité</CardTitle>
+              <CardDescription className="text-lg">
+                <span className="text-4xl font-bold text-foreground">29€</span>
+                <span className="text-muted-foreground"> une fois</span>
+              </CardDescription>
+              <p className="text-xs text-primary font-semibold mt-2">À vie • Sans limite</p>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-3">
+                {features.map((feature, index) => (
+                  <div key={index} className="flex items-start gap-3">
+                    <CheckCircle2 className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                    <span className="text-sm font-medium">{feature}</span>
+                  </div>
+                ))}
+                <div className="flex items-start gap-3 pt-2 border-t">
+                  <CheckCircle2 className="h-5 w-5 text-amber-500 mt-0.5 flex-shrink-0" />
+                  <span className="text-sm font-semibold text-primary">Accès permanent, sans renouvellement</span>
+                </div>
+              </div>
+            </CardContent>
+            <CardFooter className="flex-col gap-2 pt-6">
+              <Button
+                onClick={() => handleCheckout('one-time')}
+                disabled={loading.oneTime}
+                className="w-full text-lg h-12 bg-primary hover:bg-primary/90"
+                size="lg"
+              >
+                {loading.oneTime ? 'Redirection...' : 'Acheter maintenant'}
+              </Button>
+              <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground mt-2">
+                <Shield className="h-3 w-3" />
+                <span>Paiement sécurisé via Stripe</span>
               </div>
             </CardFooter>
           </Card>
@@ -343,6 +399,19 @@ export default function PricingPage() {
           </p>
         </div>
       </main>
+
+      {/* Toast de succès */}
+      <Toast
+        open={showToast}
+        onOpenChange={setShowToast}
+        title="🎉 Félicitations !"
+        description="Votre accès Premium est désormais activé. Profitez de toutes les fonctionnalités !"
+        variant="success"
+        duration={5000}
+      />
+
+      {/* Animation de confettis */}
+      <Confetti trigger={showConfetti} duration={3000} />
     </div>
   );
 }
