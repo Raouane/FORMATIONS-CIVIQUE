@@ -298,6 +298,16 @@ export default function ResultsPage() {
             <RotateCcw className="h-4 w-4 mr-2" />
             {t('actions.retry')}
           </Button>
+          {/* Bouton Premium dans les actions */}
+          {!isPremium && (
+            <Button 
+              onClick={() => router.push('/pricing')}
+              className="bg-primary hover:bg-primary/90"
+            >
+              <Sparkles className="h-4 w-4 mr-2" />
+              Passer Premium
+            </Button>
+          )}
           {!examResult.passed && (
             <Button onClick={() => router.push('/revision')} variant="outline">
               <BookOpen className="h-4 w-4 mr-2 rtl:mr-0 rtl:ml-2" />
