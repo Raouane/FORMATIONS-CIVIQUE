@@ -20,9 +20,20 @@ export default function PricingPage() {
 
   // Vérifier si l'utilisateur revient d'un paiement réussi
   useEffect(() => {
+    // Attendre que le routeur soit prêt avant de lire les query params
+    if (!router.isReady) {
+      console.log('⏳ [Pricing] Routeur pas encore prêt, attente...');
+      return;
+    }
+
     const { success, session_id, canceled } = router.query;
     
-    console.log('🔄 [Pricing] Query params:', { success, session_id, canceled });
+    console.log('🔄 [Pricing] Query params:', { 
+      success, 
+      session_id, 
+      canceled,
+      isReady: router.isReady 
+    });
     
     if (canceled === 'true') {
       console.log('❌ [Pricing] Paiement annulé');
@@ -37,8 +48,10 @@ export default function PricingPage() {
         console.log('🚀 [Pricing] Redirection vers la page d\'accueil');
         router.push('/?premium_activated=true');
       }, 2000);
+    } else {
+      console.log('ℹ️ [Pricing] Accès normal à la page pricing (pas de retour Stripe)');
     }
-  }, [router.query]);
+  }, [router.isReady, router.query]);
 
   const handleCheckout = async (planType: 'one-time' | 'monthly') => {
     // Vérifier si l'utilisateur est connecté
