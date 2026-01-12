@@ -71,8 +71,23 @@ export default function PricingPage() {
       console.log('🔑 [Pricing] Récupération du token Supabase...');
       const { data: { session }, error: sessionError } = await supabase.auth.getSession();
       
+      console.log('📋 [Pricing] Session récupérée:', {
+        hasSession: !!session,
+        hasError: !!sessionError,
+        error: sessionError,
+        hasAccessToken: !!session?.access_token,
+        sessionExpiresAt: session?.expires_at
+      });
+      
       if (sessionError) {
         console.error('❌ [Pricing] Erreur lors de la récupération de la session:', sessionError);
+        router.push(`/auth/login?redirect=${encodeURIComponent('/pricing')}`);
+        setLoading(false);
+        return;
+      }
+
+      if (!session) {
+        console.error('❌ [Pricing] Aucune session trouvée');
         router.push(`/auth/login?redirect=${encodeURIComponent('/pricing')}`);
         setLoading(false);
         return;
