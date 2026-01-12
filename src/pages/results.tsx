@@ -12,16 +12,17 @@ import { Header } from '@/components/features/home/Header';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { CheckCircle2, XCircle, Home, RotateCcw, BookOpen, TrendingUp } from 'lucide-react';
+import { CheckCircle2, XCircle, Home, RotateCcw, BookOpen, TrendingUp, Sparkles } from 'lucide-react';
 import { formatTime, getThemeColor, cn } from '@/lib/utils';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { QuestionCard } from '@/components/features/exam/QuestionCard';
 import { CircularProgress } from '@/components/ui/circular-progress';
+import { PremiumCTA } from '@/components/features/premium/PremiumCTA';
 
 export default function ResultsPage() {
   const router = useRouter();
   const { t, i18n } = useTranslation('results');
-  const { user } = useAuth();
+  const { user, isPremium } = useAuth();
   const [examResult, setExamResult] = useState<ExamResult | null>(null);
   const [questions, setQuestions] = useState<Question[]>([]);
   const [loading, setLoading] = useState(true);
@@ -177,6 +178,11 @@ export default function ResultsPage() {
             </div>
           </CardContent>
         </Card>
+
+        {/* Premium CTA - Affiché après le verdict avec animation */}
+        <div className="mb-8">
+          <PremiumCTA examResult={examResult} />
+        </div>
 
         {/* Progression par thème */}
         <Card className="mb-8">

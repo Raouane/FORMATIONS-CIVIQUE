@@ -13,24 +13,12 @@ import { PremiumGuard } from '@/components/features/premium/PremiumGuard';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { ChevronLeft, ChevronRight, CheckCircle2 } from 'lucide-react';
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from '@/components/ui/alert-dialog';
-import { useState, useEffect } from 'react';
 import { EXAM_CONFIG } from '@/lib/constants';
 
 export default function SimulationPage() {
   const router = useRouter();
   const { t, i18n } = useTranslation('exam');
   const { user } = useAuth();
-  const [showConfirmDialog, setShowConfirmDialog] = useState(false);
 
 
   // Récupérer le niveau depuis l'URL ou utiliser A2 par défaut
@@ -94,12 +82,7 @@ export default function SimulationPage() {
   )?.answerIndex ?? null;
 
   const handleFinish = () => {
-    setShowConfirmDialog(true);
-  };
-
-  const handleConfirmFinish = async () => {
-    setShowConfirmDialog(false);
-    await submitExam();
+    submitExam();
   };
 
   const isLastQuestion = currentQuestionIndex === questions.length - 1;
@@ -118,6 +101,7 @@ export default function SimulationPage() {
               variant="outline"
               onClick={handleFinish}
               className="flex items-center gap-2"
+              disabled={isCompleted}
             >
               <CheckCircle2 className="h-4 w-4" />
               {t('navigation.finish')}
@@ -176,27 +160,6 @@ export default function SimulationPage() {
           )}
         </div>
       </main>
-
-      {/* Dialog de confirmation */}
-      <AlertDialog open={showConfirmDialog} onOpenChange={setShowConfirmDialog}>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>{t('navigation.dialog.title')}</AlertDialogTitle>
-            <AlertDialogDescription>
-              {t('navigation.confirmFinish')}
-              <br />
-              <br />
-              {t('navigation.dialog.description', { answered: answeredCount, total: totalQuestions })}
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel>{t('navigation.dialog.cancel')}</AlertDialogCancel>
-            <AlertDialogAction onClick={handleConfirmFinish}>
-              {t('navigation.dialog.confirm')}
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
 
       {/* PremiumGuard - Paywall après la 10ème question */}
       <PremiumGuard open={showPaywall} onOpenChange={setShowPaywall} />
