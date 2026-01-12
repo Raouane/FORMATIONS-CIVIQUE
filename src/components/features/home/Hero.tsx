@@ -4,7 +4,7 @@ import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Check, ChevronDown } from 'lucide-react';
+import { Check, ChevronDown, Sparkles } from 'lucide-react';
 
 export function Hero() {
   const { t } = useTranslation('home');
@@ -46,17 +46,29 @@ export function Hero() {
             ))}
           </div>
 
-          <Button
-            size="lg"
-            onClick={() => {
-              const locale = router.locale || 'fr';
-              router.push('/simulation', '/simulation', { locale });
-            }}
-            className="text-lg px-8 py-6 w-full md:w-auto bg-[#2ECC71] hover:bg-[#27AE60] text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
-          >
-            {t('hero.cta')}
-            <ChevronDown className="ml-2 h-5 w-5" />
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
+            <Button
+              size="lg"
+              onClick={() => {
+                const locale = router.locale || 'fr';
+                router.push('/simulation', '/simulation', { locale });
+              }}
+              className="text-lg px-8 py-6 w-full sm:w-auto bg-[#2ECC71] hover:bg-[#27AE60] text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+            >
+              {t('hero.cta')}
+              <ChevronDown className="ml-2 h-5 w-5" />
+            </Button>
+            
+            <Button
+              size="lg"
+              onClick={() => router.push('/pricing')}
+              variant="outline"
+              className="text-lg px-8 py-6 w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white border-white/30 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 backdrop-blur-sm"
+            >
+              <Sparkles className="mr-2 h-5 w-5" />
+              Passer Premium
+            </Button>
+          </div>
         </div>
       </div>
     </section>
