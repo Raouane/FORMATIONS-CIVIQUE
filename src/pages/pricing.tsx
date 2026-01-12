@@ -73,12 +73,13 @@ export default function PricingPage() {
       [planType === 'one-time' ? 'oneTime' : 'monthly']: true,
     }));
     console.log('🛒 [Pricing] Début du checkout - Plan:', planType);
-    console.log('👤 [Pricing] État auth:', { 
+    console.log('👤 [Pricing] État auth initial:', { 
       hasUser: !!user, 
       userId: user?.id,
       authLoading,
       hasSession: !!authSession,
-      sessionUserId: authSession?.user?.id
+      sessionUserId: authSession?.user?.id,
+      sessionAccessToken: authSession?.access_token ? 'Présent' : 'Absent'
     });
     
     // Attendre que l'authentification soit chargée (max 3 secondes)
@@ -90,6 +91,14 @@ export default function PricingPage() {
         attempts++;
         console.log(`⏳ [Pricing] Tentative ${attempts}/6...`);
       }
+      // Re-vérifier après l'attente
+      console.log('👤 [Pricing] État auth après attente:', { 
+        hasUser: !!user, 
+        userId: user?.id,
+        authLoading,
+        hasSession: !!authSession,
+        sessionUserId: authSession?.user?.id
+      });
     }
     
     // Vérifier si l'utilisateur est connecté (depuis user OU session)
