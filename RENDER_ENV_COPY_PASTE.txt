@@ -1,0 +1,86 @@
+============================================
+VARIABLES D'ENVIRONNEMENT POUR RENDER
+============================================
+
+Copiez-collez ces variables une par une dans Render :
+
+1. NEXT_PUBLIC_SUPABASE_URL
+   https://lqdfioptcptinnxqshrj.supabase.co
+
+2. NEXT_PUBLIC_SUPABASE_ANON_KEY
+   sb_publishable_SVOkmGcIU9EkNqLqCeMBzg_7IN4ZEpl
+
+3. SUPABASE_SERVICE_ROLE_KEY
+   [À REMPLACER - Récupérer dans Supabase Dashboard → Settings → API → service_role key]
+
+4. NEXT_PUBLIC_APP_URL
+   https://formations-civique.onrender.com
+   [À REMPLACER après le premier déploiement avec votre vraie URL Render]
+
+5. PORT (optionnel - Render le gère automatiquement)
+   10000
+
+============================================
+VARIABLES OPTIONNELLES
+============================================
+
+6. SUPABASE_DB_URL_POOLER (recommandé pour production)
+   postgresql://postgres.lqdfioptcptinnxqshrj:[YOUR-PASSWORD]@aws-1-eu-west-1.pooler.supabase.com:6543/postgres?sslmode=require
+   [Remplacer [YOUR-PASSWORD] par votre mot de passe DB Supabase]
+
+7. RESEND_API_KEY (si vous utilisez les emails)
+   re_xxxxxxxxxxxxx
+
+8. RESEND_FROM_EMAIL (si vous utilisez les emails)
+   noreply@formations-civiques.fr
+
+9. SENTRY_DSN (si vous utilisez Sentry)
+   https://xxxxx@xxxxx.ingest.sentry.io/xxxxx
+
+10. NEXT_PUBLIC_POSTHOG_KEY (si vous utilisez PostHog)
+    phc_xxxxxxxxxxxxx
+
+11. NEXT_PUBLIC_POSTHOG_HOST (si vous utilisez PostHog)
+    https://app.posthog.com
+
+12. STRIPE_SECRET_KEY (si vous utilisez Stripe)
+    sk_test_xxxxxxxxxxxxx
+
+13. NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY (si vous utilisez Stripe)
+    pk_test_xxxxxxxxxxxxx
+
+14. STRIPE_WEBHOOK_SECRET (si vous utilisez Stripe)
+    whsec_xxxxxxxxxxxxx
+
+============================================
+COMMANDES BUILD ET START POUR RENDER
+============================================
+
+⚠️ ATTENTION : Copiez EXACTEMENT ces commandes, sans modification !
+
+Build Command (à copier EXACTEMENT dans Render) :
+npm install && npm run build
+
+Start Command (à copier EXACTEMENT dans Render) :
+npm run start
+
+❌ NE PAS utiliser :
+- npm install; npm run build (mauvais séparateur)
+- npm install &&npm run build (pas d'espace)
+- Toute autre variation
+
+============================================
+INSTRUCTIONS RAPIDES
+============================================
+
+1. Dans Render, configurez les commandes :
+   - Build Command : npm install && npm run build
+   - Start Command : npm run start
+
+2. Dans Render, allez dans votre service → "Environment"
+3. Cliquez sur "Add Environment Variable"
+4. Pour chaque variable ci-dessus :
+   - Key : Le nom (ex: NEXT_PUBLIC_SUPABASE_URL)
+   - Value : La valeur correspondante
+5. IMPORTANT : Remplacez les valeurs entre [crochets]
+6. Redéployez après avoir ajouté les variables

@@ -1,15 +1,10 @@
-/**
- * Exemple d'utilisation du hook useDBTranslation dans un composant
- * 
- * Ce fichier montre comment remplacer useTranslation de next-i18next
- * par useDBTranslation pour charger les traductions depuis la base de données
- */
+# Exemple d'utilisation du hook useDBTranslation
 
-import { useDBTranslation } from '@/hooks/useDBTranslation';
-import { useRouter } from 'next/router';
+Ce fichier montre comment remplacer `useTranslation` de next-i18next par `useDBTranslation` pour charger les traductions depuis la base de données.
 
-// ❌ AVANT (avec next-i18next)
-/*
+## ❌ AVANT (avec next-i18next)
+
+```tsx
 import { useTranslation } from 'next-i18next';
 
 export default function RevisionPage() {
@@ -17,9 +12,14 @@ export default function RevisionPage() {
   
   return <h1>{t('title')}</h1>;
 }
-*/
+```
 
-// ✅ APRÈS (avec useDBTranslation)
+## ✅ APRÈS (avec useDBTranslation)
+
+```tsx
+import { useDBTranslation } from '@/hooks/useDBTranslation';
+import { useRouter } from 'next/router';
+
 export default function RevisionPage() {
   const router = useRouter();
   const { t, ready } = useDBTranslation('revision');
@@ -50,10 +50,13 @@ export default function RevisionPage() {
     </div>
   );
 }
+```
 
-// 🔄 MIGRATION PROGRESSIVE (Hybride)
-// Vous pouvez utiliser les deux systèmes en parallèle pendant la migration
+## 🔄 MIGRATION PROGRESSIVE (Hybride)
 
+Vous pouvez utiliser les deux systèmes en parallèle pendant la migration :
+
+```tsx
 import { useTranslation } from 'next-i18next';
 import { useDBTranslation } from '@/hooks/useDBTranslation';
 
@@ -66,20 +69,20 @@ export function HybridRevisionPage() {
 
   return <h1>{t('title')}</h1>;
 }
+```
 
-// 📝 NOTES IMPORTANTES
-/*
-1. Le hook useDBTranslation charge les traductions de manière asynchrone
+## 📝 NOTES IMPORTANTES
+
+1. **Le hook useDBTranslation charge les traductions de manière asynchrone**
    → Toujours vérifier `ready` avant d'utiliser `t()`
 
-2. Les traductions sont mises en cache (5 min TTL)
+2. **Les traductions sont mises en cache (5 min TTL)**
    → Les appels suivants sont instantanés
 
-3. Fallback automatique sur 'fr' si la traduction demandée n'existe pas
+3. **Fallback automatique sur 'fr' si la traduction demandée n'existe pas**
 
-4. Compatible avec next-i18next
+4. **Compatible avec next-i18next**
    → Vous pouvez migrer progressivement, composant par composant
 
-5. Support des interpolations
-   → t('message', { name: 'John' }) remplace {{name}} dans la traduction
-*/
+5. **Support des interpolations**
+   → `t('message', { name: 'John' })` remplace `{{name}}` dans la traduction
