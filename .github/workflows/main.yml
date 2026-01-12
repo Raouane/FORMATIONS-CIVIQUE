@@ -2,14 +2,18 @@ name: Monitor Website
 
 on:
   schedule:
-    # S'exécute toutes les 5 minutes
-    - cron: '*/15 * * * *'
-  workflow_dispatch: # Permet de lancer le ping manuellement
+    # On passe à 5 minutes pour éviter la mise en veille de Render
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
 
 jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
-      - name: Ping Site
+      - name: Wake up Render
         run: |
-          curl -I -s --retry 3 https://formations-civique.onrender.com | grep "HTTP/"
+          curl -fL -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) GitHubActions/1.0" \
+          --connect-timeout 30 \
+          --retry 2 \
+          https://formations-civique.onrender.com \
+          -o /dev/null
