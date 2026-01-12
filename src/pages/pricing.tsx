@@ -20,10 +20,21 @@ export default function PricingPage() {
 
   // Vérifier si l'utilisateur revient d'un paiement réussi
   useEffect(() => {
-    const { success, session_id } = router.query;
+    const { success, session_id, canceled } = router.query;
+    
+    console.log('🔄 [Pricing] Query params:', { success, session_id, canceled });
+    
+    if (canceled === 'true') {
+      console.log('❌ [Pricing] Paiement annulé');
+      return;
+    }
+    
     if (success === 'true' && session_id) {
+      console.log('✅ [Pricing] Paiement réussi, session_id:', session_id);
+      console.log('⏳ [Pricing] Attente de 2 secondes pour le webhook...');
       // Rafraîchir la page après un court délai pour que le webhook ait le temps de s'exécuter
       setTimeout(() => {
+        console.log('🚀 [Pricing] Redirection vers la page d\'accueil');
         router.push('/?premium_activated=true');
       }, 2000);
     }

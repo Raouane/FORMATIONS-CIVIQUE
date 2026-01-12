@@ -38,9 +38,12 @@ export default async function handler(
   }
 
   try {
+    console.log('📥 [Checkout API] Requête reçue');
     const { planType } = req.body;
+    console.log('📋 [Checkout API] Plan type:', planType);
 
     if (!planType || !['one-time', 'monthly'].includes(planType)) {
+      console.error('❌ [Checkout API] Plan type invalide:', planType);
       return res.status(400).json({ error: 'Invalid plan type' });
     }
 
@@ -50,28 +53,35 @@ export default async function handler(
 
     try {
       // Récupérer le token depuis les headers Authorization
+      console.log('🔑 [Checkout API] Vérification de l\'authentification...');
       const authHeader = req.headers.authorization;
+      
       if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        console.error('❌ [Checkout API] Pas de header Authorization');
         return res.status(401).json({ 
           error: 'Vous devez être connecté pour effectuer un paiement. Veuillez vous inscrire ou vous connecter.' 
         });
       }
 
       const token = authHeader.replace('Bearer ', '');
+      console.log('✅ [Checkout API] Token trouvé, longueur:', token.length);
       
       // Vérifier le token et récupérer l'utilisateur
+      console.log('👤 [Checkout API] Récupération de l\'utilisateur depuis Supabase...');
       const { data: { user }, error: authError } = await supabase.auth.getUser(token);
       
       if (authError || !user) {
-        console.error('User not authenticated:', authError?.message);
+        console.error('❌ [Checkout API] Erreur d\'authentification:', authError?.message);
         return res.status(401).json({ 
           error: 'Vous devez être connecté pour effectuer un paiement. Veuillez vous inscrire ou vous connecter.' 
         });
       }
 
       userId = user.id;
+      console.log('✅ [Checkout API] Utilisateur authentifié:', userId);
 
       // Récupérer l'email depuis le profil
+      console.log('📧 [Checkout API] Récupération de l\'email...');
       const { data: profile, error: profileError } = await supabase
         .from('fc_profiles')
         .select('email')
@@ -79,11 +89,13 @@ export default async function handler(
         .single();
       
       if (profileError) {
-        console.warn('Error getting profile:', profileError.message);
+        console.warn('⚠️ [Checkout API] Erreur récupération profil:', profileError.message);
         // Utiliser l'email de l'utilisateur Supabase en fallback
         customerEmail = user.email;
+        console.log('📧 [Checkout API] Email depuis Supabase:', customerEmail);
       } else {
         customerEmail = profile?.email || user.email;
+        console.log('✅ [Checkout API] Email récupéré:', customerEmail);
       }
     } catch (userError: any) {
       console.error('Error retrieving user:', userError.message);
@@ -100,6 +112,7 @@ export default async function handler(
     }
 
     // Créer la session Stripe
+    console.log('💳 [Checkout API] Création de la session Stripe...');
     const sessionParams: Stripe.Checkout.SessionCreateParams = {
       mode: planType === 'one-time' ? 'payment' : 'subscription',
       payment_method_types: ['card'],
@@ -126,13 +139,22 @@ export default async function handler(
       },
     };
 
+    console.log('📝 [Checkout API] Paramètres session:', {
+      mode: sessionParams.mode,
+      amount: planType === 'one-time' ? 2900 : 900,
+      userId,
+      planType,
+    });
+
     const session = await stripe.checkout.sessions.create(sessionParams);
+    console.log('✅ [Checkout API] Session Stripe créée:', session.id);
 
     if (!session.url) {
-      console.error('Stripe session created but no URL returned');
+      console.error('❌ [Checkout API] Session créée mais pas d\'URL retournée');
       return res.status(500).json({ error: 'Failed to create checkout session URL' });
     }
 
+    console.log('✅ [Checkout API] URL de checkout générée:', session.url.substring(0, 50) + '...');
     return res.status(200).json({ url: session.url });
   } catch (error: any) {
     console.error('Erreur Stripe checkout-session:', {

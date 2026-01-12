@@ -24,26 +24,42 @@ export function PremiumCTA({ examResult }: PremiumCTAProps) {
   if (isPremium) return null;
 
   const handleCheckout = async (planType: 'one-time' | 'monthly') => {
+    console.log('🛒 [PremiumCTA] Début du checkout - Plan:', planType);
+    
     // Vérifier si l'utilisateur est connecté
     if (!user) {
-      // Rediriger vers l'inscription avec un redirect vers pricing
+      console.log('❌ [PremiumCTA] Utilisateur non connecté - Redirection vers inscription');
       router.push(`/auth/register?redirect=${encodeURIComponent('/pricing')}`);
       return;
     }
 
+    console.log('✅ [PremiumCTA] Utilisateur connecté:', user.id);
+
     setLoading(true);
     try {
       // Récupérer le token d'accès depuis Supabase
-      const { data: { session } } = await supabase.auth.getSession();
-      const accessToken = session?.access_token;
-
-      if (!accessToken) {
-        console.error('No access token found');
+      console.log('🔑 [PremiumCTA] Récupération du token Supabase...');
+      const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+      
+      if (sessionError) {
+        console.error('❌ [PremiumCTA] Erreur lors de la récupération de la session:', sessionError);
         router.push(`/auth/login?redirect=${encodeURIComponent('/pricing')}`);
         setLoading(false);
         return;
       }
 
+      const accessToken = session?.access_token;
+
+      if (!accessToken) {
+        console.error('❌ [PremiumCTA] Aucun token d\'accès trouvé');
+        router.push(`/auth/login?redirect=${encodeURIComponent('/pricing')}`);
+        setLoading(false);
+        return;
+      }
+
+      console.log('✅ [PremiumCTA] Token récupéré, longueur:', accessToken.length);
+
+      console.log('📡 [PremiumCTA] Appel API /api/stripe/checkout-session...');
       const response = await fetch('/api/stripe/checkout-session', {
         method: 'POST',
         headers: {
@@ -55,10 +71,17 @@ export function PremiumCTA({ examResult }: PremiumCTAProps) {
         }),
       });
 
+      console.log('📥 [PremiumCTA] Réponse reçue, status:', response.status);
+
       const data = await response.json();
+      console.log('📦 [PremiumCTA] Données reçues:', { 
+        hasUrl: !!data.url, 
+        hasError: !!data.error,
+        error: data.error 
+      });
 
       if (data.error) {
-        console.error('Erreur Stripe:', data.error);
+        console.error('❌ [PremiumCTA] Erreur Stripe:', data.error);
         if (data.error.includes('connecté') || data.error.includes('authentification')) {
           router.push(`/auth/login?redirect=${encodeURIComponent('/pricing')}`);
         }
@@ -67,13 +90,14 @@ export function PremiumCTA({ examResult }: PremiumCTAProps) {
       }
 
       if (data.url) {
+        console.log('✅ [PremiumCTA] Redirection vers Stripe Checkout:', data.url.substring(0, 50) + '...');
         window.location.href = data.url;
       } else {
-        console.error('Erreur lors de la création de la session Stripe');
+        console.error('❌ [PremiumCTA] Aucune URL de checkout reçue');
         setLoading(false);
       }
     } catch (error) {
-      console.error('Erreur:', error);
+      console.error('❌ [PremiumCTA] Erreur exception:', error);
       setLoading(false);
     }
   };

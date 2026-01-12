@@ -62,36 +62,50 @@ export default async function handler(
 
   // Gérer les événements de paiement
   try {
+    console.log('📨 [Webhook] Événement reçu:', event.type);
+    
     switch (event.type) {
       case 'checkout.session.completed': {
+        console.log('✅ [Webhook] checkout.session.completed détecté');
         const session = event.data.object as Stripe.Checkout.Session;
+        console.log('📋 [Webhook] Session ID:', session.id);
+        console.log('📋 [Webhook] Mode:', session.mode);
+        console.log('📋 [Webhook] Metadata:', session.metadata);
         
         // Récupérer l'ID utilisateur depuis les metadata
         const userId = session.metadata?.userId;
+        const planType = session.metadata?.planType;
+        
+        console.log('👤 [Webhook] UserId depuis metadata:', userId);
+        console.log('📦 [Webhook] PlanType:', planType);
         
         if (!userId || userId === 'anonymous') {
-          console.warn('No userId in session metadata, skipping premium activation');
+          console.warn('⚠️ [Webhook] Pas de userId dans metadata, activation premium ignorée');
           return res.status(200).json({ received: true });
         }
 
         // Activer le premium pour l'utilisateur
+        console.log('🔄 [Webhook] Mise à jour du statut premium pour:', userId);
         const { error: updateError } = await supabaseAdmin
           .from('fc_profiles')
           .update({ is_premium: true })
           .eq('id', userId);
 
         if (updateError) {
-          console.error('Error updating user premium status:', updateError);
+          console.error('❌ [Webhook] Erreur mise à jour premium:', updateError);
           return res.status(500).json({ error: 'Failed to update user premium status' });
         }
 
-        console.log(`Premium activated for user: ${userId}`);
+        console.log(`✅ [Webhook] Premium activé pour l'utilisateur: ${userId}`);
         break;
       }
 
       case 'invoice.payment_succeeded': {
+        console.log('✅ [Webhook] invoice.payment_succeeded détecté');
         // Gérer le renouvellement mensuel de l'abonnement à 9€
         const invoice = event.data.object as Stripe.Invoice;
+        console.log('📋 [Webhook] Invoice ID:', invoice.id);
+        console.log('📋 [Webhook] Subscription:', invoice.subscription);
         
         // Vérifier si c'est un renouvellement d'abonnement (pas un paiement unique)
         if (invoice.subscription) {
