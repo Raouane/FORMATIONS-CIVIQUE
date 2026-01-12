@@ -86,6 +86,8 @@ export default async function handler(
 
         // Activer le premium pour l'utilisateur
         console.log('🔄 [Webhook] Mise à jour du statut premium pour:', userId);
+        console.log('🔑 [Webhook] Tentative d\'update Premium pour l\'ID:', userId);
+        console.log('🔑 [Webhook] Service Role Key disponible:', !!process.env.SUPABASE_SERVICE_ROLE_KEY);
         const { error: updateError } = await supabaseAdmin
           .from('fc_profiles')
           .update({ is_premium: true })
