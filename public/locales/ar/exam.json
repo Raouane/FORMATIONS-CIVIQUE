@@ -1,0 +1,57 @@
+{
+  "title": "محاكاة الامتحان",
+  "loading": "جاري تحميل الأسئلة...",
+  "noQuestions": "لا توجد أسئلة متاحة لهذا المستوى.",
+  "backHome": "العودة إلى الصفحة الرئيسية",
+  "timer": {
+    "label": "الوقت المتبقي",
+    "warning": "أقل من 5 دقائق متبقية"
+  },
+  "progress": {
+    "label": "التقدم",
+    "question": "السؤال {{current}} من {{total}}"
+  },
+  "question": {
+    "read": "قراءة السؤال بصوت عالٍ",
+    "stop": "إيقاف القراءة",
+    "pause": "إيقاف مؤقت",
+    "resume": "استئناف القراءة"
+  },
+  "situation": {
+    "label": "حالة الوضع"
+  },
+  "answers": {
+    "select": "اختر إجابتك",
+    "noOptions": "لا توجد خيارات متاحة لهذا السؤال."
+  },
+  "navigation": {
+    "previous": "السابق",
+    "next": "التالي",
+    "finish": "إنهاء الامتحان",
+    "confirmFinish": "هل أنت متأكد من إنهاء الامتحان؟",
+    "answered": "تم الإجابة عليها",
+    "dialog": {
+      "title": "إنهاء الامتحان",
+      "description": "لقد أجبت على {{answered}} سؤالاً من {{total}}.",
+      "cancel": "إلغاء",
+      "confirm": "إنهاء"
+    }
+  },
+  "feedback": {
+    "correct": "إجابة صحيحة!",
+    "incorrect": "إجابة خاطئة. الإجابة الصحيحة كانت: {{answer}}"
+  },
+  "explanation": {
+    "label": "الشرح"
+  },
+  "quiz": {
+    "badge": "⚡ اختبار سريع",
+    "back": "رجوع",
+    "dialog": {
+      "title": "إنهاء الاختبار",
+      "description": "لقد أجبت على {{answered}} سؤالاً من {{total}}.",
+      "cancel": "إلغاء",
+      "confirm": "إنهاء"
+    }
+  }
+}

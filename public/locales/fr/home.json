@@ -1,0 +1,108 @@
+{
+  "hero": {
+    "badge": "Nouveau programme officiel 2026",
+    "title": "Réussissez votre Examen Civique 2026 du premier coup",
+    "description": "Plus de 800 questions conformes au programme officiel pour toutes les situations (CSP, Carte de Résident, Naturalisation). Contenu ciblé et adapté à votre objectif.",
+    "cta": "Commencer un test gratuit",
+    "advantages": {
+      "question1": "800+ Questions conformes au programme officiel 2026",
+      "question2": "Parcours d'apprentissage guidés et adaptatifs",
+      "question3": "Correction détaillée et explications claires"
+    }
+  },
+  "stats": {
+    "questions": "Questions",
+    "duration": "Durée",
+    "success": "Réussite"
+  },
+  "paths": {
+    "title": "Choisissez votre parcours",
+    "description": "Choisissez le parcours adapté à votre situation pour une préparation optimale.",
+    "level": "Niveau {{level}}",
+    "sejour": {
+      "title": "Séjour A2",
+      "description": "Pour les personnes souhaitant obtenir un titre de séjour",
+      "cardTitle": "Carte de Séjour Pluriannuelle",
+      "cardDescription": "Focus sur les notions de la République et la citoyenneté de France.",
+      "feature1": "Symboles républicains",
+      "feature2": "Droits fondamentaux",
+      "feature3": "Vie quotidienne"
+    },
+    "resident": {
+      "title": "Résident B1",
+      "description": "Pour les personnes souhaitant obtenir une carte de résident",
+      "cardTitle": "Carte de Résident (10 ans)",
+      "cardDescription": "Focus sur les valeurs de la République et la citoyenneté de la démocratie.",
+      "feature1": "Valeurs de la République",
+      "feature2": "Citoyenneté démocratique",
+      "feature3": "Institutions"
+    },
+    "naturalisation": {
+      "title": "Naturalisation B2",
+      "description": "Pour les personnes souhaitant obtenir la nationalité française",
+      "cardTitle": "Naturalisation",
+      "cardDescription": "Focus sur l'Histoire, la Culture Française et les institutions de la République.",
+      "feature1": "Histoire de France",
+      "feature2": "Culture & patrimoine",
+      "feature3": "Réforme politique"
+    }
+  },
+  "howItWorks": {
+    "title": "Comment ça marche ?",
+    "subtitle": "Une méthode en 3 étapes pour maximiser vos chances de réussite à l'examen.",
+    "step1": {
+      "title": "Réviser les Fiches Thématiques",
+      "description": "Accédez à des fiches de cours thématiques pour maîtriser chaque sujet du programme officiel."
+    },
+    "step2": {
+      "title": "Pratiquer avec les mises en situation",
+      "description": "Entraînez-vous avec des séries de 12 questions de mise en situation pour vous préparer efficacement."
+    },
+    "step3": {
+      "title": "Simulez l'examen réel",
+      "description": "Passez des examens blancs chronométrés de 40 questions en 45 minutes, dans les conditions réelles."
+    }
+  },
+  "themes": {
+    "title": "Les 5 thématiques officielles",
+    "subtitle": "Couvrez l'ensemble des sujets du nouveau programme officiel 2026.",
+    "valeurs": {
+      "name": "Principes et Valeurs",
+      "description": "Les valeurs fondamentales de la République française",
+      "subtitle": "Liberté, Égalité, Fraternité, Laïcité"
+    },
+    "droits": {
+      "name": "Droits et Devoirs",
+      "description": "Les droits et devoirs du citoyen français",
+      "subtitle": "Droits fondamentaux et obligations civiques"
+    },
+    "histoire": {
+      "name": "Histoire de France",
+      "description": "Les grandes dates et événements de l'histoire française",
+      "subtitle": "Grands événements et patrimoine culturel"
+    },
+    "politique": {
+      "name": "Politique et Institutions",
+      "description": "Le fonctionnement des institutions françaises",
+      "subtitle": "Institutions de la République"
+    },
+    "societe": {
+      "name": "Société Française",
+      "description": "La société française contemporaine",
+      "subtitle": "Citoyenneté, vie associative et vivre-ensemble"
+    }
+  },
+  "resources": {
+    "title": "Ressources officielles",
+    "livret": {
+      "title": "Livret du Citoyen",
+      "description": "Document officiel de référence pour la formation civique",
+      "button": "Télécharger le PDF"
+    },
+    "site": {
+      "title": "Site officiel de la formation civique",
+      "description": "Site officiel du gouvernement pour la formation civique",
+      "button": "Visiter le site"
+    }
+  }
+}

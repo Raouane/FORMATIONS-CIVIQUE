@@ -1,0 +1,195 @@
+[
+  {
+    "theme": "HISTOIRE",
+    "type": "CONNAISSANCE",
+    "level": "A2",
+    "complexity_level": "A2",
+    "content": {
+      "fr": "En quelle année l'esclavage a-t-il été aboli définitivement en France?",
+      "en": "In what year was slavery definitively abolished in France?",
+      "ar": "في أي سنة تم إلغاء العبودية نهائياً في فرنسا؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["1789", "1848", "1914", "1945"],
+      "en": ["1789", "1848", "1914", "1945"],
+      "ar": ["1789", "1848", "1914", "1945"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "L'esclavage a été aboli définitivement par décret en 1848 sous la IIe République.",
+      "en": "Slavery was definitively abolished by decree in 1848 under the Second Republic.",
+      "ar": "تم إلغاء العبودية نهائياً بمرسوم عام 1848 في ظل الجمهورية الثانية."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "HISTOIRE",
+    "type": "CONNAISSANCE",
+    "level": "A2",
+    "complexity_level": "A2",
+    "content": {
+      "fr": "Quelles sont les dates de la Première Guerre mondiale?",
+      "en": "What are the dates of the First World War?",
+      "ar": "ما هي تواريخ الحرب العالمية الأولى؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["1914-1918", "1939-1945", "1789-1799", "1804-1815"],
+      "en": ["1914-1918", "1939-1945", "1789-1799", "1804-1815"],
+      "ar": ["1914-1918", "1939-1945", "1789-1799", "1804-1815"]
+    },
+    "correct_answer": 0,
+    "explanation": {
+      "fr": "La Première Guerre mondiale s'est déroulée de 1914 à 1918.",
+      "en": "The First World War took place from 1914 to 1918.",
+      "ar": "وقعت الحرب العالمية الأولى بين عامي 1914 و1918."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "POLITIQUE",
+    "type": "CONNAISSANCE",
+    "level": "A2",
+    "complexity_level": "A2",
+    "content": {
+      "fr": "Qui dirige la commune (la ville)?",
+      "en": "Who leads the commune (the city)?",
+      "ar": "من يدير البلدية (المدينة)؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": [
+        "Le préfet",
+        "Le député",
+        "Le Maire",
+        "Le Premier ministre"
+      ],
+      "en": [
+        "The prefect",
+        "The deputy",
+        "The Mayor",
+        "The Prime Minister"
+      ],
+      "ar": [
+        "المحافظ",
+        "النائب",
+        "العمدة",
+        "رئيس الوزراء"
+      ]
+    },
+    "correct_answer": 2,
+    "explanation": {
+      "fr": "Le Maire dirige la commune et préside le conseil municipal.",
+      "en": "The Mayor leads the commune and presides over the municipal council.",
+      "ar": "العمدة يدير البلدية ويرأس المجلس البلدي."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "SOCIETE",
+    "type": "CONNAISSANCE",
+    "level": "A2",
+    "complexity_level": "A2",
+    "content": {
+      "fr": "Quelle est la durée légale du travail par semaine en France pour un temps plein?",
+      "en": "What is the legal working time per week in France for full-time employment?",
+      "ar": "ما هي مدة العمل القانونية في الأسبوع في فرنسا للعمل بدوام كامل؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["30 heures", "35 heures", "40 heures", "45 heures"],
+      "en": ["30 hours", "35 hours", "40 hours", "45 hours"],
+      "ar": ["30 ساعة", "35 ساعة", "40 ساعة", "45 ساعة"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "La durée légale de référence pour un temps complet est de 35 heures par semaine.",
+      "en": "The legal reference duration for full-time work is 35 hours per week.",
+      "ar": "مدة العمل القانونية المرجعية للعمل بدوام كامل هي 35 ساعة في الأسبوع."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "VALEURS",
+    "type": "SITUATION",
+    "level": "A2",
+    "complexity_level": "A2",
+    "content": {
+      "fr": "À la mairie, un agent refuse de vous répondre car vous pratiquez une religion. Est-ce normal?",
+      "en": "At the town hall, an official refuses to answer you because you practice a religion. Is this normal?",
+      "ar": "في البلدية، يرفض موظف الرد عليك لأنك تمارس ديناً ما. هل هذا طبيعي؟"
+    },
+    "scenario_context": {
+      "fr": "Respect de la neutralité dans un service public.",
+      "en": "Respect for neutrality in a public service.",
+      "ar": "احترام الحياد في الخدمة العامة."
+    },
+    "options": {
+      "fr": [
+        "Oui, l'agent est libre",
+        "Non, le service public est neutre et égal pour tous",
+        "Oui, si l'agent est occupé",
+        "Oui, s'il n'est pas de la même religion"
+      ],
+      "en": [
+        "Yes, the official is free",
+        "No, public service is neutral and equal for everyone",
+        "Yes, if the official is busy",
+        "Yes, if they are not of the same religion"
+      ],
+      "ar": [
+        "نعم، الموظف حر",
+        "لا، الخدمة العامة محايدة ومتساوية للجميع",
+        "نعم، إذا كان الموظف مشغولاً",
+        "نعم، إذا لم يكن من نفس الدين"
+      ]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "La laïcité impose la neutralité aux agents publics pour garantir l'égalité des usagers.",
+      "en": "Secularism imposes neutrality on public officials to guarantee the equality of users.",
+      "ar": "تفرض العلمانية الحياد على الموظفين العموميين لضمان المساواة بين المستخدمين."
+    },
+    "is_premium": true
+  },
+  {
+    "theme": "HISTOIRE",
+    "type": "CONNAISSANCE",
+    "level": "A2",
+    "complexity_level": "A2",
+    "content": {
+      "fr": "Comment s'appelle l'hymne national de la France?",
+      "en": "What is the name of the French national anthem?",
+      "ar": "ما هو اسم النشيد الوطني لفرنسا؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": [
+        "La Marseillaise",
+        "Le Chant du départ",
+        "L'Internationale",
+        "La Carmagnole"
+      ],
+      "en": [
+        "The Marseillaise",
+        "The Song of Departure",
+        "The Internationale",
+        "The Carmagnole"
+      ],
+      "ar": [
+        "المارسييز",
+        "أغنية المغادرة",
+        "الأممية",
+        "الكارماغنول"
+      ]
+    },
+    "correct_answer": 0,
+    "explanation": {
+      "fr": "La Marseillaise est l'hymne national de la France depuis 1795. Elle a été composée par Rouget de Lisle en 1792.",
+      "en": "The Marseillaise has been the French national anthem since 1795. It was composed by Rouget de Lisle in 1792.",
+      "ar": "المارسييز هو النشيد الوطني لفرنسا منذ عام 1795. ألفه روجيه دي ليل في عام 1792."
+    },
+    "is_premium": false
+  }
+]

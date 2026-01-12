@@ -1,0 +1,397 @@
+[
+  {
+    "theme": "POLITIQUE",
+    "type": "CONNAISSANCE",
+    "level": "B1",
+    "complexity_level": "B1",
+    "content": {
+      "fr": "Quel est le rôle principal du Premier ministre en France?",
+      "en": "What is the main role of the Prime Minister in France?",
+      "ar": "ما هو الدور الرئيسي لرئيس الوزراء في فرنسا؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": [
+        "Représenter la France à l'étranger",
+        "Diriger l'action du Gouvernement",
+        "Voter les lois au Parlement",
+        "Nommer les juges des tribunaux"
+      ],
+      "en": [
+        "Represent France abroad",
+        "Direct the action of the Government",
+        "Vote on laws in Parliament",
+        "Appoint court judges"
+      ],
+      "ar": [
+        "تمثيل فرنسا في الخارج",
+        "قيادة عمل الحكومة",
+        "التصويت على القوانين في البرلمان",
+        "تعيين قضاة المحاكم"
+      ]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Le Premier ministre dirige l'action du Gouvernement et assure l'exécution des lois.",
+      "en": "The Prime Minister directs the action of the Government and ensures the execution of laws.",
+      "ar": "رئيس الوزراء يقود عمل الحكومة ويضمن تنفيذ القوانين."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "VALEURS",
+    "type": "SITUATION",
+    "level": "B1",
+    "complexity_level": "B1",
+    "content": {
+      "fr": "Un parent refuse que son enfant participe à un cours de sport mixte pour des raisons religieuses. Que dit la loi?",
+      "en": "A parent refuses to let their child participate in a mixed sports class for religious reasons. What does the law say?",
+      "ar": "والد يرفض مشاركة طفله في حصة تربية بدنية مختلطة لأسباب دينية. ماذا يقول القانون؟"
+    },
+    "scenario_context": {
+      "fr": "Respect du programme scolaire et laïcité.",
+      "en": "Respect for the school curriculum and secularism.",
+      "ar": "احترام المناهج الدراسية والعلمانية."
+    },
+    "options": {
+      "fr": [
+        "L'école doit respecter le choix religieux des parents",
+        "L'enfant doit obligatoirement suivre les cours, car l'école publique est laïque et neutre",
+        "L'enfant est dispensé s'il présente une lettre de son lieu de culte",
+        "Le parent peut choisir les matières qu'il souhaite pour son enfant"
+      ],
+      "en": [
+        "The school must respect the parents' religious choice",
+        "The child must attend classes, as public schools are secular and neutral",
+        "The child is exempt if they present a letter from their place of worship",
+        "The parent can choose the subjects they want for their child"
+      ],
+      "ar": [
+        "يجب على المدرسة احترام الاختيار الديني للوالدين",
+        "يجب على الطفل متابعة الدروس، لأن المدرسة الحكومية علمانية ومحايدة",
+        "يُعفى الطفل إذا قدم خطاباً من دار عبادته",
+        "يمكن للوالد اختيار المواد التي يريدها لطفله"
+      ]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "L'instruction est obligatoire et les convictions religieuses ne peuvent justifier le refus de suivre une partie du programme.",
+      "en": "Instruction is mandatory and religious beliefs cannot justify the refusal to follow part of the curriculum.",
+      "ar": "التعليم إلزامي ولا يمكن للقناعات الدينية تبرير رفض متابعة جزء من المنهج."
+    },
+    "is_premium": true
+  },
+  {
+    "theme": "DROITS",
+    "type": "SITUATION",
+    "level": "B1",
+    "complexity_level": "B1",
+    "content": {
+      "fr": "Vous souhaitez organiser une manifestation sur la voie publique. Quelle démarche est obligatoire?",
+      "en": "You want to organize a protest on a public road. Which step is mandatory?",
+      "ar": "ترغب في تنظيم مظاهرة في الطريق العام. ما هو الإجراء الإلزامي؟"
+    },
+    "scenario_context": {
+      "fr": "Droit de manifester et ordre public.",
+      "en": "Right to protest and public order.",
+      "ar": "الحق في التظاهر والنظام العام."
+    },
+    "options": {
+      "fr": [
+        "Aucune, la liberté de manifester est absolue et sans conditions",
+        "Déclarer la manifestation en mairie ou préfecture au moins 3 jours à l'avance",
+        "Demander l'autorisation au Président de la République",
+        "Il faut être de nationalité française pour avoir le droit de manifester"
+      ],
+      "en": [
+        "None, the freedom to protest is absolute and without conditions",
+        "Declare the protest at the town hall or prefecture at least 3 days in advance",
+        "Request authorization from the President of the Republic",
+        "You must be of French nationality to have the right to protest"
+      ],
+      "ar": [
+        "لا يوجد، حرية التظاهر مطلقة وبدون شروط",
+        "التصريح بالمظاهرة في البلدية أو المحافظة قبل 3 أيام على الأقل",
+        "طلب الإذن من رئيس الجمهورية",
+        "يجب أن تكون حاملاً للجنسية الفرنسية ليكون لك الحق في التظاهر"
+      ]
+    },
+    "correct_answer": 1,
+    "options": {
+      "fr": [
+        "Aucune, la liberté de manifester est absolue et sans conditions",
+        "Déclarer la manifestation en mairie ou préfecture au moins 3 jours à l'avance",
+        "Demander l'autorisation au Président de la République",
+        "Il faut être de nationalité française pour avoir le droit de manifester"
+      ],
+      "en": [
+        "None, the freedom to protest is absolute and without conditions",
+        "Declare the protest at the town hall or prefecture at least 3 days in advance",
+        "Request authorization from the President of the Republic",
+        "You must be of French nationality to have the right to protest"
+      ],
+      "ar": [
+        "لا يوجد، حرية التظاهر مطلقة وبدون شروط",
+        "التصريح بالمظاهرة في البلدية أو المحافظة قبل 3 أيام على الأقل",
+        "طلب الإذن من رئيس الجمهورية",
+        "يجب أن تكون حاملاً للجنسية الفرنسية ليكون لك الحق في التظاهر"
+      ]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "La liberté de manifester est un droit, mais son exercice sur la voie publique est soumis à une déclaration préalable pour garantir l'ordre public.",
+      "en": "The freedom to protest is a right, but its exercise on public roads is subject to prior declaration to guarantee public order.",
+      "ar": "حرية التظاهر حق، لكن ممارستها في الطريق العام تخضع لتصريح مسبق لضمان النظام العام."
+    },
+    "is_premium": true
+  },
+  {
+    "theme": "HISTOIRE",
+    "type": "CONNAISSANCE",
+    "level": "B1",
+    "complexity_level": "B1",
+    "content": {
+      "fr": "Quelle personnalité a défendu la loi légalisant l'IVG (avortement) en France en 1975?",
+      "en": "Which personality defended the law legalizing abortion (IVG) in France in 1975?",
+      "ar": "من هي الشخصية التي دافعت عن قانون تقنين الإجهاض في فرنسا عام 1975؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": [
+        "Simone Veil",
+        "Simone de Beauvoir",
+        "Charles de Gaulle",
+        "Victor Hugo"
+      ],
+      "en": [
+        "Simone Veil",
+        "Simone de Beauvoir",
+        "Charles de Gaulle",
+        "Victor Hugo"
+      ],
+      "ar": [
+        "سيمون فيل",
+        "سيمون دي بوفوار",
+        "شارل ديغول",
+        "فيكتور هوغو"
+      ]
+    },
+    "correct_answer": 0,
+    "explanation": {
+      "fr": "Simone Veil, ministre de la Santé, a porté cette loi historique devant le Parlement.",
+      "en": "Simone Veil, Minister of Health, brought this historic law before Parliament.",
+      "ar": "سيمون فيل، وزيرة الصحة، قدمت هذا القانون التاريخي أمام البرلمان."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "DROITS",
+    "type": "SITUATION",
+    "level": "B1",
+    "complexity_level": "B1",
+    "content": {
+      "fr": "Vous constatez qu'une entreprise pollue une rivière proche de chez vous. Que pouvez-vous faire?",
+      "en": "You notice that a company is polluting a river near your home. What can you do?",
+      "ar": "تلاحظ أن شركة تلوث نهراً قريباً من منزلك. ماذا يمكنك أن تفعل؟"
+    },
+    "scenario_context": {
+      "fr": "Droit à l'environnement et responsabilité citoyenne.",
+      "en": "Right to the environment and citizen responsibility.",
+      "ar": "الحق في البيئة والمسؤولية المواطنة."
+    },
+    "options": {
+      "fr": [
+        "Ignorer car c'est une entreprise privée",
+        "Alerter les autorités compétentes (mairie, gendarmerie) car chacun a le devoir de protéger l'environnement",
+        "Empêcher l'accès à l'entreprise par la force",
+        "Demander de l'argent à l'entreprise en échange du silence"
+      ],
+      "en": [
+        "Ignore it because it's a private company",
+        "Alert the competent authorities (town hall, gendarmerie) because everyone has a duty to protect the environment",
+        "Prevent access to the company by force",
+        "Ask the company for money in exchange for silence"
+      ],
+      "ar": [
+        "التجاهل لأنها شركة خاصة",
+        "إبلاغ السلطات المختصة (البلدية، الدرك) لأن على الجميع واجب حماية البيئة",
+        "منع دخول الشركة بالقوة",
+        "طلب المال من الشركة مقابل الصمت"
+      ]
+    },
+    "correct_answer": 1,
+    "options": {
+      "fr": [
+        "Ignorer car c'est une entreprise privée",
+        "Alerter les autorités compétentes (mairie, gendarmerie) car chacun a le devoir de protéger l'environnement",
+        "Empêcher l'accès à l'entreprise par la force",
+        "Demander de l'argent à l'entreprise en échange du silence"
+      ],
+      "en": [
+        "Ignore it because it's a private company",
+        "Alert the competent authorities (town hall, gendarmerie) because everyone has a duty to protect the environment",
+        "Prevent access to the company by force",
+        "Ask the company for money in exchange for silence"
+      ],
+      "ar": [
+        "التجاهل لأنها شركة خاصة",
+        "إبلاغ السلطات المختصة (البلدية، الدرك) لأن على الجميع واجب حماية البيئة",
+        "منع دخول الشركة بالقوة",
+        "طلب المال من الشركة مقابل الصمت"
+      ]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "La Charte de l'environnement prévoit que toute personne a le devoir de participer à la préservation de l'environnement.",
+      "en": "The Environmental Charter provides that every person has a duty to participate in preserving the environment.",
+      "ar": "تنص ميثاق البيئة على أن لكل شخص واجب المشاركة في الحفاظ على البيئة."
+    },
+    "is_premium": true
+  },
+  {
+    "theme": "VALEURS",
+    "type": "SITUATION",
+    "level": "B1",
+    "complexity_level": "B1",
+    "content": {
+      "fr": "En tant qu'employé dans le secteur privé, pouvez-vous exprimer vos convictions religieuses?",
+      "en": "As an employee in the private sector, can you express your religious beliefs?",
+      "ar": "بصفتك موظفاً في القطاع الخاص، هل يمكنك التعبير عن قناعاتك الدينية؟"
+    },
+    "scenario_context": {
+      "fr": "Laïcité et liberté religieuse en entreprise privée.",
+      "en": "Secularism and religious freedom in private companies.",
+      "ar": "العلمانية والحرية الدينية في الشركات الخاصة."
+    },
+    "options": {
+      "fr": [
+        "Non, c'est totalement interdit par la laïcité",
+        "Oui, sauf si le règlement intérieur l'interdit pour des raisons de sécurité ou d'hygiène",
+        "Seulement si l'employeur appartient à la même religion",
+        "Seulement pendant les pauses déjeuner à l'extérieur"
+      ],
+      "en": [
+        "No, it's totally forbidden by secularism",
+        "Yes, unless internal rules forbid it for safety or hygiene reasons",
+        "Only if the employer belongs to the same religion",
+        "Only during lunch breaks outside"
+      ],
+      "ar": [
+        "لا، هذا ممنوع تماماً بموجب العلمانية",
+        "نعم، ما لم يحظر النظام الداخلي ذلك لأسباب تتعلق بالسلامة أو النظافة",
+        "فقط إذا كان صاحب العمل ينتمي لنفس الدين",
+        "فقط خلال استراحات الغداء في الخارج"
+      ]
+    },
+    "correct_answer": 1,
+    "options": {
+      "fr": [
+        "Non, c'est totalement interdit par la laïcité",
+        "Oui, sauf si le règlement intérieur l'interdit pour des raisons de sécurité ou d'hygiène",
+        "Seulement si l'employeur appartient à la même religion",
+        "Seulement pendant les pauses déjeuner à l'extérieur"
+      ],
+      "en": [
+        "No, it's totally forbidden by secularism",
+        "Yes, unless internal rules forbid it for safety or hygiene reasons",
+        "Only if the employer belongs to the same religion",
+        "Only during lunch breaks outside"
+      ],
+      "ar": [
+        "لا، هذا ممنوع تماماً بموجب العلمانية",
+        "نعم، ما لم يحظر النظام الداخلي ذلك لأسباب تتعلق بالسلامة أو النظافة",
+        "فقط إذا كان صاحب العمل ينتمي لنفس الدين",
+        "فقط خلال استراحات الغداء في الخارج"
+      ]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Contrairement au service public, la liberté religieuse est la règle dans le privé, sous réserve de contraintes professionnelles justifiées.",
+      "en": "Unlike the public service, religious freedom is the rule in the private sector, subject to justified professional constraints.",
+      "ar": "على عكس الخدمة العامة، الحرية الدينية هي القاعدة في القطاع الخاص، مع مراعاة القيود المهنية المبررة."
+    },
+    "is_premium": true
+  },
+  {
+    "theme": "SOCIETE",
+    "type": "CONNAISSANCE",
+    "level": "B1",
+    "complexity_level": "B1",
+    "content": {
+      "fr": "Quelle institution est chargée de régler les litiges liés au contrat de travail entre un salarié et son employeur?",
+      "en": "Which institution is responsible for settling disputes related to the employment contract between an employee and their employer?",
+      "ar": "أي مؤسسة مسؤولة عن تسوية النزاعات المتعلقة بعقد العمل بين الموظف وصاحب العمل؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": [
+        "La Cour de cassation",
+        "Le Conseil de prud'hommes",
+        "Le Tribunal de commerce",
+        "La Mairie"
+      ],
+      "en": [
+        "The Court of Cassation",
+        "The Labour Court (Conseil de prud'hommes)",
+        "The Commercial Court",
+        "The Town Hall"
+      ],
+      "ar": [
+        "محكمة النقض",
+        "مجلس العمل (Conseil de prud'hommes)",
+        "المحكمة التجارية",
+        "البلدية"
+      ]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Le Conseil de prud'hommes est une juridiction paritaire composée de représentants des employeurs et des salariés.",
+      "en": "The Labour Court is a joint jurisdiction composed of representatives from employers and employees.",
+      "ar": "مجلس العمل هو ولاية قضائية مشتركة تتكون من ممثلين عن أصحاب العمل والموظفين."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "DROITS",
+    "type": "SITUATION",
+    "level": "B1",
+    "complexity_level": "B1",
+    "content": {
+      "fr": "Votre bailleur refuse de faire les réparations nécessaires dans votre logement. Que devez-vous faire?",
+      "en": "Your landlord refuses to make necessary repairs in your home. What should you do?",
+      "ar": "يرفض المؤجر القيام بالإصلاحات اللازمة في مسكنك. ماذا يجب أن تفعل؟"
+    },
+    "scenario_context": {
+      "fr": "Relations locatives et droits au logement.",
+      "en": "Landlord-tenant relations and housing rights.",
+      "ar": "علاقات الاستئجار وحقوق السكن."
+    },
+    "options": {
+      "fr": [
+        "Arrêter de payer le loyer immédiatement",
+        "Lui envoyer une lettre recommandée de mise en demeure, puis saisir un médiateur si besoin",
+        "Quitter le logement sans prévenir",
+        "Appeler la police pour l'arrêter"
+      ],
+      "en": [
+        "Stop paying rent immediately",
+        "Send a registered letter with formal notice, then contact a mediator if needed",
+        "Leave the accommodation without notice",
+        "Call the police to arrest them"
+      ],
+      "ar": [
+        "التوقف عن دفع الإيجار فوراً",
+        "إرسال خطاب مسجل بإنذار رسمي، ثم اللجوء لوسيط إذا لزم الأمر",
+        "مغادرة السكن دون إشعار",
+        "الاتصال بالشرطة لاعتقاله"
+      ]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Le non-paiement du loyer est interdit, même en cas de litige. Il faut suivre une procédure légale pour faire valoir ses droits.",
+      "en": "Non-payment of rent is prohibited, even in case of a dispute. A legal procedure must be followed to assert your rights.",
+      "ar": "يُمنع عدم دفع الإيجار، حتى في حالة النزاع. يجب اتباع إجراء قانوني للمطالبة بحقوقك."
+    },
+    "is_premium": true
+  }
+]

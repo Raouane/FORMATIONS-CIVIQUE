@@ -1,0 +1,275 @@
+[
+  {
+    "theme": "HISTOIRE",
+    "type": "CONNAISSANCE",
+    "level": "B1",
+    "complexity_level": "B1",
+    "content": {
+      "fr": "Qui a été le premier Président de la Ve République française?",
+      "en": "Who was the first President of the French Fifth Republic?",
+      "ar": "من كان أول رئيس للجمهورية الفرنسية الخامسة؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": [
+        "Charles de Gaulle",
+        "François Mitterrand",
+        "Valéry Giscard d'Estaing",
+        "Georges Pompidou"
+      ],
+      "en": [
+        "Charles de Gaulle",
+        "François Mitterrand",
+        "Valéry Giscard d'Estaing",
+        "Georges Pompidou"
+      ],
+      "ar": [
+        "شارل ديغول",
+        "فرانسوا ميتران",
+        "فاليري جيسكار ديستان",
+        "جورج بومبيدو"
+      ]
+    },
+    "correct_answer": 0,
+    "explanation": {
+      "fr": "Charles de Gaulle a été le premier Président de la Ve République, élu en 1958. Il a joué un rôle majeur dans la création de cette République.",
+      "en": "Charles de Gaulle was the first President of the Fifth Republic, elected in 1958. He played a major role in the creation of this Republic.",
+      "ar": "كان شارل ديغول أول رئيس للجمهورية الخامسة، انتخب في عام 1958. لعب دوراً رئيسياً في إنشاء هذه الجمهورية."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "POLITIQUE",
+    "type": "CONNAISSANCE",
+    "level": "B1",
+    "complexity_level": "B1",
+    "content": {
+      "fr": "Combien de membres composent le Sénat français?",
+      "en": "How many members make up the French Senate?",
+      "ar": "كم عدد أعضاء مجلس الشيوخ الفرنسي؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": [
+        "348",
+        "450",
+        "577",
+        "600"
+      ],
+      "en": [
+        "348",
+        "450",
+        "577",
+        "600"
+      ],
+      "ar": [
+        "348",
+        "450",
+        "577",
+        "600"
+      ]
+    },
+    "correct_answer": 0,
+    "explanation": {
+      "fr": "Le Sénat français compte 348 sénateurs élus pour 6 ans. Ils représentent les collectivités territoriales.",
+      "en": "The French Senate has 348 senators elected for 6 years. They represent local authorities.",
+      "ar": "يضم مجلس الشيوخ الفرنسي 348 عضواً يتم انتخابهم لمدة 6 سنوات. يمثلون الجماعات الترابية."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "DROITS",
+    "type": "CONNAISSANCE",
+    "level": "B1",
+    "complexity_level": "B1",
+    "content": {
+      "fr": "Quel est l'âge minimum pour voter en France?",
+      "en": "What is the minimum age to vote in France?",
+      "ar": "ما هو الحد الأدنى للعمر للتصويت في فرنسا؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": [
+        "16 ans",
+        "18 ans",
+        "21 ans",
+        "25 ans"
+      ],
+      "en": [
+        "16 years",
+        "18 years",
+        "21 years",
+        "25 years"
+      ],
+      "ar": [
+        "16 سنة",
+        "18 سنة",
+        "21 سنة",
+        "25 سنة"
+      ]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "L'âge minimum pour voter en France est de 18 ans. C'est un droit civique fondamental acquis à la majorité.",
+      "en": "The minimum age to vote in France is 18 years. It is a fundamental civic right acquired at majority.",
+      "ar": "الحد الأدنى للعمر للتصويت في فرنسا هو 18 سنة. إنه حق مدني أساسي يكتسب عند بلوغ سن الرشد."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "SOCIETE",
+    "type": "CONNAISSANCE",
+    "level": "B1",
+    "complexity_level": "B1",
+    "content": {
+      "fr": "Quel est le nombre d'heures de congés payés minimum par an en France?",
+      "en": "What is the minimum number of paid leave hours per year in France?",
+      "ar": "ما هو الحد الأدنى لساعات الإجازات المدفوعة سنوياً في فرنسا؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": [
+        "20 jours",
+        "25 jours",
+        "30 jours",
+        "35 jours"
+      ],
+      "en": [
+        "20 days",
+        "25 days",
+        "30 days",
+        "35 days"
+      ],
+      "ar": [
+        "20 يوماً",
+        "25 يوماً",
+        "30 يوماً",
+        "35 يوماً"
+      ]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "En France, un salarié a droit à un minimum de 25 jours ouvrables de congés payés par an, soit 5 semaines.",
+      "en": "In France, an employee is entitled to a minimum of 25 working days of paid leave per year, i.e., 5 weeks.",
+      "ar": "في فرنسا، يحق للموظف الحصول على حد أدنى يبلغ 25 يوماً عمل من الإجازات المدفوعة سنوياً، أي 5 أسابيع."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "VALEURS",
+    "type": "CONNAISSANCE",
+    "level": "B1",
+    "complexity_level": "B1",
+    "content": {
+      "fr": "Qu'est-ce que la laïcité en France?",
+      "en": "What is secularism in France?",
+      "ar": "ما هي العلمانية في فرنسا؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": [
+        "L'interdiction de toutes les religions",
+        "La séparation de l'Église et de l'État garantissant la liberté de conscience",
+        "L'obligation d'être athée",
+        "La religion d'État"
+      ],
+      "en": [
+        "The prohibition of all religions",
+        "The separation of Church and State guaranteeing freedom of conscience",
+        "The obligation to be atheist",
+        "The state religion"
+      ],
+      "ar": [
+        "حظر جميع الأديان",
+        "فصل الكنيسة عن الدولة مع ضمان حرية الضمير",
+        "إلزامية الإلحاد",
+        "الدين الرسمي للدولة"
+      ]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "La laïcité est le principe de séparation de l'Église et de l'État. Elle garantit la liberté de conscience et l'égalité de tous devant la loi, sans distinction de religion.",
+      "en": "Secularism is the principle of separation of Church and State. It guarantees freedom of conscience and equality for all before the law, regardless of religion.",
+      "ar": "العلمانية هي مبدأ فصل الكنيسة عن الدولة. تضمن حرية الضمير والمساواة للجميع أمام القانون، بغض النظر عن الدين."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "HISTOIRE",
+    "type": "CONNAISSANCE",
+    "level": "B1",
+    "complexity_level": "B1",
+    "content": {
+      "fr": "En quelle année la loi sur la séparation des Églises et de l'État a-t-elle été adoptée en France?",
+      "en": "In what year was the law on the separation of Churches and State adopted in France?",
+      "ar": "في أي سنة تم اعتماد قانون فصل الكنائس عن الدولة في فرنسا؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": [
+        "1789",
+        "1881",
+        "1905",
+        "1945"
+      ],
+      "en": [
+        "1789",
+        "1881",
+        "1905",
+        "1945"
+      ],
+      "ar": [
+        "1789",
+        "1881",
+        "1905",
+        "1945"
+      ]
+    },
+    "correct_answer": 2,
+    "explanation": {
+      "fr": "La loi de séparation des Églises et de l'État a été adoptée en 1905. Elle établit le principe de laïcité en France.",
+      "en": "The law on the separation of Churches and State was adopted in 1905. It establishes the principle of secularism in France.",
+      "ar": "تم اعتماد قانون فصل الكنائس عن الدولة في عام 1905. يحدد مبدأ العلمانية في فرنسا."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "DROITS",
+    "type": "CONNAISSANCE",
+    "level": "B1",
+    "complexity_level": "B1",
+    "content": {
+      "fr": "Quel organisme français est chargé de protéger les données personnelles?",
+      "en": "Which French body is responsible for protecting personal data?",
+      "ar": "أي هيئة فرنسية مسؤولة عن حماية البيانات الشخصية؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": [
+        "La CNIL (Commission Nationale de l'Informatique et des Libertés)",
+        "Le Conseil constitutionnel",
+        "La Cour de cassation",
+        "Le Défenseur des droits"
+      ],
+      "en": [
+        "CNIL (National Commission for Information Technology and Civil Liberties)",
+        "The Constitutional Council",
+        "The Court of Cassation",
+        "The Defender of Rights"
+      ],
+      "ar": [
+        "اللجنة الوطنية للمعلوماتية والحريات (CNIL)",
+        "المجلس الدستوري",
+        "محكمة النقض",
+        "المدافع عن الحقوق"
+      ]
+    },
+    "correct_answer": 0,
+    "explanation": {
+      "fr": "La CNIL (Commission Nationale de l'Informatique et des Libertés) est l'autorité indépendante chargée de protéger les données personnelles et la vie privée des citoyens.",
+      "en": "CNIL (National Commission for Information Technology and Civil Liberties) is the independent authority responsible for protecting personal data and citizens' privacy.",
+      "ar": "اللجنة الوطنية للمعلوماتية والحريات (CNIL) هي السلطة المستقلة المسؤولة عن حماية البيانات الشخصية وخصوصية المواطنين."
+    },
+    "is_premium": false
+  }
+]

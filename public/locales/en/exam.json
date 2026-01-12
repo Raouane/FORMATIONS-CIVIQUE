@@ -1,0 +1,57 @@
+{
+  "title": "Exam simulation",
+  "loading": "Loading questions...",
+  "noQuestions": "No questions available for this level.",
+  "backHome": "Back to home",
+  "timer": {
+    "label": "Time remaining",
+    "warning": "Less than 5 minutes remaining"
+  },
+  "progress": {
+    "label": "Progress",
+    "question": "Question {{current}} of {{total}}"
+  },
+  "question": {
+    "read": "Read the question aloud",
+    "stop": "Stop reading",
+    "pause": "Pause",
+    "resume": "Resume reading"
+  },
+  "situation": {
+    "label": "Situation"
+  },
+  "answers": {
+    "select": "Select your answer",
+    "noOptions": "No options available for this question."
+  },
+  "navigation": {
+    "previous": "Previous",
+    "next": "Next",
+    "finish": "Finish exam",
+    "confirmFinish": "Are you sure you want to finish the exam?",
+    "answered": "answered",
+    "dialog": {
+      "title": "Finish exam",
+      "description": "You have answered {{answered}} questions out of {{total}}.",
+      "cancel": "Cancel",
+      "confirm": "Finish"
+    }
+  },
+  "feedback": {
+    "correct": "Correct answer!",
+    "incorrect": "Wrong answer. The correct answer was: {{answer}}"
+  },
+  "explanation": {
+    "label": "Explanation"
+  },
+  "quiz": {
+    "badge": "⚡ Quick Quiz",
+    "back": "Back",
+    "dialog": {
+      "title": "Finish quiz",
+      "description": "You have answered {{answered}} questions out of {{total}}.",
+      "cancel": "Cancel",
+      "confirm": "Finish"
+    }
+  }
+}

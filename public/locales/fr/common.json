@@ -1,0 +1,51 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "revision": "Révision",
+    "simulation": "Simulation",
+    "results": "Résultats",
+    "login": "Connexion",
+    "register": "Inscription",
+    "logout": "Déconnexion",
+    "courses": "Cours",
+    "simulations": "Simulations",
+    "pdfResources": "Ressources PDF",
+    "memberArea": "Espace Membre"
+  },
+  "buttons": {
+    "start": "Commencer",
+    "continue": "Continuer",
+    "submit": "Soumettre",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "finish": "Terminer",
+    "retry": "Réessayer",
+    "back": "Retour",
+    "share": "Partager",
+    "startFree": "Commencer Gratuitement",
+    "startPath": "Commencer ce parcours"
+  },
+  "language": {
+    "french": "Français",
+    "english": "English",
+    "arabic": "العربية"
+  },
+  "app": {
+    "name": "Formations Civiques",
+    "year": "2026",
+    "loading": "Chargement...",
+    "noData": "Aucune donnée disponible",
+    "answered": "répondues",
+    "questions": "questions"
+  },
+  "footer": {
+    "republic": "République Française",
+    "citizenBooklet": "Livret du Citoyen (PDF)",
+    "legalNotice": "Mentions Légales",
+    "privacyPolicy": "Politique de Confidentialité",
+    "copyright": "© 2024 République Française. Tous droits réservés.",
+    "description": "Plateforme officielle de préparation à l'examen de formation civique 2026"
+  }
+}

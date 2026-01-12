@@ -1,0 +1,48 @@
+{
+  "title": "Centre de Révision",
+  "description": "Révisons les concepts essentiels pour réussir votre examen",
+  "all": "Tous",
+  "chapter": "chapitre",
+  "chapters": "chapitres",
+  "themes": {
+    "valeurs": {
+      "name": "Principes et Valeurs",
+      "description": "Les valeurs fondamentales de la République française"
+    },
+    "droits": {
+      "name": "Droits et Devoirs",
+      "description": "Les droits et devoirs du citoyen français"
+    },
+    "histoire": {
+      "name": "Histoire de France",
+      "description": "Les grandes dates et événements de l'histoire française"
+    },
+    "politique": {
+      "name": "Politique et Institutions",
+      "description": "Le fonctionnement des institutions françaises"
+    },
+    "societe": {
+      "name": "Société Française",
+      "description": "La société française contemporaine"
+    }
+  },
+  "chapterTitles": {
+    "devise": "La Devise de la République",
+    "laicite": "La Laïcité",
+    "droits-citoyen": "Les Droits du Citoyen",
+    "revolution-1789": "La Révolution française de 1789",
+    "president": "Le Président de la République",
+    "systeme-educatif": "Le Système Éducatif",
+    "education": "Le Système Éducatif"
+  },
+  "quickQuiz": {
+    "button": "Lancer un quiz rapide",
+    "description": "10 questions, 15 minutes"
+  },
+  "level": {
+    "label": "Niveau",
+    "a2": "A2 - Séjour",
+    "b1": "B1 - Résident",
+    "b2": "B2 - Naturalisation"
+  }
+}

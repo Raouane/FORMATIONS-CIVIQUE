@@ -1,0 +1,966 @@
+[
+  {
+    "theme": "POLITIQUE",
+    "type": "CONNAISSANCE",
+    "level": "B2",
+    "complexity_level": "B2",
+    "content": {
+      "fr": "À qui appartient la souveraineté en France?",
+      "en": "Who does sovereignty belong to in France?",
+      "ar": "لمن تنتمي السيادة في فرنسا؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["Au Président de la République", "Au gouvernement", "Au peuple qui l'exerce par ses représentants et par référendum", "À l'Union européenne"],
+      "en": ["To the President of the Republic", "To the government", "To the people who exercise it through their representatives and by referendum", "To the European Union"],
+      "ar": ["لرئيس الجمهورية", "للحكومة", "للشعب الذي يمارسها عن طريق ممثليه وعن طريق الاستفتاء", "للاتحاد الأوروبي"]
+    },
+    "correct_answer": 2,
+    "explanation": {
+      "fr": "L'article 3 de la Constitution de 1958 précise que la souveraineté appartient au peuple.",
+      "en": "Article 3 of the 1958 Constitution specifies that sovereignty belongs to the people.",
+      "ar": "تنص المادة 3 من دستور 1958 على أن السيادة ملك للشعب."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "POLITIQUE",
+    "type": "CONNAISSANCE",
+    "level": "B2",
+    "complexity_level": "B2",
+    "content": {
+      "fr": "Quel est le rôle principal du Conseil constitutionnel?",
+      "en": "What is the main role of the Constitutional Council?",
+      "ar": "ما هو الدور الرئيسي للمجلس الدستوري؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["Rédiger les lois", "Vérifier que les lois respectent la Constitution", "Nommer les ministres", "Juger les crimes graves"],
+      "en": ["Draft laws", "Verify that laws respect the Constitution", "Appoint ministers", "Judge serious crimes"],
+      "ar": ["صياغة القوانين", "التحقق من مطابقة القوانين للدستور", "تعيين الوزراء", "المحاكمة في الجرائم الخطيرة"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Le Conseil constitutionnel veille à ce que les lois respectent les principes de la Constitution.",
+      "en": "The Constitutional Council ensures that laws respect the principles of the Constitution.",
+      "ar": "يسهر المجلس الدستوري على أن تحترم القوانين المصوت عليها مبادئ الدستور."
+    },
+    "is_premium": true
+  },
+  {
+    "theme": "HISTOIRE",
+    "type": "CONNAISSANCE",
+    "level": "B2",
+    "complexity_level": "B2",
+    "content": {
+      "fr": "En quelle année l'esclavage a-t-il été définitivement aboli en France?",
+      "en": "In what year was slavery definitively abolished in France?",
+      "ar": "في أي سنة تم إلغاء العبودية نهائياً في فرنسا؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["1789", "1804", "1848", "1905"],
+      "en": ["1789", "1804", "1848", "1905"],
+      "ar": ["1789", "1804", "1848", "1905"]
+    },
+    "correct_answer": 2,
+    "explanation": {
+      "fr": "L'esclavage a été aboli définitivement par décret en 1848, sous la IIe République.",
+      "en": "Slavery was definitively abolished by decree in 1848, under the Second Republic.",
+      "ar": "تم إلغاء العبودية نهائياً بمرسوم في عام 1848، في ظل الجمهورية الثانية."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "VALEURS",
+    "type": "CONNAISSANCE",
+    "level": "B2",
+    "complexity_level": "B2",
+    "content": {
+      "fr": "Que signifie le principe d'indivisibilité de la République?",
+      "en": "What does the principle of indivisibility of the Republic mean?",
+      "ar": "ماذا يعني مبدأ عدم تجزئة الجمهورية؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["Chaque région a ses propres lois", "La loi est la même pour tous sur tout le territoire", "La France est une monarchie", "Le Président décide seul"],
+      "en": ["Each region has its own laws", "The law is the same for everyone throughout the territory", "France is a monarchy", "The President decides alone"],
+      "ar": ["يمكن لكل منطقة أن يكون لها قوانينها الخاصة", "القانون هو نفسه للجميع في جميع أنحاء الأراضي الفرنسية", "فرنسا ملكية", "الرئيس يقرر وحده"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "L'indivisibilité garantit l'unité de l'État et l'application uniforme du droit.",
+      "en": "Indivisibility guarantees State unity and uniform application of the law.",
+      "ar": "تضمن عدم التجزئة وحدة الدولة والتطبيق الموحد للقانون."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "VALEURS",
+    "type": "SITUATION",
+    "level": "B2",
+    "complexity_level": "B2",
+    "content": {
+      "fr": "Un agent public refuse de vous parler car vous portez un bijou religieux discret. Que prévoit la loi?",
+      "en": "A public official refuses to speak to you because you are wearing a discreet religious piece of jewelry. What does the law say?",
+      "ar": "يرفض موظف عام التحدث إليك لأنك ترتدي قطعة مجوهرات دينية غير واضحة. ماذا ينص القانون؟"
+    },
+    "scenario_context": {
+      "fr": "Respect de la laïcité dans les services publics.",
+      "en": "Respect for secularism in public services.",
+      "ar": "احترام العلمانية في الخدمات العامة."
+    },
+    "options": {
+      "fr": ["L'agent a raison", "L'agent a tort, la neutralité s'applique à lui et non à l'usager", "Aucun symbole religieux n'est autorisé", "L'usager doit partir"],
+      "en": ["The agent is right", "The agent is wrong, neutrality applies to him and not to the user", "No religious symbols are allowed", "The user must leave"],
+      "ar": ["الموظف على حق", "الموظف على خطأ، الحياد ينطبق عليه وليس على المستخدم", "أي رمز ديني محظور", "يجب على المستخدم المغادرة"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "La neutralité religieuse ne s'impose qu'aux agents publics, les usagers disposent de la liberté de conscience.",
+      "en": "Religious neutrality only applies to public officials; users have freedom of conscience.",
+      "ar": "لا ينطبق الحياد الديني إلا على الموظفين العموميين؛ يتمتع المستخدمون بحرية الضمير."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "POLITIQUE",
+    "type": "CONNAISSANCE",
+    "level": "B2",
+    "complexity_level": "B2",
+    "content": {
+      "fr": "Combien de députés composent l'Assemblée nationale?",
+      "en": "How many deputies make up the National Assembly?",
+      "ar": "كم عدد النواب الذين يشكلون الجمعية الوطنية؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["348", "450", "577", "600"],
+      "en": ["348", "450", "577", "600"],
+      "ar": ["348", "450", "577", "600"]
+    },
+    "correct_answer": 2,
+    "explanation": {
+      "fr": "L'Assemblée nationale compte 577 députés élus pour 5 ans.",
+      "en": "The National Assembly consists of 577 deputies elected for 5 years.",
+      "ar": "تضم الجمعية الوطنية 577 نائباً يتم انتخابهم لمدة 5 سنوات."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "HISTOIRE",
+    "type": "CONNAISSANCE",
+    "level": "B2",
+    "complexity_level": "B2",
+    "content": {
+      "fr": "Qui a unifié les mouvements de résistance en 1943?",
+      "en": "Who unified the resistance movements in 1943?",
+      "ar": "من وحد حركات المقاومة في عام 1943؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["Jean Moulin", "Charles de Gaulle", "Philippe Pétain", "Victor Hugo"],
+      "en": ["Jean Moulin", "Charles de Gaulle", "Philippe Pétain", "Victor Hugo"],
+      "ar": ["جان مولان", "شارل ديغول", "فيليب بيتان", "فيكتور هوغو"]
+    },
+    "correct_answer": 0,
+    "explanation": {
+      "fr": "Jean Moulin a unifié la Résistance sous l'autorité du général de Gaulle.",
+      "en": "Jean Moulin unified the Resistance under General de Gaulle's authority.",
+      "ar": "قام جان مولان بتوحيد المقاومة تحت سلطة الجنرال ديغول."
+    },
+    "is_premium": true
+  },
+  {
+    "theme": "SOCIETE",
+    "type": "CONNAISSANCE",
+    "level": "B2",
+    "complexity_level": "B2",
+    "content": {
+      "fr": "Quelle est la durée légale du temps de travail par semaine pour un temps plein?",
+      "en": "What is the legal weekly working time for a full-time job?",
+      "ar": "ما هي مدة العمل القانونية الأسبوعية للعمل بدوام كامل؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["32 heures", "35 heures", "39 heures", "40 heures"],
+      "en": ["32 hours", "35 hours", "39 hours", "40 hours"],
+      "ar": ["32 ساعة", "35 ساعة", "39 ساعة", "40 ساعة"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "La durée légale hebdomadaire est de 35 heures.",
+      "en": "The legal weekly duration is 35 hours.",
+      "ar": "مدة العمل القانونية الأسبوعية هي 35 ساعة."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "DROITS",
+    "type": "SITUATION",
+    "level": "B2",
+    "complexity_level": "B2",
+    "content": {
+      "fr": "Vous remarquez une discrimination à l'embauche. Quelle instance saisir?",
+      "en": "You notice hiring discrimination. Which body should you contact?",
+      "ar": "تلاحظ تمييزاً في التوظيف. أي هيئة يجب اللجوء إليها؟"
+    },
+    "scenario_context": {
+      "fr": "Lutte contre les discriminations.",
+      "en": "Fighting discrimination.",
+      "ar": "مكافحة التمييز."
+    },
+    "options": {
+      "fr": ["La mairie", "Le Défenseur des droits", "L'ambassade", "La caisse d'assurance maladie"],
+      "en": ["The town hall", "The Defender of Rights", "The embassy", "The health insurance fund"],
+      "ar": ["البلدية", "المدافع عن الحقوق", "السفارة", "صندوق التأمين الصحي"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Le Défenseur des droits lutte contre les discriminations et veille au respect des libertés.",
+      "en": "The Defender of Rights fights discrimination and ensures respect for freedoms.",
+      "ar": "يكافح المدافع عن الحقوق التمييز ويسهر على احترام الحريات."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "POLITIQUE",
+    "type": "CONNAISSANCE",
+    "level": "B2",
+    "complexity_level": "B2",
+    "content": {
+      "fr": "Qui préside le Conseil des ministres en France?",
+      "en": "Who presides over the Council of Ministers in France?",
+      "ar": "من يرأس مجلس الوزراء في فرنسا؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["Le Premier ministre", "Le Président de l'Assemblée nationale", "Le Président de la République", "Le ministre de l'Intérieur"],
+      "en": ["The Prime Minister", "The President of the National Assembly", "The President of the Republic", "The Minister of the Interior"],
+      "ar": ["رئيس الوزراء", "رئيس الجمعية الوطنية", "رئيس الجمهورية", "وزير الداخلية"]
+    },
+    "correct_answer": 2,
+    "explanation": {
+      "fr": "Le Président de la République préside le Conseil des ministres à l'Élysée.",
+      "en": "The President of the Republic presides over the Council of Ministers at the Elysée.",
+      "ar": "يرأس رئيس الجمهورية مجلس الوزراء في الإليزيه."
+    },
+    "is_premium": true
+  },
+  {
+    "theme": "HISTOIRE",
+    "type": "CONNAISSANCE",
+    "level": "B2",
+    "complexity_level": "B2",
+    "content": {
+      "fr": "Lequel de ces monuments est la nécropole des 'grands hommes'?",
+      "en": "Which of these monuments is the necropolis of 'great men'?",
+      "ar": "أي من هذه المعالم هو مقبرة لـ 'عظماء الرجال'؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["Le Louvre", "Le Panthéon", "L'Arc de Triomphe", "Notre-Dame"],
+      "en": ["The Louvre", "The Pantheon", "The Arc de Triomphe", "Notre-Dame"],
+      "ar": ["اللوفر", "البانثيون", "قوس النصر", "نوتردام"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Le Panthéon accueille les personnalités ayant marqué l'histoire (Hugo, Curie...).",
+      "en": "The Pantheon welcomes figures who have marked history (Hugo, Curie...).",
+      "ar": "يضم البانثيون الشخصيات التي تركت بصمة في التاريخ (هوغو، كوري...)."
+    },
+    "is_premium": true
+  },
+  {
+    "theme": "VALEURS",
+    "type": "CONNAISSANCE",
+    "level": "B2",
+    "complexity_level": "B2",
+    "content": {
+      "fr": "Quelle est la langue officielle de la République française?",
+      "en": "What is the official language of the French Republic?",
+      "ar": "ما هي اللغة الرسمية للجمهورية الفرنسية؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["Le latin", "Le français", "Plusieurs langues", "L'anglais"],
+      "en": ["Latin", "French", "Several languages", "English"],
+      "ar": ["اللاتينية", "الفرنسية", "عدة لغات", "الإنجليزية"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "L'article 2 de la Constitution stipule que la langue est le français.",
+      "en": "Article 2 of the Constitution states that the language is French.",
+      "ar": "تنص المادة 2 من الدستور على أن اللغة هي الفرنسية."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "SOCIETE",
+    "type": "CONNAISSANCE",
+    "level": "B2",
+    "complexity_level": "B2",
+    "content": {
+      "fr": "Dans quel délai faut-il déclarer une naissance à la mairie?",
+      "en": "Within what period must a birth be declared at the town hall?",
+      "ar": "ما هي المهلة المحددة لتسجيل المولود في البلدية؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["24 heures", "5 jours", "1 mois", "Un an"],
+      "en": ["24 hours", "5 days", "1 month", "One year"],
+      "ar": ["24 ساعة", "5 أيام", "شهر واحد", "سنة واحدة"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "La déclaration doit être faite dans les 5 jours suivant l'accouchement.",
+      "en": "The declaration must be made within 5 days following delivery.",
+      "ar": "يجب تقديم التصريح خلال 5 أيام من الولادة."
+    },
+    "is_premium": true
+  },
+  {
+    "theme": "DROITS",
+    "type": "SITUATION",
+    "level": "B2",
+    "complexity_level": "B2",
+    "content": {
+      "fr": "Vous apprenez qu'un enfant subit des menaces physiques répétées. Que faire?",
+      "en": "You learn that a child is undergoing repeated physical threats. What should you do?",
+      "ar": "علمت أن طفلاً يتعرض لتهديدات جسدية متكررة. ماذا تفعل؟"
+    },
+    "scenario_context": {
+      "fr": "Protection de l'enfance et assistance.",
+      "en": "Child protection and assistance.",
+      "ar": "حماية الطفل والمساعدة."
+    },
+    "options": {
+      "fr": ["Se taire", "Appeler le 17 ou le 119", "Attendre", "Parler au voisin"],
+      "en": ["Stay silent", "Call 17 or 119", "Wait", "Talk to the neighbor"],
+      "ar": ["الصمت", "الاتصال بالرقم 17 أو 119", "الانتظار", "التحدث إلى الجار"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "La loi impose d'alerter les autorités en cas de danger pour autrui.",
+      "en": "The law requires alerting the authorities in case of danger to others.",
+      "ar": "يفرض القانون إبلاغ السلطات في حالة وجود خطر على الآخرين."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "HISTOIRE",
+    "type": "CONNAISSANCE",
+    "level": "B2",
+    "complexity_level": "B2",
+    "content": {
+      "fr": "Qui a instauré l'école gratuite, laïque et obligatoire?",
+      "en": "Who established free, secular, and mandatory school?",
+      "ar": "من وضع المدرسة المجانية والعلمانية والإلزامية؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["Napoléon", "Jules Ferry", "De Gaulle", "Victor Hugo"],
+      "en": ["Napoleon", "Jules Ferry", "De Gaulle", "Victor Hugo"],
+      "ar": ["نابليون", "جول فيري", "ديغول", "فيكتور هوغو"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Les lois Ferry (1881-1882) ont rendu l'école primaire publique obligatoire.",
+      "en": "The Ferry laws (1881-1882) made public primary school mandatory.",
+      "ar": "جعلت قوانين فيري (1881-1882) المدرسة الابتدائية العامة إلزامية."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "VALEURS",
+    "type": "SITUATION",
+    "level": "B2",
+    "complexity_level": "B2",
+    "content": {
+      "fr": "Un voisin se plaint du bruit de vos enfants en utilisant des insultes racistes. Que faire?",
+      "en": "A neighbor complains about your children's noise using racist insults. What to do?",
+      "ar": "جار يشتكي من ضجيج أطفالك مستخدماً إهانات عنصرية. ماذا تفعل؟"
+    },
+    "scenario_context": {
+      "fr": "Conflit de voisinage et insultes publiques.",
+      "en": "Neighborhood conflict and public insults.",
+      "ar": "نزاع جيران وإهانات علنية."
+    },
+    "options": {
+      "fr": ["Insulter en retour", "Porter plainte, car l'insulte raciste est un délit", "Ne rien faire", "Ignorer"],
+      "en": ["Insult back", "File a complaint, as racist insults are a crime", "Do nothing", "Ignore"],
+      "ar": ["الرد بالإهانة", "تقديم شكوى، لأن الإهانة العنصرية جنحة", "لا تفعل شيئاً", "التجاهل"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "L'insulte à caractère raciste est punie par la loi républicaine.",
+      "en": "Racist insults are punished by republican law.",
+      "ar": "يعاقب القانون الجمهوري على الإهانة ذات الطابع العنصري."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "SOCIETE",
+    "type": "CONNAISSANCE",
+    "level": "B2",
+    "complexity_level": "B2",
+    "content": {
+      "fr": "Quel est le numéro d'urgence du SAMU?",
+      "en": "What is the emergency number for SAMU?",
+      "ar": "ما هو رقم الطوارئ للإسعاف الطبي (SAMU)؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["15", "17", "18", "112"],
+      "en": ["15", "17", "18", "112"],
+      "ar": ["15", "17", "18", "112"]
+    },
+    "correct_answer": 0,
+    "explanation": {
+      "fr": "Le 15 est pour les urgences médicales graves.",
+      "en": "15 is for serious medical emergencies.",
+      "ar": "الرقم 15 مخصص للحالات الطبية الطارئة الخطيرة."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "VALEURS",
+    "type": "SITUATION",
+    "level": "B2",
+    "complexity_level": "B2",
+    "content": {
+      "fr": "Une amie vous demande si elle peut porter un voile religieux à son travail dans le privé. Que dit la loi?",
+      "en": "A friend asks if she can wear a religious veil at her private sector job. What does the law say?",
+      "ar": "صديقة تسألك عما إذا كان بإمكانها ارتداء الحجاب في عملها في القطاع الخاص. ماذا يقول القانون؟"
+    },
+    "scenario_context": {
+      "fr": "Laïcité en entreprise privée.",
+      "en": "Secularism in private companies.",
+      "ar": "العلمانية في الشركات الخاصة."
+    },
+    "options": {
+      "fr": ["C'est toujours interdit", "C'est autorisé sauf si le règlement intérieur l'interdit pour des raisons de sécurité ou d'hygiène", "C'est obligatoire", "C'est interdit par le Président"],
+      "en": ["It's always forbidden", "It's allowed unless internal rules forbid it for safety or hygiene reasons", "It's mandatory", "It's forbidden by the President"],
+      "ar": ["ممنوع دائماً", "مسموح به ما لم يحظره النظام الداخلي لأسباب تتعلق بالسلامة أو النظافة", "إلزامي", "محظور من قبل الرئيس"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Dans le privé, la liberté religieuse est la règle, sauf restrictions justifiées.",
+      "en": "In the private sector, religious freedom is the rule, except for justified restrictions.",
+      "ar": "في القطاع الخاص، الحرية الدينية هي القاعدة، باستثناء القيود المبررة."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "POLITIQUE",
+    "type": "CONNAISSANCE",
+    "level": "B2",
+    "complexity_level": "B2",
+    "content": {
+      "fr": "Quelle institution peut voter une motion de censure contre le gouvernement?",
+      "en": "Which institution can pass a motion of no confidence against the government?",
+      "ar": "أي مؤسسة يمكنها التصويت على ملتمس رقابة ضد الحكومة؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["Le Sénat", "L'Assemblée nationale", "Le Conseil constitutionnel", "La police"],
+      "en": ["The Senate", "The National Assembly", "The Constitutional Council", "The police"],
+      "ar": ["مجلس الشيوخ", "الجمعية الوطنية", "المجلس الدستوري", "الشرطة"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Seule l'Assemblée nationale peut renverser le gouvernement.",
+      "en": "Only the National Assembly can overthrow the government.",
+      "ar": "الجمعية الوطنية وحدها هي التي يمكنها إسقاط الحكومة."
+    },
+    "is_premium": true
+  },
+  {
+    "theme": "HISTOIRE",
+    "type": "CONNAISSANCE",
+    "level": "B2",
+    "complexity_level": "B2",
+    "content": {
+      "fr": "Qui a écrit 'Les Misérables'?",
+      "en": "Who wrote 'Les Misérables'?",
+      "ar": "من الذي ألف كتاب 'البؤساء'؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["Molière", "Victor Hugo", "Voltaire", "Simone Veil"],
+      "en": ["Molière", "Victor Hugo", "Voltaire", "Simone Veil"],
+      "ar": ["موليير", "فيكتور هوغو", "فولتير", "سيمون فيل"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Victor Hugo est un écrivain majeur du XIXe siècle.",
+      "en": "Victor Hugo is a major 19th-century writer.",
+      "ar": "فيكتور هوغو كاتب بارز من القرن التاسع عشر."
+    },
+    "is_premium": true
+  },
+  {
+    "theme": "VALEURS",
+    "type": "SITUATION",
+    "level": "B2",
+    "complexity_level": "B2",
+    "content": {
+      "fr": "Vous assistez à une réunion publique et un citoyen exprime une opinion contraire à la vôtre. Que garantit la loi?",
+      "en": "You attend a public meeting and a citizen expresses an opinion contrary to yours. What does the law guarantee?",
+      "ar": "تحضر اجتماعاً عاماً ويعبر مواطن عن رأي مخالف لرأيك. ماذا يضمن القانون؟"
+    },
+    "scenario_context": {
+      "fr": "Droit au débat et liberté d'opinion.",
+      "en": "Right to debate and freedom of opinion.",
+      "ar": "الحق في النقاش وحرية الرأي."
+    },
+    "options": {
+      "fr": ["Il doit être expulsé", "Sa liberté d'expression est garantie tant qu'il ne trouble pas l'ordre public", "On peut l'insulter", "Seule l'opinion majoritaire compte"],
+      "en": ["He must be expelled", "His freedom of expression is guaranteed as long as he doesn't disturb public order", "One can insult him", "Only the majority opinion counts"],
+      "ar": ["يجب طرده", "حرية تعبيره مضمونة طالما أنه لا يخل بالنظام العام", "يمكن إهانته", "رأي الأغلبية فقط هو المهم"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "La liberté d'expression est un droit fondamental exercé dans le respect de la loi.",
+      "en": "Freedom of expression is a fundamental right exercised within the law.",
+      "ar": "حرية التعبير حق أساسي يمارس في ظل احترام القانون."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "SOCIETE",
+    "type": "SITUATION",
+    "level": "B2",
+    "complexity_level": "B2",
+    "content": {
+      "fr": "Un employeur vous demande vos accès personnels à vos réseaux sociaux. Est-ce légal?",
+      "en": "An employer asks for your personal social media access. Is this legal?",
+      "ar": "يطلب صاحب العمل الحصول على حساباتك الشخصية على وسائل التواصل الاجتماعي. هل هذا قانوني؟"
+    },
+    "scenario_context": {
+      "fr": "Respect de la vie privée au travail.",
+      "en": "Respect for privacy at work.",
+      "ar": "احترام الحياة الخاصة في العمل."
+    },
+    "options": {
+      "fr": ["Oui", "Non, cela relève de votre vie privée", "Oui, s'il vous paie bien", "Seulement si vous travaillez dans l'informatique"],
+      "en": ["Yes", "No, this falls under your private life", "Yes, if he pays you well", "Only if you work in IT"],
+      "ar": ["نعم", "لا، هذا يدخل ضمن حياتك الخاصة", "نعم، إذا كان يدفع لك جيداً", "فقط إذا كنت تعمل في مجال المعلوماتية"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "L'employeur doit respecter la vie privée du salarié.",
+      "en": "The employer must respect the employee's private life.",
+      "ar": "يجب على صاحب العمل احترام الحياة الخاصة للموظف."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "POLITIQUE",
+    "type": "CONNAISSANCE",
+    "level": "B2",
+    "complexity_level": "B2",
+    "content": {
+      "fr": "Quelle est la devise officielle de l'Union européenne?",
+      "en": "What is the official motto of the European Union?",
+      "ar": "ما هو الشعار الرسمي للاتحاد الأوروبي؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["Liberté, Égalité, Fraternité", "Unis dans la diversité", "Paix et Travail", "L'Europe pour tous"],
+      "en": ["Liberty, Equality, Fraternity", "United in diversity", "Peace and Work", "Europe for all"],
+      "ar": ["حرية، مساواة، أخوة", "متحدون في التنوع", "السلام والعمل", "أوروبا للجميع"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "La devise exprime le rassemblement des Européens autour de la paix.",
+      "en": "The motto expresses the gathering of Europeans around peace.",
+      "ar": "يعبر الشعار عن تجمع الأوروبيين حول السلام."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "DROITS",
+    "type": "CONNAISSANCE",
+    "level": "B2",
+    "complexity_level": "B2",
+    "content": {
+      "fr": "Quel texte de 1789 définit les droits naturels de l'homme?",
+      "en": "Which 1789 text defines the natural rights of man?",
+      "ar": "ما هو نص عام 1789 الذي يحدد حقوق الإنسان الطبيعية؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["Le Code civil", "La Déclaration des droits de l'homme et du citoyen", "La Constitution", "Le traité de Rome"],
+      "en": ["The Civil Code", "The Declaration of the Rights of Man and of the Citizen", "The Constitution", "The Treaty of Rome"],
+      "ar": ["القانون المدني", "إعلان حقوق الإنسان والمواطن", "الدستور", "معاهدة روما"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Adoptée en 1789, elle est le fondement de la démocratie française.",
+      "en": "Adopted in 1789, it is the foundation of French democracy.",
+      "ar": "تم اعتماده في عام 1789، وهو أساس الديمقراطية الفرنسية."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "HISTOIRE",
+    "type": "CONNAISSANCE",
+    "level": "B2",
+    "complexity_level": "B2",
+    "content": {
+      "fr": "Lequel de ces pays est un pays fondateur de l'Union européenne?",
+      "en": "Which of these countries is a founding country of the European Union?",
+      "ar": "أي من هذه الدول هي دولة مؤسسة للاتحاد الأوروبي؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["L'Espagne", "La Pologne", "L'Italie", "Le Royaume-Uni"],
+      "en": ["Spain", "Poland", "Italy", "The United Kingdom"],
+      "ar": ["إسبانيا", "بولندا", "إيطاليا", "المملكة المتحدة"]
+    },
+    "correct_answer": 2,
+    "explanation": {
+      "fr": "L'Italie a signé le traité de Rome en 1957 avec la France.",
+      "en": "Italy signed the Treaty of Rome in 1957 with France.",
+      "ar": "وقعت إيطاليا على معاهدة روما في عام 1957 مع فرنسا."
+    },
+    "is_premium": true
+  },
+  {
+    "theme": "VALEURS",
+    "type": "SITUATION",
+    "level": "B2",
+    "complexity_level": "B2",
+    "content": {
+      "fr": "Vous voyez un groupe d'élèves rejeter un camarade à cause de son handicap. Que faire?",
+      "en": "You see a group of students rejecting a classmate because of their disability. What should you do?",
+      "ar": "ترى مجموعة من الطلاب يرفضون زميلاً بسبب إعاقته. ماذا تفعل؟"
+    },
+    "scenario_context": {
+      "fr": "Lutte contre les discriminations à l'école.",
+      "en": "Fighting discrimination at school.",
+      "ar": "مكافحة التمييز في المدرسة."
+    },
+    "options": {
+      "fr": ["Ne rien dire", "Alerter le personnel éducatif, car c'est une discrimination", "Rejoindre le groupe", "Rire"],
+      "en": ["Say nothing", "Alert the educational staff, as this is discrimination", "Join the group", "Laugh"],
+      "ar": ["عدم قول شيء", "إبلاغ الكادر التربوي، لأن هذا تمييز", "الانضمام للمجموعة", "الضحك"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "L'égalité et le respect de la dignité humaine interdisent toute discrimination.",
+      "en": "Equality and respect for human dignity forbid any discrimination.",
+      "ar": "تمنع المساواة واحترام الكرامة الإنسانية أي تمييز."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "SOCIETE",
+    "type": "SITUATION",
+    "level": "B2",
+    "complexity_level": "B2",
+    "content": {
+      "fr": "Un médecin refuse de vous soigner car vous n'avez pas la nationalité française. Est-ce légal?",
+      "en": "A doctor refuses to treat you because you don't have French nationality. Is this legal?",
+      "ar": "طبيب يرفض علاجك لأنك لا تحمل الجنسية الفرنسية. هل هذا قانوني؟"
+    },
+    "scenario_context": {
+      "fr": "Accès aux soins et égalité de traitement.",
+      "en": "Access to care and equal treatment.",
+      "ar": "الوصول إلى الرعاية والمساواة في المعاملة."
+    },
+    "options": {
+      "fr": ["Oui", "Non, l'accès aux soins est garanti quelle que soit la nationalité", "Oui, s'il y a beaucoup de monde", "Seulement en cas d'urgence"],
+      "en": ["Yes", "No, access to care is guaranteed regardless of nationality", "Yes, if there are many people", "Only in case of emergency"],
+      "ar": ["نعم", "لا، الوصول إلى الرعاية مضمون بغض النظر عن الجنسية", "نعم، إذا كان هناك الكثير من الناس", "فقط في حالات الطوارئ"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Le principe d'égalité s'applique à l'accès aux services de santé.",
+      "en": "The principle of equality applies to access to health services.",
+      "ar": "ينطبق مبدأ المساواة على الوصول إلى الخدمات الصحية."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "POLITIQUE",
+    "type": "CONNAISSANCE",
+    "level": "B2",
+    "complexity_level": "B2",
+    "content": {
+      "fr": "Qui représente l'État dans chaque département et veille à l'ordre public?",
+      "en": "Who represents the State in each department and ensures public order?",
+      "ar": "من يمثل الدولة في كل محافظة ويسهر على النظام العام؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["Le maire", "Le préfet", "Le député", "Le juge"],
+      "en": ["The mayor", "The prefect", "The deputy", "The judge"],
+      "ar": ["رئيس البلدية", "المحافظ (البريفيه)", "النائب", "القاضي"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Le préfet dirige les services de l'État au niveau local.",
+      "en": "The prefect leads State services at the local level.",
+      "ar": "يقود المحافظ خدمات الدولة على المستوى المحلي."
+    },
+    "is_premium": true
+  },
+  {
+    "theme": "HISTOIRE",
+    "type": "CONNAISSANCE",
+    "level": "B2",
+    "complexity_level": "B2",
+    "content": {
+      "fr": "L'avortement (IVG) est-il légal en France?",
+      "en": "Is abortion (IVG) legal in France?",
+      "ar": "هل الإجهاض قانوني في فرنسا؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["Non", "Seulement pour les femmes mariées", "Oui, c'est une liberté garantie par la loi", "Seulement si le mari approuve"],
+      "en": ["No", "Only for married women", "Yes, it is a freedom guaranteed by law", "Only if the husband approves"],
+      "ar": ["لا", "فقط للنساء المتزوجات", "نعم، إنها حرية يضمنها القانون", "فقط إذا وافق الزوج"]
+    },
+    "correct_answer": 2,
+    "explanation": {
+      "fr": "Le droit à l'IVG est protégé par la loi française.",
+      "en": "The right to IVG is protected by French law.",
+      "ar": "حق الإجهاض محمي بموجب القانون الفرنسي."
+    },
+    "is_premium": true
+  },
+  {
+    "theme": "VALEURS",
+    "type": "SITUATION",
+    "level": "B2",
+    "complexity_level": "B2",
+    "content": {
+      "fr": "Un agent de mairie refuse de traiter votre dossier car il n'approuve pas vos idées politiques. Est-ce légal?",
+      "en": "A town hall official refuses to process your file because they don't approve of your political ideas. Is this legal?",
+      "ar": "يرفض موظف بالبلدية معالجة ملفك لأنه لا يوافق على أفكارك السياسية. هل هذا قانوني؟"
+    },
+    "scenario_context": {
+      "fr": "Neutralité des services publics.",
+      "en": "Neutrality of public services.",
+      "ar": "حياد الخدمات العامة."
+    },
+    "options": {
+      "fr": ["Oui", "Non, l'agent doit rester neutre et traiter tout le monde de manière égale", "Oui, s'il est fatigué", "Il peut vous demander de partir"],
+      "en": ["Yes", "No, the agent must remain neutral and treat everyone equally", "Yes, if he is tired", "He can ask you to leave"],
+      "ar": ["نعم", "لا، يجب أن يظل الموظف محايداً ويعامل الجميع بالتساوي", "نعم، إذا كان متعباً", "يمكنه أن يطلب منك المغادرة"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Le principe de neutralité impose l'égalité de traitement des usagers.",
+      "en": "The principle of neutrality requires equal treatment of users.",
+      "ar": "يفرض مبدأ الحياد المساواة في المعاملة بين المستخدمين."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "SOCIETE",
+    "type": "CONNAISSANCE",
+    "level": "B2",
+    "complexity_level": "B2",
+    "content": {
+      "fr": "Qui a écrit 'Le Deuxième Sexe'?",
+      "en": "Who wrote 'The Second Sex'?",
+      "ar": "من ألف كتاب 'الجنس الآخر'؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["George Sand", "Simone de Beauvoir", "Simone Veil", "Louise Michel"],
+      "en": ["George Sand", "Simone de Beauvoir", "Simone Veil", "Louise Michel"],
+      "ar": ["جورج ساند", "سيمون دي بوفوار", "سيمون فيل", "لويز ميشيل"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Simone de Beauvoir est une figure majeure du féminisme français.",
+      "en": "Simone de Beauvoir is a major figure of French feminism.",
+      "ar": "سيمون دي بوفوار شخصية بارزة في الحركة النسوية الفرنسية."
+    },
+    "is_premium": true
+  },
+  {
+    "theme": "DROITS",
+    "type": "SITUATION",
+    "level": "B2",
+    "complexity_level": "B2",
+    "content": {
+      "fr": "Votre employeur exige de voir votre dossier médical complet. Êtes-vous obligé?",
+      "en": "Your employer demands to see your full medical file. Are you obliged?",
+      "ar": "صاحب العمل يطلب رؤية ملفك الطبي الكامل. هل أنت ملزم بذلك؟"
+    },
+    "scenario_context": {
+      "fr": "Secret médical au travail.",
+      "en": "Medical secrecy at work.",
+      "ar": "السر الطبي في العمل."
+    },
+    "options": {
+      "fr": ["Oui", "Non, le secret médical est protégé et l'employeur n'a pas le droit d'y accéder", "Seulement si vous êtes malade", "Oui, s'il le demande par écrit"],
+      "en": ["Yes", "No, medical confidentiality is protected and the employer has no right to access it", "Only if you are sick", "Yes, if he requests it in writing"],
+      "ar": ["نعم", "لا، السر الطبي محمي ولا يحق لصاحب العمل الاطلاع عليه", "فقط إذا كنت مريضاً", "نعم، إذا طلب ذلك كتابياً"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "La confidentialité médicale protège les salariés de toute intrusion.",
+      "en": "Medical confidentiality protects employees from any intrusion.",
+      "ar": "تحمي السرية الطبية الموظفين من أي تدخل."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "POLITIQUE",
+    "type": "CONNAISSANCE",
+    "level": "B2",
+    "complexity_level": "B2",
+    "content": {
+      "fr": "Quelle est la monnaie utilisée en France depuis 2002?",
+      "en": "What currency has been used in France since 2002?",
+      "ar": "ما هي العملة المستخدمة في فرنسا منذ عام 2002؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["Le franc", "L'euro", "Le dollar", "La livre"],
+      "en": ["The franc", "The euro", "The dollar", "The pound"],
+      "ar": ["الفرنك", "اليورو", "الدولار", "الجنيه"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "L'euro est la monnaie unique de la zone euro.",
+      "en": "The euro is the single currency of the eurozone.",
+      "ar": "اليورو هو العملة الموحدة لمنطقة اليورو."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "HISTOIRE",
+    "type": "CONNAISSANCE",
+    "level": "B2",
+    "complexity_level": "B2",
+    "content": {
+      "fr": "Qui a construit le château de Versailles?",
+      "en": "Who built the Palace of Versailles?",
+      "ar": "من بنى قصر فرساي؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["Louis XIV", "Louis XVI", "Napoléon", "Henri IV"],
+      "en": ["Louis XIV", "Louis XVI", "Napoleon", "Henri IV"],
+      "ar": ["لويس الرابع عشر", "لويس السادس عشر", "نابليون", "هنري الرابع"]
+    },
+    "correct_answer": 0,
+    "explanation": {
+      "fr": "Le Roi-Soleil a fait de Versailles le symbole de la monarchie absolue.",
+      "en": "The Sun King made Versailles the symbol of absolute monarchy.",
+      "ar": "جعل ملك الشمس من فرساي رمزاً للملكية المطلقة."
+    },
+    "is_premium": true
+  },
+  {
+    "theme": "VALEURS",
+    "type": "SITUATION",
+    "level": "B2",
+    "complexity_level": "B2",
+    "content": {
+      "fr": "Vous voyez quelqu'un brûler un drapeau français dans la rue. Que dit la loi?",
+      "en": "You see someone burning a French flag in the street. What does the law say?",
+      "ar": "ترى شخصاً يحرق العلم الفرنسي في الشارع. ماذا يقول القانون؟"
+    },
+    "scenario_context": {
+      "fr": "Outrage aux symboles nationaux.",
+      "en": "Outrage to national symbols.",
+      "ar": "إهانة الرموز الوطنية."
+    },
+    "options": {
+      "fr": ["C'est autorisé par la liberté d'expression", "C'est un outrage aux symboles de la République puni par la loi", "Ce n'est pas grave", "L'État ne s'en soucie pas"],
+      "en": ["It's allowed by freedom of expression", "It's an outrage to the symbols of the Republic punishable by law", "It's not serious", "The State doesn't care"],
+      "ar": ["مسموح به بموجب حرية التعبير", "إنها إهانة لرموز الجمهورية يعاقب عليها القانون", "الأمر ليس خطيراً", "الدولة لا تهتم"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "L'outrage public au drapeau tricolore est une infraction pénale.",
+      "en": "Public outrage to the tricolor flag is a criminal offense.",
+      "ar": "تعتبر الإهانة العلنية للعلم ثلاثي الألوان مخالفة جنائية."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "SOCIETE",
+    "type": "SITUATION",
+    "level": "B2",
+    "complexity_level": "B2",
+    "content": {
+      "fr": "Un voisin vous demande d'aider financièrement sa famille en secret. Que prévoit la fraternité?",
+      "en": "A neighbor asks for secret financial help for their family. What does fraternity provide for?",
+      "ar": "جار يطلب منك مساعدة عائلته مالياً في السر. ماذا ينص مبدأ الأخوة؟"
+    },
+    "scenario_context": {
+      "fr": "Solidarité et entraide.",
+      "en": "Solidarity and mutual aid.",
+      "ar": "التضامن والمساعدة المتبادلة."
+    },
+    "options": {
+      "fr": ["Vous êtes obligé d'aider", "C'est un choix personnel d'entraide, mais la solidarité nationale passe par les impôts", "C'est interdit", "Le Maire doit le faire"],
+      "en": ["You are obliged to help", "It's a personal choice of mutual aid, but national solidarity goes through taxes", "It's forbidden", "The Mayor must do it"],
+      "ar": ["أنت ملزم بالمساعدة", "إنه خيار شخصي للمساعدة المتبادلة، لكن التضامن الوطني يتم عبر الضرائب", "هذا ممنوع", "رئيس البلدية يجب أن يفعل ذلك"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "La fraternité est une valeur morale, la solidarité nationale est organisée par l'État.",
+      "en": "Fraternity is a moral value; national solidarity is organized by the State.",
+      "ar": "الأخوة قيمة أخلاقية، بينما التضامن الوطني تنظمه الدولة."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "POLITIQUE",
+    "type": "CONNAISSANCE",
+    "level": "B2",
+    "complexity_level": "B2",
+    "content": {
+      "fr": "Qui nomme le Premier ministre en France?",
+      "en": "Who appoints the Prime Minister in France?",
+      "ar": "من يعين رئيس الوزراء في فرنسا؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["Les citoyens", "Le Président de la République", "L'Assemblée nationale", "Le Sénat"],
+      "en": ["The citizens", "The President of the Republic", "The National Assembly", "The Senate"],
+      "ar": ["المواطنون", "رئيس الجمهورية", "الجمعية الوطنية", "مجلس الشيوخ"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Selon la Constitution, le Président nomme le chef du gouvernement.",
+      "en": "According to the Constitution, the President appoints the head of government.",
+      "ar": "وفقاً للدستور، يعين الرئيس رئيس الحكومة."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "HISTOIRE",
+    "type": "CONNAISSANCE",
+    "level": "B2",
+    "complexity_level": "B2",
+    "content": {
+      "fr": "Qu'est-ce que la Francophonie?",
+      "en": "What is Francophonie?",
+      "ar": "ما هي الفرانكوفونية؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["Les pays d'Europe", "Les personnes et pays utilisant le français", "Un parti politique", "Une marque de vêtements"],
+      "en": ["European countries", "People and countries using French", "A political party", "A clothing brand"],
+      "ar": ["دول أوروبا", "الأشخاص والدول التي تستخدم الفرنسية", "حزب سياسي", "علامة تجارية للملابس"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "La Francophonie rassemble les pays et régions où le français est parlé.",
+      "en": "Francophonie brings together countries and regions where French is spoken.",
+      "ar": "الفرانكوفونية تجمع البلدان والمناطق التي تتحدث الفرنسية."
+    },
+    "is_premium": false
+  }
+]

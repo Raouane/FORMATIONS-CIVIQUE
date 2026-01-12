@@ -1,0 +1,101 @@
+{
+  "hero": {
+    "badge": "New 2026 program",
+    "title": "Prepare for the civic training exam",
+    "description": "Simulate the official exam with 40 questions and get your result instantly",
+    "cta": "Start a free test"
+  },
+  "stats": {
+    "questions": "Questions",
+    "duration": "Duration",
+    "success": "Success",
+    "description": {
+      "questions": "Official questions",
+      "duration": "Time allocated",
+      "success": "Minimum score required"
+    }
+  },
+  "paths": {
+    "title": "Choose your path",
+    "description": "Choose the path adapted to your situation for optimal preparation.",
+    "level": "Level {{level}}",
+    "sejour": {
+      "title": "Residence A2",
+      "description": "For people wishing to obtain a residence permit",
+      "cardTitle": "Multi-year Residence Permit",
+      "cardDescription": "Focus on the concepts of the Republic and French citizenship.",
+      "feature1": "Republican symbols",
+      "feature2": "Fundamental rights",
+      "feature3": "Daily life"
+    },
+    "resident": {
+      "title": "Resident B1",
+      "description": "For people wishing to obtain a resident card",
+      "cardTitle": "Resident Card (10 years)",
+      "cardDescription": "Focus on the values of the Republic and democratic citizenship.",
+      "feature1": "Values of the Republic",
+      "feature2": "Democratic citizenship",
+      "feature3": "Institutions"
+    },
+    "naturalisation": {
+      "title": "Naturalization B2",
+      "description": "For people wishing to obtain French nationality",
+      "cardTitle": "Naturalization",
+      "cardDescription": "Focus on History, French Culture and the institutions of the Republic.",
+      "feature1": "History of France",
+      "feature2": "Culture & heritage",
+      "feature3": "Political reform"
+    }
+  },
+  "howItWorks": {
+    "title": "How it works",
+    "step1": {
+      "title": "Review",
+      "description": "Consult courses and revision sheets"
+    },
+    "step2": {
+      "title": "Practice",
+      "description": "Take complete exam simulations"
+    },
+    "step3": {
+      "title": "Progress",
+      "description": "Analyze your results and improve your weak points"
+    }
+  },
+  "themes": {
+    "title": "The 5 official themes",
+    "valeurs": {
+      "name": "Principles and Values",
+      "description": "The fundamental values of the French Republic"
+    },
+    "droits": {
+      "name": "Rights and Duties",
+      "description": "The rights and duties of French citizens"
+    },
+    "histoire": {
+      "name": "History of France",
+      "description": "Major dates and events in French history"
+    },
+    "politique": {
+      "name": "Politics and Institutions",
+      "description": "How French institutions work"
+    },
+    "societe": {
+      "name": "French Society",
+      "description": "Contemporary French society"
+    }
+  },
+  "resources": {
+    "title": "Official resources",
+    "livret": {
+      "title": "Citizen's Handbook",
+      "description": "Official reference document for civic training",
+      "button": "Download PDF"
+    },
+    "site": {
+      "title": "Official civic training website",
+      "description": "Official government website for civic training",
+      "button": "Visit the site"
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "title": "Simulation d'examen",
+  "loading": "Chargement des questions...",
+  "noQuestions": "Aucune question disponible pour ce niveau.",
+  "backHome": "Retour à l'accueil",
+  "timer": {
+    "label": "Temps restant",
+    "warning": "Moins de 5 minutes restantes"
+  },
+  "progress": {
+    "label": "Progression",
+    "question": "Question {{current}} sur {{total}}"
+  },
+  "question": {
+    "read": "Lire la question à voix haute",
+    "stop": "Arrêter la lecture",
+    "pause": "Mettre en pause",
+    "resume": "Reprendre la lecture"
+  },
+  "situation": {
+    "label": "Mise en situation"
+  },
+  "answers": {
+    "select": "Sélectionnez votre réponse",
+    "noOptions": "Aucune option disponible pour cette question."
+  },
+  "navigation": {
+    "previous": "Précédent",
+    "next": "Suivant",
+    "finish": "Terminer l'examen",
+    "confirmFinish": "Êtes-vous sûr de vouloir terminer l'examen ?",
+    "answered": "répondues",
+    "dialog": {
+      "title": "Terminer l'examen",
+      "description": "Vous avez répondu à {{answered}} questions sur {{total}}.",
+      "cancel": "Annuler",
+      "confirm": "Terminer"
+    }
+  },
+  "feedback": {
+    "correct": "Bonne réponse !",
+    "incorrect": "Mauvaise réponse. La bonne réponse était : {{answer}}"
+  },
+  "explanation": {
+    "label": "Explication"
+  },
+  "quiz": {
+    "badge": "⚡ Quiz Rapide",
+    "back": "Retour",
+    "dialog": {
+      "title": "Terminer le quiz",
+      "description": "Vous avez répondu à {{answered}} questions sur {{total}}.",
+      "cancel": "Annuler",
+      "confirm": "Terminer"
+    }
+  }
+}

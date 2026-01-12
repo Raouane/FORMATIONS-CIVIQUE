@@ -1,0 +1,1010 @@
+[
+  {
+    "theme": "VALEURS",
+    "type": "CONNAISSANCE",
+    "level": "A2",
+    "complexity_level": "A2",
+    "content": {
+      "fr": "Quelle est la devise de la République française?",
+      "en": "What is the motto of the French Republic?",
+      "ar": "ما هو شعار الجمهورية الفرنسية؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["Liberté, Égalité, Fraternité", "Paix, Amour, Harmonie", "Justice, Droit, Loi", "Travail, Famille, Patrie"],
+      "en": ["Liberty, Equality, Fraternity", "Peace, Love, Harmony", "Justice, Right, Law", "Work, Family, Homeland"],
+      "ar": ["الحرية، المساواة، الإخاء", "السلام، الحب، الانسجام", "العدالة، الحق، القانون", "العمل، الأسرة، الوطن"]
+    },
+    "correct_answer": 0,
+    "explanation": {
+      "fr": "La devise \"Liberté, Égalité, Fraternité\" est un symbole de la République inscrit dans la Constitution. Elle apparaît sur les frontons des mairies et les bâtiments publics depuis 1848.",
+      "en": "The motto \"Liberty, Equality, Fraternity\" is a symbol of the Republic enshrined in the Constitution. It appears on the facades of town halls and public buildings since 1848.",
+      "ar": "شعار \"الحرية، المساواة، الإخاء\" هو رمز للجمهورية منصوص عليه في الدستور. يظهر على واجهات البلديات والمباني العامة منذ عام 1848."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "VALEURS",
+    "type": "CONNAISSANCE",
+    "level": "B1",
+    "complexity_level": "B1",
+    "content": {
+      "fr": "Que signifie le principe de laïcité en France?",
+      "en": "What does the principle of secularism mean in France?",
+      "ar": "ماذا يعني مبدأ العلمانية في فرنسا؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["L'interdiction de pratiquer une religion", "Le financement de toutes les religions par l'État", "La séparation de l'État et des religions et la liberté de conscience", "L'obligation d'avoir une religion pour voter"],
+      "en": ["The prohibition of practicing a religion", "State funding of all religions", "The separation of State and religions and freedom of conscience", "The obligation to have a religion to vote"],
+      "ar": ["حظر ممارسة الدين", "تمويل الدولة لجميع الأديان", "فصل الدولة عن الأديان وحرية الضمير", "وجوب وجود دين للتصويت"]
+    },
+    "correct_answer": 2,
+    "explanation": {
+      "fr": "La laïcité garantit la neutralité de l'État vis-à-vis des cultes. Elle permet à chacun de pratiquer sa religion librement ou de ne pas en avoir, dans le respect de l'ordre public.",
+      "en": "Secularism guarantees the neutrality of the State towards religions. It allows everyone to practice their religion freely or not to have one, while respecting public order.",
+      "ar": "العلمانية تضمن حياد الدولة تجاه الأديان. تسمح لكل شخص بممارسة دينه بحرية أو عدم وجود دين، مع احترام النظام العام."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "VALEURS",
+    "type": "CONNAISSANCE",
+    "level": "A2",
+    "complexity_level": "A2",
+    "content": {
+      "fr": "Qui est représentée sur le buste présent dans toutes les mairies de France?",
+      "en": "Who is represented on the bust present in all French town halls?",
+      "ar": "من هي الممثلة على التمثال الموجود في جميع بلديات فرنسا؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["Jeanne d'Arc", "Marianne", "La République", "La France"],
+      "en": ["Joan of Arc", "Marianne", "The Republic", "France"],
+      "ar": ["جان دارك", "ماريان", "الجمهورية", "فرنسا"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Marianne est la figure allégorique de la République française. Elle porte un bonnet phrygien et symbolise la liberté.",
+      "en": "Marianne is the allegorical figure of the French Republic. She wears a Phrygian cap and symbolizes liberty.",
+      "ar": "ماريان هي الشخصية الرمزية للجمهورية الفرنسية. ترتدي قبعة فريجية وترمز إلى الحرية."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "VALEURS",
+    "type": "CONNAISSANCE",
+    "level": "A2",
+    "complexity_level": "A2",
+    "content": {
+      "fr": "Que célèbre-t-on le 14 juillet en France?",
+      "en": "What is celebrated on July 14th in France?",
+      "ar": "ماذا يُحتفل به في 14 يوليو في فرنسا؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["La fin de la Seconde Guerre mondiale", "La fête nationale", "La Révolution de 1848", "La naissance de la Ve République"],
+      "en": ["The end of World War II", "National Day", "The Revolution of 1848", "The birth of the Fifth Republic"],
+      "ar": ["نهاية الحرب العالمية الثانية", "عيد وطني", "ثورة 1848", "ولادة الجمهورية الخامسة"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Le 14 juillet est la fête nationale. Elle commémore notamment la prise de la Bastille en 1789, marquant le début de la Révolution française.",
+      "en": "July 14th is the national holiday. It commemorates the storming of the Bastille in 1789, marking the beginning of the French Revolution.",
+      "ar": "14 يوليو هو العيد الوطني. يحتفل بذكرى اقتحام الباستيل في عام 1789، مما يمثل بداية الثورة الفرنسية."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "VALEURS",
+    "type": "CONNAISSANCE",
+    "level": "A2",
+    "complexity_level": "A2",
+    "content": {
+      "fr": "Quelles sont les trois couleurs du drapeau français?",
+      "en": "What are the three colors of the French flag?",
+      "ar": "ما هي الألوان الثلاثة للعلم الفرنسي؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["Rouge, Blanc, Bleu", "Bleu, Blanc, Rouge", "Rouge, Jaune, Bleu", "Vert, Blanc, Rouge"],
+      "en": ["Red, White, Blue", "Blue, White, Red", "Red, Yellow, Blue", "Green, White, Red"],
+      "ar": ["أحمر، أبيض، أزرق", "أزرق، أبيض، أحمر", "أحمر، أصفر، أزرق", "أخضر، أبيض، أحمر"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Le drapeau tricolore, emblème national de la Ve République, est né de la réunion des couleurs du Roi (blanc) et de la ville de Paris (bleu et rouge).",
+      "en": "The tricolor flag, national emblem of the Fifth Republic, was born from the union of the colors of the King (white) and the city of Paris (blue and red).",
+      "ar": "العلم ثلاثي الألوان، الشعار الوطني للجمهورية الخامسة، ولد من اتحاد ألوان الملك (أبيض) ومدينة باريس (أزرق وأحمر)."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "VALEURS",
+    "type": "SITUATION",
+    "level": "A2",
+    "complexity_level": "A2",
+    "content": {
+      "fr": "Un employeur refuse de vous embaucher uniquement parce que vous êtes une femme. Que dit la loi française?",
+      "en": "An employer refuses to hire you solely because you are a woman. What does French law say?",
+      "ar": "يرفض صاحب العمل توظيفك فقط لأنك امرأة. ماذا يقول القانون الفرنسي؟"
+    },
+    "scenario_context": {
+      "fr": "Vous postulez pour un emploi dans une entreprise privée.",
+      "en": "You are applying for a job in a private company.",
+      "ar": "أنت تتقدم لوظيفة في شركة خاصة."
+    },
+    "options": {
+      "fr": ["L'employeur est libre de choisir qui il veut sans justification", "C'est une discrimination interdite, car les femmes et les hommes ont les mêmes droits", "L'employeur peut refuser si le travail est difficile physiquement", "C'est autorisé si l'entreprise est petite"],
+      "en": ["The employer is free to choose whoever they want without justification", "This is prohibited discrimination, because women and men have the same rights", "The employer can refuse if the work is physically difficult", "It is allowed if the company is small"],
+      "ar": ["صاحب العمل حر في اختيار من يريد دون مبرر", "هذا تمييز محظور، لأن النساء والرجال لديهم نفس الحقوق", "يمكن لصاحب العمل الرفض إذا كان العمل صعبًا جسديًا", "مسموح إذا كانت الشركة صغيرة"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "L'égalité entre les femmes et les hommes est un principe fondamental protégé par la loi. Toute discrimination à l'embauche basée sur le sexe est passible de sanctions pénales.",
+      "en": "Equality between women and men is a fundamental principle protected by law. Any discrimination in hiring based on gender is subject to criminal penalties.",
+      "ar": "المساواة بين النساء والرجال مبدأ أساسي محمي بالقانون. أي تمييز في التوظيف على أساس الجنس يعرض للعقوبات الجنائية."
+    },
+    "is_premium": true
+  },
+  {
+    "theme": "VALEURS",
+    "type": "SITUATION",
+    "level": "B1",
+    "complexity_level": "B1",
+    "content": {
+      "fr": "Une école publique organise une sortie au musée. Une mère d'élève portant un foulard religieux souhaite accompagner la classe. Est-ce autorisé?",
+      "en": "A public school organizes a museum trip. A student's mother wearing a religious headscarf wishes to accompany the class. Is this allowed?",
+      "ar": "تنظم مدرسة عامة رحلة إلى المتحف. أم طالبة ترتدي حجابًا دينيًا ترغب في مرافقة الفصل. هل هذا مسموح؟"
+    },
+    "scenario_context": {
+      "fr": "Le principe de laïcité à l'école.",
+      "en": "The principle of secularism at school.",
+      "ar": "مبدأ العلمانية في المدرسة."
+    },
+    "options": {
+      "fr": ["Non, aucun signe religieux n'est admis lors d'une activité scolaire", "Oui, car elle est une collaboratrice bénévole et non un agent public soumis à la neutralité", "Oui, mais seulement si elle retire son foulard à l'intérieur du musée", "Non, seuls les parents athées peuvent accompagner les élèves"],
+      "en": ["No, no religious symbols are allowed during a school activity", "Yes, because she is a volunteer collaborator and not a public agent subject to neutrality", "Yes, but only if she removes her headscarf inside the museum", "No, only atheist parents can accompany students"],
+      "ar": ["لا، لا يُسمح بأي رموز دينية أثناء نشاط مدرسي", "نعم، لأنها متعاونة تطوعية وليست موظفة عامة خاضعة للحياد", "نعم، ولكن فقط إذا خلعت حجابها داخل المتحف", "لا، فقط الآباء الملحدون يمكنهم مرافقة الطلاب"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "La laïcité impose la neutralité aux agents publics. Les parents d'élèves sont des usagers ou des collaborateurs occasionnels ; ils peuvent exprimer leurs convictions religieuses tant que leur tenue ou leur comportement ne constitue pas un acte de prosélytisme.",
+      "en": "Secularism imposes neutrality on public agents. Parents are users or occasional collaborators; they can express their religious beliefs as long as their attire or behavior does not constitute proselytism.",
+      "ar": "العلمانية تفرض الحياد على الموظفين العموميين. الآباء هم مستخدمون أو متعاونون عرضيون؛ يمكنهم التعبير عن معتقداتهم الدينية طالما أن ملابسهم أو سلوكهم لا يشكل عملاً من أعمال التبشير."
+    },
+    "is_premium": true
+  },
+  {
+    "theme": "VALEURS",
+    "type": "SITUATION",
+    "level": "A2",
+    "complexity_level": "A2",
+    "content": {
+      "fr": "Vous êtes témoin d'une agression physique violente dans la rue. Quelle doit être votre réaction selon les règles de la République?",
+      "en": "You witness a violent physical assault on the street. What should be your reaction according to the rules of the Republic?",
+      "ar": "أنت تشهد اعتداءً جسديًا عنيفًا في الشارع. ما الذي يجب أن يكون رد فعلك وفقًا لقواعد الجمهورية؟"
+    },
+    "scenario_context": {
+      "fr": "Assistance à personne en danger.",
+      "en": "Assistance to a person in danger.",
+      "ar": "مساعدة شخص في خطر."
+    },
+    "options": {
+      "fr": ["Filmer la scène pour la diffuser sur les réseaux sociaux", "Ne pas intervenir pour ne pas prendre de risques personnels", "Alerter immédiatement les secours (17 ou 112) et porter assistance si cela est possible sans danger", "Attendre que la police arrive par hasard"],
+      "en": ["Film the scene to share on social media", "Do not intervene to avoid personal risks", "Immediately alert emergency services (17 or 112) and provide assistance if possible without danger", "Wait for the police to arrive by chance"],
+      "ar": ["تصوير المشهد لنشره على وسائل التواصل الاجتماعي", "عدم التدخل لتجنب المخاطر الشخصية", "تنبيه خدمات الطوارئ فورًا (17 أو 112) وتقديم المساعدة إذا أمكن دون خطر", "انتظار وصول الشرطة بالصدفة"]
+    },
+    "correct_answer": 2,
+    "explanation": {
+      "fr": "Le respect de la loi implique un devoir de solidarité. La non-assistance à personne en danger est un délit en France.",
+      "en": "Respect for the law implies a duty of solidarity. Failure to assist a person in danger is a crime in France.",
+      "ar": "احترام القانون يعني واجب التضامن. عدم مساعدة شخص في خطر جريمة في فرنسا."
+    },
+    "is_premium": true
+  },
+  {
+    "theme": "VALEURS",
+    "type": "SITUATION",
+    "level": "B1",
+    "complexity_level": "B1",
+    "content": {
+      "fr": "Vous souhaitez critiquer une décision du gouvernement sur internet. Qu'est-ce qui est autorisé par la liberté d'expression?",
+      "en": "You wish to criticize a government decision on the internet. What is allowed by freedom of expression?",
+      "ar": "ترغب في انتقاد قرار حكومي على الإنترنت. ما الذي يُسمح به بحرية التعبير؟"
+    },
+    "scenario_context": {
+      "fr": "Usage de la liberté d'expression sur les réseaux sociaux.",
+      "en": "Use of freedom of expression on social networks.",
+      "ar": "استخدام حرية التعبير على الشبكات الاجتماعية."
+    },
+    "options": {
+      "fr": ["Tout est autorisé, y compris les injures et les menaces", "La critique est autorisée, mais l'injure, la diffamation et l'incitation à la haine sont interdites", "Seules les critiques positives sont autorisées", "Aucune critique n'est autorisée sur internet"],
+      "en": ["Everything is allowed, including insults and threats", "Criticism is allowed, but insults, defamation, and incitement to hatred are prohibited", "Only positive criticism is allowed", "No criticism is allowed on the internet"],
+      "ar": ["كل شيء مسموح، بما في ذلك الإهانات والتهديدات", "النقد مسموح، لكن الإهانة والتشهير والتحريض على الكراهية محظورة", "فقط النقد الإيجابي مسموح", "لا يُسمح بأي نقد على الإنترنت"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "La liberté d'expression est un droit fondamental mais elle connaît des limites légales : l'injure, la diffamation et l'incitation à la haine ou à la violence sont interdites.",
+      "en": "Freedom of expression is a fundamental right but it has legal limits: insults, defamation, and incitement to hatred or violence are prohibited.",
+      "ar": "حرية التعبير حق أساسي لكن لها حدود قانونية: الإهانة والتشهير والتحريض على الكراهية أو العنف محظورة."
+    },
+    "is_premium": true
+  },
+  {
+    "theme": "VALEURS",
+    "type": "SITUATION",
+    "level": "B1",
+    "complexity_level": "B1",
+    "content": {
+      "fr": "Un agent de mairie refuse de traiter votre dossier car il n'approuve pas vos convictions politiques. Que se passe-t-il?",
+      "en": "A town hall agent refuses to process your file because they do not approve of your political beliefs. What happens?",
+      "ar": "موظف بلدية يرفض معالجة ملفك لأنه لا يوافق على معتقداتك السياسية. ماذا يحدث؟"
+    },
+    "scenario_context": {
+      "fr": "Neutralité des agents publics.",
+      "en": "Neutrality of public agents.",
+      "ar": "حياد الموظفين العموميين."
+    },
+    "options": {
+      "fr": ["L'agent a le droit de suivre ses opinions personnelles", "L'agent manque à son devoir de neutralité et commet une faute professionnelle", "C'est autorisé si le maire est d'accord", "L'usager doit changer ses opinions pour obtenir son document"],
+      "en": ["The agent has the right to follow their personal opinions", "The agent fails in their duty of neutrality and commits a professional fault", "It is allowed if the mayor agrees", "The user must change their opinions to obtain their document"],
+      "ar": ["الموظف له الحق في اتباع آرائه الشخصية", "الموظف يخفق في واجب الحياد ويرتكب خطأ مهني", "مسموح إذا وافق العمدة", "يجب على المستخدم تغيير آرائه للحصول على وثيقته"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Le principe de laïcité et de neutralité impose aux agents des services publics de traiter tous les usagers de manière égale, sans distinction d'opinion, de religion ou d'origine.",
+      "en": "The principle of secularism and neutrality requires public service agents to treat all users equally, without distinction of opinion, religion, or origin.",
+      "ar": "مبدأ العلمانية والحياد يفرض على موظفي الخدمات العامة معاملة جميع المستخدمين على قدم المساواة، دون تمييز على أساس الرأي أو الدين أو الأصل."
+    },
+    "is_premium": true
+  },
+  {
+    "theme": "VALEURS",
+    "type": "SITUATION",
+    "level": "B1",
+    "complexity_level": "B1",
+    "content": {
+      "fr": "Quelle règle s'applique à un usager dans une mairie ou une préfecture concernant sa religion?",
+      "en": "What rule applies to a user in a town hall or prefecture regarding their religion?",
+      "ar": "ما هي القاعدة التي تنطبق على المستخدم في البلدية أو المحافظة فيما يتعلق بدينه؟"
+    },
+    "scenario_context": {
+      "fr": "Vous vous rendez dans un service public pour une démarche administrative.",
+      "en": "You go to a public service for an administrative procedure.",
+      "ar": "تذهب إلى خدمة عامة لإجراء إداري."
+    },
+    "options": {
+      "fr": ["L'usager doit cacher sa religion pour entrer", "Le service public est neutre, mais l'usager est libre d'exprimer ses convictions tant qu'il ne trouble pas l'ordre public", "L'usager doit obligatoirement déclarer sa religion à l'agent d'accueil", "Le service public impose la religion de la majorité à tous les usagers"],
+      "en": ["The user must hide their religion to enter", "Public service is neutral, but the user is free to express their beliefs as long as they do not disturb public order", "The user must declare their religion to the reception agent", "Public service imposes the majority religion on all users"],
+      "ar": ["يجب على المستخدم إخفاء دينه للدخول", "الخدمة العامة محايدة، لكن المستخدم حر في التعبير عن معتقداته طالما أنه لا يزعج النظام العام", "يجب على المستخدم الإعلان عن دينه لموظف الاستقبال", "الخدمة العامة تفرض دين الأغلبية على جميع المستخدمين"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Le principe de neutralité s'applique aux agents publics, mais les usagers bénéficient de la liberté de conscience et de culte dans le cadre défini par la loi pour l'accès aux services publics.",
+      "en": "The principle of neutrality applies to public agents, but users benefit from freedom of conscience and worship within the framework defined by law for access to public services.",
+      "ar": "مبدأ الحياد ينطبق على الموظفين العموميين، لكن المستخدمين يستفيدون من حرية الضمير والعبادة في الإطار المحدد بالقانون للوصول إلى الخدمات العامة."
+    },
+    "is_premium": true
+  },
+  {
+    "theme": "DROITS",
+    "type": "CONNAISSANCE",
+    "level": "A2",
+    "complexity_level": "A2",
+    "content": {
+      "fr": "Quel est le texte qui proclame les droits de l'homme en France?",
+      "en": "What is the text that proclaims human rights in France?",
+      "ar": "ما هو النص الذي يعلن حقوق الإنسان في فرنسا؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["Le Code civil", "La Déclaration des droits de l'homme et du citoyen de 1789", "Le Code pénal", "La Constitution de 1958"],
+      "en": ["The Civil Code", "The Declaration of the Rights of Man and of the Citizen of 1789", "The Penal Code", "The 1958 Constitution"],
+      "ar": ["القانون المدني", "إعلان حقوق الإنسان والمواطن لعام 1789", "القانون الجنائي", "دستور 1958"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Adoptée le 26 août 1789, cette Déclaration est le texte fondateur qui établit les droits naturels et imprescriptibles de l'homme en France.",
+      "en": "Adopted on August 26, 1789, this Declaration is the founding text that establishes the natural and inalienable rights of man in France.",
+      "ar": "اعتُمد هذا الإعلان في 26 أغسطس 1789، وهو النص التأسيسي الذي يحدد الحقوق الطبيعية وغير القابلة للتصرف للإنسان في فرنسا."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "DROITS",
+    "type": "CONNAISSANCE",
+    "level": "B1",
+    "complexity_level": "B1",
+    "content": {
+      "fr": "Le droit de grève est-il autorisé en France?",
+      "en": "Is the right to strike authorized in France?",
+      "ar": "هل حق الإضراب مسموح في فرنسا؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["Non, il est strictement interdit", "Oui, il est reconnu par la Constitution mais encadré par la loi", "Oui, mais seulement pour les fonctionnaires", "Non, sauf en cas de guerre"],
+      "en": ["No, it is strictly prohibited", "Yes, it is recognized by the Constitution but regulated by law", "Yes, but only for civil servants", "No, except in case of war"],
+      "ar": ["لا، محظور تمامًا", "نعم، معترف به في الدستور لكنه منظم بالقانون", "نعم، لكن فقط للموظفين العموميين", "لا، إلا في حالة الحرب"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Le droit de grève est un droit fondamental garanti par la Constitution. Il s'exerce dans le cadre des lois qui le réglementent.",
+      "en": "The right to strike is a fundamental right guaranteed by the Constitution. It is exercised within the framework of laws that regulate it.",
+      "ar": "حق الإضراب حق أساسي مضمون في الدستور. يُمارس في إطار القوانين التي تنظّمه."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "DROITS",
+    "type": "CONNAISSANCE",
+    "level": "A2",
+    "complexity_level": "A2",
+    "content": {
+      "fr": "Le paiement des impôts en France est-il une obligation?",
+      "en": "Is paying taxes in France an obligation?",
+      "ar": "هل دفع الضرائب في فرنسا إلزامي؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["Non, c'est facultatif", "Oui, c'est un devoir pour financer les services publics", "Oui, mais seulement pour les riches", "Non, sauf si vous êtes étranger"],
+      "en": ["No, it is optional", "Yes, it is a duty to finance public services", "Yes, but only for the rich", "No, unless you are a foreigner"],
+      "ar": ["لا، اختياري", "نعم، واجب لتمويل الخدمات العامة", "نعم، لكن فقط للأغنياء", "لا، إلا إذا كنت أجنبيًا"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Toute personne résidant en France a le devoir de contribuer aux charges publiques selon ses capacités, afin de financer l'école, la santé et la sécurité.",
+      "en": "Everyone residing in France has the duty to contribute to public charges according to their means, in order to finance education, health, and security.",
+      "ar": "كل شخص يقيم في فرنسا لديه واجب المساهمة في الأعباء العامة حسب قدرته، لتمويل التعليم والصحة والأمن."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "DROITS",
+    "type": "CONNAISSANCE",
+    "level": "A2",
+    "complexity_level": "A2",
+    "content": {
+      "fr": "Toute personne résidant en France doit-elle respecter les lois françaises?",
+      "en": "Must everyone residing in France respect French laws?",
+      "ar": "هل يجب على كل شخص يقيم في فرنسا احترام القوانين الفرنسية؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["Non, seulement les Français", "Oui, c'est une obligation pour tous", "Oui, mais seulement les lois civiles", "Non, si vous êtes en vacances"],
+      "en": ["No, only French people", "Yes, it is an obligation for everyone", "Yes, but only civil laws", "No, if you are on vacation"],
+      "ar": ["لا، فقط الفرنسيون", "نعم، إلزامي للجميع", "نعم، لكن فقط القوانين المدنية", "لا، إذا كنت في إجازة"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Le respect des lois est un devoir fondamental pour toute personne vivant en France, quelle que soit sa nationalité ou sa situation.",
+      "en": "Respecting laws is a fundamental duty for everyone living in France, regardless of nationality or situation.",
+      "ar": "احترام القوانين واجب أساسي لكل شخص يعيش في فرنسا، بغض النظر عن جنسيته أو وضعه."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "DROITS",
+    "type": "CONNAISSANCE",
+    "level": "B1",
+    "complexity_level": "B1",
+    "content": {
+      "fr": "Qu'est-ce que l'autorité parentale selon le droit français?",
+      "en": "What is parental authority according to French law?",
+      "ar": "ما هي السلطة الأبوية وفقًا للقانون الفرنسي؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["Le droit de choisir la religion de ses voisins", "L'ensemble des droits et devoirs des parents pour protéger et éduquer leur enfant", "L'obligation pour les enfants de travailler pour leurs parents", "Le droit de punir physiquement ses enfants"],
+      "en": ["The right to choose the religion of one's neighbors", "The set of rights and duties of parents to protect and educate their child", "The obligation for children to work for their parents", "The right to physically punish one's children"],
+      "ar": ["حق اختيار دين الجيران", "مجموعة حقوق وواجبات الآباء لحماية وتعليم أطفالهم", "واجب الأطفال على العمل لآبائهم", "حق معاقبة الأطفال جسديًا"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "L'autorité parentale est un ensemble de droits et de devoirs ayant pour but l'intérêt de l'enfant (santé, sécurité, moralité et éducation).",
+      "en": "Parental authority is a set of rights and duties aimed at the child's best interests (health, safety, morality, and education).",
+      "ar": "السلطة الأبوية هي مجموعة من الحقوق والواجبات تهدف إلى مصلحة الطفل (الصحة، السلامة، الأخلاق، والتعليم)."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "DROITS",
+    "type": "SITUATION",
+    "level": "A2",
+    "complexity_level": "A2",
+    "content": {
+      "fr": "Un propriétaire refuse de vous louer un appartement en raison de votre origine. Que pouvez-vous faire?",
+      "en": "A landlord refuses to rent you an apartment because of your origin. What can you do?",
+      "ar": "يرفض مالك شقة تأجيرها لك بسبب أصلك. ماذا يمكنك أن تفعل؟"
+    },
+    "scenario_context": {
+      "fr": "Vous recherchez un logement dans le secteur privé.",
+      "en": "You are looking for housing in the private sector.",
+      "ar": "أنت تبحث عن سكن في القطاع الخاص."
+    },
+    "options": {
+      "fr": ["Rien, c'est son droit", "Porter plainte pour discrimination, car c'est interdit par la loi", "Lui proposer plus d'argent", "Attendre qu'il change d'avis"],
+      "en": ["Nothing, it's his right", "File a complaint for discrimination, as it is prohibited by law", "Offer him more money", "Wait for him to change his mind"],
+      "ar": ["لا شيء، هذا حقه", "تقديم شكوى للتمييز، لأنه محظور بالقانون", "عرض المزيد من المال", "انتظار تغيير رأيه"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "La discrimination fondée sur l'origine, la religion ou le sexe est un délit puni par la loi. Vous pouvez saisir la justice ou le Défenseur des droits.",
+      "en": "Discrimination based on origin, religion, or gender is a crime punishable by law. You can take legal action or contact the Defender of Rights.",
+      "ar": "التمييز على أساس الأصل أو الدين أو الجنس جريمة يعاقب عليها القانون. يمكنك رفع دعوى قضائية أو الاتصال بالمدافع عن الحقوق."
+    },
+    "is_premium": true
+  },
+  {
+    "theme": "DROITS",
+    "type": "SITUATION",
+    "level": "B1",
+    "complexity_level": "B1",
+    "content": {
+      "fr": "Vous êtes témoin d'une scène de violence conjugale chez vos voisins. Quelle est la conduite à tenir?",
+      "en": "You witness a scene of domestic violence at your neighbors'. What should you do?",
+      "ar": "أنت تشهد مشهد عنف منزلي عند جيرانك. ما الذي يجب عليك فعله؟"
+    },
+    "scenario_context": {
+      "fr": "Respect de la loi et assistance aux personnes.",
+      "en": "Respect for the law and assistance to people.",
+      "ar": "احترام القانون ومساعدة الأشخاص."
+    },
+    "options": {
+      "fr": ["Ne pas intervenir pour respecter la vie privée du couple", "Appeler immédiatement les secours (le 17 ou le 3919)", "Attendre le lendemain pour en parler au gardien", "Filmer la scène pour vos réseaux sociaux"],
+      "en": ["Do not intervene to respect the couple's privacy", "Immediately call emergency services (17 or 3919)", "Wait until the next day to talk to the caretaker", "Film the scene for your social networks"],
+      "ar": ["عدم التدخل لاحترام خصوصية الزوجين", "الاتصال فورًا بخدمات الطوارئ (17 أو 3919)", "انتظار اليوم التالي للتحدث إلى الحارس", "تصوير المشهد لشبكاتك الاجتماعية"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "En France, toute personne témoin de violences a le devoir d'alerter les autorités. La protection des victimes prime sur le respect de la vie privée.",
+      "en": "In France, anyone who witnesses violence has a duty to alert the authorities. Protecting victims takes precedence over respecting privacy.",
+      "ar": "في فرنسا، كل شخص يشهد عنفًا لديه واجب تنبيه السلطات. حماية الضحايا لها الأولوية على احترام الخصوصية."
+    },
+    "is_premium": true
+  },
+  {
+    "theme": "DROITS",
+    "type": "SITUATION",
+    "level": "A2",
+    "complexity_level": "A2",
+    "content": {
+      "fr": "Vous jetez volontairement une bouteille ou un mégot par terre dans l'espace public. Que se passe-t-il?",
+      "en": "You deliberately throw a bottle or cigarette butt on the ground in public space. What happens?",
+      "ar": "تتخلص عمدًا من زجاجة أو أعقاب سجائر على الأرض في الفضاء العام. ماذا يحدث؟"
+    },
+    "scenario_context": {
+      "fr": "Respect de l'environnement et de la propreté urbaine.",
+      "en": "Respect for the environment and urban cleanliness.",
+      "ar": "احترام البيئة ونظافة المدينة."
+    },
+    "options": {
+      "fr": ["Rien, c'est autorisé", "Vous risquez une amende, car c'est interdit", "C'est autorisé si personne ne vous voit", "C'est autorisé seulement le dimanche"],
+      "en": ["Nothing, it's allowed", "You risk a fine, as it is prohibited", "It's allowed if no one sees you", "It's allowed only on Sunday"],
+      "ar": ["لا شيء، مسموح", "أنت تخاطر بغرامة، لأنه محظور", "مسموح إذا لم يرك أحد", "مسموح فقط يوم الأحد"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Le respect de l'environnement est une obligation. Jeter des déchets dans la rue constitue une infraction passible d'une contravention.",
+      "en": "Respecting the environment is an obligation. Throwing waste in the street constitutes an offense punishable by a fine.",
+      "ar": "احترام البيئة إلزامي. رمي النفايات في الشارع جريمة يعاقب عليها بغرامة."
+    },
+    "is_premium": true
+  },
+  {
+    "theme": "DROITS",
+    "type": "SITUATION",
+    "level": "B1",
+    "complexity_level": "B1",
+    "content": {
+      "fr": "Un employeur vous propose de travailler sans contrat et de vous payer en espèces (travail au noir). Que dit la loi?",
+      "en": "An employer offers you to work without a contract and pay you in cash (undeclared work). What does the law say?",
+      "ar": "يعرض عليك صاحب عمل العمل دون عقد ودفعك نقدًا (عمل غير معلن). ماذا يقول القانون؟"
+    },
+    "scenario_context": {
+      "fr": "Droit du travail et protection sociale.",
+      "en": "Labor law and social protection.",
+      "ar": "قانون العمل والحماية الاجتماعية."
+    },
+    "options": {
+      "fr": ["C'est une bonne opportunité car vous ne payez pas d'impôts", "C'est illégal, vous n'êtes pas protégé en cas d'accident et l'employeur risque des poursuites", "C'est autorisé pour les trois premiers mois de travail", "C'est obligatoire si vous n'avez pas de compte bancaire"],
+      "en": ["It's a good opportunity because you don't pay taxes", "It's illegal, you're not protected in case of an accident and the employer risks prosecution", "It's allowed for the first three months of work", "It's mandatory if you don't have a bank account"],
+      "ar": ["فرصة جيدة لأنك لا تدفع ضرائب", "غير قانوني، أنت غير محمي في حالة حادث وصاحب العمل معرض للملاحقة", "مسموح للأشهر الثلاثة الأولى من العمل", "إلزامي إذا لم يكن لديك حساب بنكي"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Le travail non déclaré est strictement interdit en France. Il prive le travailleur de ses droits sociaux (santé, retraite) et expose l'employeur à de lourdes sanctions.",
+      "en": "Undeclared work is strictly prohibited in France. It deprives the worker of their social rights (health, retirement) and exposes the employer to heavy penalties.",
+      "ar": "العمل غير المعلن محظور تمامًا في فرنسا. يحرم العامل من حقوقه الاجتماعية (الصحة، التقاعد) ويعرض صاحب العمل لعقوبات شديدة."
+    },
+    "is_premium": true
+  },
+  {
+    "theme": "DROITS",
+    "type": "SITUATION",
+    "level": "B1",
+    "complexity_level": "B1",
+    "content": {
+      "fr": "Votre employeur vous demande de lui fournir les détails d'un diagnostic médical récent. Êtes-vous obligé de répondre?",
+      "en": "Your employer asks you to provide details of a recent medical diagnosis. Are you obliged to answer?",
+      "ar": "صاحب العمل يطلب منك تقديم تفاصيل تشخيص طبي حديث. هل أنت ملزم بالإجابة؟"
+    },
+    "scenario_context": {
+      "fr": "Respect de la vie privée et confidentialité médicale.",
+      "en": "Respect for privacy and medical confidentiality.",
+      "ar": "احترام الخصوصية والسرية الطبية."
+    },
+    "options": {
+      "fr": ["Oui, l'employeur doit tout savoir sur votre santé", "Non, le secret médical est protégé par la loi et l'employeur ne peut pas exiger ces détails", "Oui, mais seulement si vous travaillez dans un bureau", "Non, sauf si vos collègues sont au courant"],
+      "en": ["Yes, the employer must know everything about your health", "No, medical confidentiality is protected by law and the employer cannot require these details", "Yes, but only if you work in an office", "No, unless your colleagues know"],
+      "ar": ["نعم، يجب على صاحب العمل معرفة كل شيء عن صحتك", "لا، السرية الطبية محمية بالقانون ولا يمكن لصاحب العمل طلب هذه التفاصيل", "نعم، لكن فقط إذا كنت تعمل في مكتب", "لا، إلا إذا كان زملاؤك يعرفون"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Le principe de confidentialité garantit que les informations médicales restent privées. L'employeur n'a pas accès à votre dossier médical.",
+      "en": "The principle of confidentiality ensures that medical information remains private. The employer does not have access to your medical file.",
+      "ar": "مبدأ السرية يضمن بقاء المعلومات الطبية خاصة. صاحب العمل ليس لديه حق الوصول إلى ملفك الطبي."
+    },
+    "is_premium": true
+  },
+  {
+    "theme": "DROITS",
+    "type": "SITUATION",
+    "level": "A2",
+    "complexity_level": "A2",
+    "content": {
+      "fr": "Un agent de police procède à un contrôle d'identité dans la rue et vous demande vos papiers. Quelle est votre obligation?",
+      "en": "A police officer conducts an identity check on the street and asks for your papers. What is your obligation?",
+      "ar": "ضابط شرطة يقوم بفحص الهوية في الشارع ويطلب أوراقك. ما هي التزاماتك؟"
+    },
+    "scenario_context": {
+      "fr": "Relation avec les forces de l'ordre.",
+      "en": "Relationship with law enforcement.",
+      "ar": "العلاقة مع قوات الأمن."
+    },
+    "options": {
+      "fr": ["Refuser de les montrer", "Les présenter, car c'est une obligation légale lors d'un contrôle", "Les montrer seulement si vous êtes français", "Les montrer seulement le jour"],
+      "en": ["Refuse to show them", "Present them, as it is a legal obligation during a check", "Show them only if you are French", "Show them only during the day"],
+      "ar": ["رفض إظهارها", "تقديمها، لأنها التزام قانوني أثناء الفحص", "إظهارها فقط إذا كنت فرنسيًا", "إظهارها فقط أثناء النهار"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Toute personne se trouvant en France doit être en mesure de justifier de son identité ou de la régularité de son séjour lors d'un contrôle légal par les autorités.",
+      "en": "Everyone in France must be able to justify their identity or the regularity of their stay during a legal check by the authorities.",
+      "ar": "كل شخص في فرنسا يجب أن يكون قادرًا على إثبات هويته أو انتظام إقامته أثناء فحص قانوني من قبل السلطات."
+    },
+    "is_premium": true
+  },
+  {
+    "theme": "HISTOIRE",
+    "type": "CONNAISSANCE",
+    "level": "A2",
+    "complexity_level": "A2",
+    "content": {
+      "fr": "En quelle année a commencé la Révolution française?",
+      "en": "In what year did the French Revolution begin?",
+      "ar": "في أي عام بدأت الثورة الفرنسية؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["1789", "1792", "1815", "1848"],
+      "en": ["1789", "1792", "1815", "1848"],
+      "ar": ["1789", "1792", "1815", "1848"]
+    },
+    "correct_answer": 0,
+    "explanation": {
+      "fr": "La Révolution française a débuté en 1789, marquée notamment par la prise de la Bastille le 14 juillet.",
+      "en": "The French Revolution began in 1789, notably marked by the storming of the Bastille on July 14th.",
+      "ar": "بدأت الثورة الفرنسية في عام 1789، وتميزت خاصة باقتحام الباستيل في 14 يوليو."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "HISTOIRE",
+    "type": "CONNAISSANCE",
+    "level": "B1",
+    "complexity_level": "B1",
+    "content": {
+      "fr": "Quelles sont les dates de la Première Guerre mondiale?",
+      "en": "What are the dates of World War I?",
+      "ar": "ما هي تواريخ الحرب العالمية الأولى؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["1914 - 1918", "1939 - 1945", "1870 - 1871", "1954 - 1962"],
+      "en": ["1914 - 1918", "1939 - 1945", "1870 - 1871", "1954 - 1962"],
+      "ar": ["1914 - 1918", "1939 - 1945", "1870 - 1871", "1954 - 1962"]
+    },
+    "correct_answer": 0,
+    "explanation": {
+      "fr": "La Première Guerre mondiale s'est déroulée de 1914 à 1918. Le 11 novembre commémore l'armistice de ce conflit.",
+      "en": "World War I took place from 1914 to 1918. November 11th commemorates the armistice of this conflict.",
+      "ar": "دارت الحرب العالمية الأولى من 1914 إلى 1918. 11 نوفمبر يحتفل بذكرى الهدنة لهذا الصراع."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "HISTOIRE",
+    "type": "CONNAISSANCE",
+    "level": "B2",
+    "complexity_level": "B2",
+    "content": {
+      "fr": "Lequel de ces pays est un pays fondateur de l'Union européenne?",
+      "en": "Which of these countries is a founding member of the European Union?",
+      "ar": "أي من هذه البلدان هو عضو مؤسس في الاتحاد الأوروبي؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["La Pologne", "La Grèce", "L'Italie", "L'Espagne"],
+      "en": ["Poland", "Greece", "Italy", "Spain"],
+      "ar": ["بولندا", "اليونان", "إيطاليا", "إسبانيا"]
+    },
+    "correct_answer": 2,
+    "explanation": {
+      "fr": "L'Italie fait partie des six pays fondateurs de la Communauté économique européenne (ancêtre de l'UE) lors du traité de Rome en 1957.",
+      "en": "Italy is one of the six founding countries of the European Economic Community (predecessor of the EU) in the Treaty of Rome in 1957.",
+      "ar": "إيطاليا واحدة من الدول الست المؤسسة للجماعة الاقتصادية الأوروبية (سلف الاتحاد الأوروبي) في معاهدة روما عام 1957."
+    },
+    "is_premium": true
+  },
+  {
+    "theme": "HISTOIRE",
+    "type": "CONNAISSANCE",
+    "level": "A2",
+    "complexity_level": "A2",
+    "content": {
+      "fr": "Quel fleuve traverse la ville de Paris?",
+      "en": "Which river flows through the city of Paris?",
+      "ar": "أي نهر يجري عبر مدينة باريس؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["La Loire", "Le Rhône", "La Garonne", "La Seine"],
+      "en": ["The Loire", "The Rhône", "The Garonne", "The Seine"],
+      "ar": ["اللوار", "الرون", "الجارون", "السين"]
+    },
+    "correct_answer": 3,
+    "explanation": {
+      "fr": "La Seine est le fleuve qui traverse la capitale française.",
+      "en": "The Seine is the river that flows through the French capital.",
+      "ar": "السين هو النهر الذي يجري عبر العاصمة الفرنسية."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "HISTOIRE",
+    "type": "CONNAISSANCE",
+    "level": "B1",
+    "complexity_level": "B1",
+    "content": {
+      "fr": "Citez trois pays frontaliers de la France métropolitaine :",
+      "en": "Name three countries bordering mainland France:",
+      "ar": "اذكر ثلاث دول مجاورة لفرنسا الأوروبية:"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["Espagne, Italie, Allemagne", "Portugal, Grèce, Autriche", "Royaume-Uni, Irlande, Danemark", "Belgique, Pays-Bas, Suisse"],
+      "en": ["Spain, Italy, Germany", "Portugal, Greece, Austria", "United Kingdom, Ireland, Denmark", "Belgium, Netherlands, Switzerland"],
+      "ar": ["إسبانيا، إيطاليا، ألمانيا", "البرتغال، اليونان، النمسا", "المملكة المتحدة، أيرلندا، الدنمارك", "بلجيكا، هولندا، سويسرا"]
+    },
+    "correct_answer": 0,
+    "explanation": {
+      "fr": "La France métropolitaine possède des frontières terrestres avec huit pays, dont l'Espagne, l'Italie et l'Allemagne.",
+      "en": "Mainland France has land borders with eight countries, including Spain, Italy, and Germany.",
+      "ar": "فرنسا الأوروبية لها حدود برية مع ثماني دول، بما في ذلك إسبانيا وإيطاليا وألمانيا."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "HISTOIRE",
+    "type": "CONNAISSANCE",
+    "level": "B1",
+    "complexity_level": "B1",
+    "content": {
+      "fr": "Quelle est la plus haute chaîne de montagnes en France?",
+      "en": "What is the highest mountain range in France?",
+      "ar": "ما هي أعلى سلسلة جبال في فرنسا؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["Les Pyrénées", "Le Massif central", "Les Alpes", "Le Jura"],
+      "en": ["The Pyrenees", "The Massif Central", "The Alps", "The Jura"],
+      "ar": ["البرانس", "المرتفعات الوسطى", "الألب", "الجورا"]
+    },
+    "correct_answer": 2,
+    "explanation": {
+      "fr": "Les Alpes sont la chaîne de montagnes la plus élevée de France, avec le Mont-Blanc qui culmine à 4 807 mètres.",
+      "en": "The Alps are the highest mountain range in France, with Mont Blanc reaching 4,807 meters.",
+      "ar": "الألب هي أعلى سلسلة جبال في فرنسا، مع مونت بلانك الذي يصل إلى 4807 متر."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "HISTOIRE",
+    "type": "CONNAISSANCE",
+    "level": "A2",
+    "complexity_level": "A2",
+    "content": {
+      "fr": "Lequel de ces monuments est situé à Paris?",
+      "en": "Which of these monuments is located in Paris?",
+      "ar": "أي من هذه المعالم موجود في باريس؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["Le château de Versailles", "La tour Eiffel", "Le Mont-Saint-Michel", "Le pont du Gard"],
+      "en": ["The Palace of Versailles", "The Eiffel Tower", "Mont-Saint-Michel", "The Pont du Gard"],
+      "ar": ["قصر فرساي", "برج إيفل", "جبل سان ميشيل", "جسر الغارد"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "La tour Eiffel est l'un des monuments les plus emblématiques de Paris et de la France.",
+      "en": "The Eiffel Tower is one of the most iconic monuments of Paris and France.",
+      "ar": "برج إيفل هو أحد أكثر المعالم شهرة في باريس وفرنسا."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "HISTOIRE",
+    "type": "CONNAISSANCE",
+    "level": "B1",
+    "complexity_level": "B1",
+    "content": {
+      "fr": "Qui était Molière?",
+      "en": "Who was Molière?",
+      "ar": "من كان موليير؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["Un célèbre peintre français", "Un écrivain et dramaturge célèbre", "Un homme politique du XXe siècle", "Un grand explorateur français"],
+      "en": ["A famous French painter", "A famous writer and playwright", "A 20th century politician", "A great French explorer"],
+      "ar": ["رسام فرنسي مشهور", "كاتب ومسرحي مشهور", "سياسي من القرن العشرين", "مستكشف فرنسي عظيم"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Molière était un dramaturge et comédien français du XVIIe siècle, auteur de pièces de théâtre classiques célèbres dans le monde entier.",
+      "en": "Molière was a French playwright and actor of the 17th century, author of classic plays famous worldwide.",
+      "ar": "موليير كان كاتبًا مسرحيًا وممثلاً فرنسيًا من القرن السابع عشر، مؤلف مسرحيات كلاسيكية مشهورة في جميع أنحاء العالم."
+    },
+    "is_premium": true
+  },
+  {
+    "theme": "POLITIQUE",
+    "type": "CONNAISSANCE",
+    "level": "A2",
+    "complexity_level": "A2",
+    "content": {
+      "fr": "Qui nomme le Premier ministre en France?",
+      "en": "Who appoints the Prime Minister in France?",
+      "ar": "من يعين رئيس الوزراء في فرنسا؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["Le peuple par un vote", "Le Président de la République", "L'Assemblée nationale", "Le Sénat"],
+      "en": ["The people by vote", "The President of the Republic", "The National Assembly", "The Senate"],
+      "ar": ["الشعب بالتصويت", "رئيس الجمهورية", "الجمعية الوطنية", "مجلس الشيوخ"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Selon la Constitution de la Ve République, c'est le Président de la République qui nomme le Premier ministre.",
+      "en": "According to the Constitution of the Fifth Republic, it is the President of the Republic who appoints the Prime Minister.",
+      "ar": "وفقًا لدستور الجمهورية الخامسة، رئيس الجمهورية هو الذي يعين رئيس الوزراء."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "POLITIQUE",
+    "type": "CONNAISSANCE",
+    "level": "B1",
+    "complexity_level": "B1",
+    "content": {
+      "fr": "De quelles chambres est composé le Parlement français?",
+      "en": "What chambers make up the French Parliament?",
+      "ar": "ما هي الغرف التي يتكون منها البرلمان الفرنسي؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["Une seule chambre", "L'Assemblée nationale et le Sénat", "Le Conseil constitutionnel et le Conseil d'État", "Le Président et le Premier ministre"],
+      "en": ["A single chamber", "The National Assembly and the Senate", "The Constitutional Council and the Council of State", "The President and the Prime Minister"],
+      "ar": ["غرفة واحدة", "الجمعية الوطنية ومجلس الشيوخ", "المجلس الدستوري ومجلس الدولة", "الرئيس ورئيس الوزراء"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Le Parlement possède le pouvoir législatif. Il est composé de deux chambres : l'Assemblée nationale (députés) et le Sénat (sénateurs).",
+      "en": "Parliament holds legislative power. It consists of two chambers: the National Assembly (deputies) and the Senate (senators).",
+      "ar": "البرلمان يمتلك السلطة التشريعية. يتكون من غرفتين: الجمعية الوطنية (النواب) ومجلس الشيوخ (الشيوخ)."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "POLITIQUE",
+    "type": "CONNAISSANCE",
+    "level": "B1",
+    "complexity_level": "B1",
+    "content": {
+      "fr": "La séparation des pouvoirs est un principe fondamental. Quels sont les trois pouvoirs concernés?",
+      "en": "The separation of powers is a fundamental principle. What are the three powers involved?",
+      "ar": "فصل السلطات مبدأ أساسي. ما هي السلطات الثلاث المعنية؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["Le pouvoir civil, militaire et religieux", "Le pouvoir exécutif, législatif et judiciaire", "Le pouvoir de la police, de l'école et de l'hôpital", "Le pouvoir du Maire, du Préfet et du Ministre"],
+      "en": ["Civil, military, and religious power", "Executive, legislative, and judicial power", "Police, school, and hospital power", "Mayor, Prefect, and Minister power"],
+      "ar": ["السلطة المدنية والعسكرية والدينية", "السلطة التنفيذية والتشريعية والقضائية", "سلطة الشرطة والمدرسة والمستشفى", "سلطة العمدة والمحافظ والوزير"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "La démocratie française repose sur la séparation entre celui qui exécute les lois (exécutif), celui qui les vote (législatif) et celui qui les fait respecter (judiciaire).",
+      "en": "French democracy is based on the separation between those who execute laws (executive), those who vote on them (legislative), and those who enforce them (judicial).",
+      "ar": "الديمقراطية الفرنسية تقوم على الفصل بين من ينفذ القوانين (تنفيذي)، ومن يصوت عليها (تشريعي)، ومن يجعلها تُحترم (قضائي)."
+    },
+    "is_premium": true
+  },
+  {
+    "theme": "POLITIQUE",
+    "type": "CONNAISSANCE",
+    "level": "A2",
+    "complexity_level": "A2",
+    "content": {
+      "fr": "Pour combien de temps le Président de la République est-il élu?",
+      "en": "For how long is the President of the Republic elected?",
+      "ar": "لمدة كم يتم انتخاب رئيس الجمهورية؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["4 ans", "5 ans", "7 ans", "10 ans"],
+      "en": ["4 years", "5 years", "7 years", "10 years"],
+      "ar": ["4 سنوات", "5 سنوات", "7 سنوات", "10 سنوات"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Depuis 2002, le mandat du Président (le quinquennat) dure 5 ans. Il est élu au suffrage universel direct.",
+      "en": "Since 2002, the President's term (quinquennium) lasts 5 years. He is elected by direct universal suffrage.",
+      "ar": "منذ عام 2002، مدة ولاية الرئيس (الخماسية) هي 5 سنوات. يُنتخب بالاقتراع العام المباشر."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "POLITIQUE",
+    "type": "CONNAISSANCE",
+    "level": "B2",
+    "complexity_level": "B2",
+    "content": {
+      "fr": "Quel est le rôle principal du Conseil constitutionnel?",
+      "en": "What is the main role of the Constitutional Council?",
+      "ar": "ما هو الدور الرئيسي للمجلس الدستوري؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["Voter les lois", "Vérifier que les lois respectent la Constitution", "Nommer les ministres", "Diriger l'armée"],
+      "en": ["Vote on laws", "Verify that laws respect the Constitution", "Appoint ministers", "Lead the army"],
+      "ar": ["التصويت على القوانين", "التحقق من أن القوانين تحترم الدستور", "تعيين الوزراء", "قيادة الجيش"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Le Conseil constitutionnel est le gardien de la Constitution. Il s'assure que les lois votées ne sont pas contraires aux droits fondamentaux.",
+      "en": "The Constitutional Council is the guardian of the Constitution. It ensures that laws passed are not contrary to fundamental rights.",
+      "ar": "المجلس الدستوري هو حارس الدستور. يضمن أن القوانين المصوت عليها ليست مخالفة للحقوق الأساسية."
+    },
+    "is_premium": true
+  },
+  {
+    "theme": "POLITIQUE",
+    "type": "CONNAISSANCE",
+    "level": "B1",
+    "complexity_level": "B1",
+    "content": {
+      "fr": "Où se situe le siège officiel du Parlement européen?",
+      "en": "Where is the official seat of the European Parliament located?",
+      "ar": "أين يقع المقر الرسمي للبرلمان الأوروبي؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["À Paris", "À Bruxelles", "À Strasbourg", "À Luxembourg"],
+      "en": ["In Paris", "In Brussels", "In Strasbourg", "In Luxembourg"],
+      "ar": ["في باريس", "في بروكسل", "في ستراسبورغ", "في لوكسمبورغ"]
+    },
+    "correct_answer": 2,
+    "explanation": {
+      "fr": "Bien que les commissions se réunissent à Bruxelles, le siège officiel et le lieu des sessions plénières du Parlement européen se situent à Strasbourg.",
+      "en": "Although committees meet in Brussels, the official seat and location of plenary sessions of the European Parliament are in Strasbourg.",
+      "ar": "على الرغم من أن اللجان تجتمع في بروكسل، المقر الرسمي ومكان الجلسات العامة للبرلمان الأوروبي موجودان في ستراسبورغ."
+    },
+    "is_premium": true
+  },
+  {
+    "theme": "SOCIETE",
+    "type": "CONNAISSANCE",
+    "level": "A2",
+    "complexity_level": "A2",
+    "content": {
+      "fr": "Quel type de mariage est légalement reconnu par l'État en France?",
+      "en": "What type of marriage is legally recognized by the State in France?",
+      "ar": "ما نوع الزواج المعترف به قانونيًا من قبل الدولة في فرنسا؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["Le mariage religieux uniquement", "Le mariage civil célébré à la mairie", "Le mariage coutumier", "Le mariage à l'étranger uniquement"],
+      "en": ["Religious marriage only", "Civil marriage celebrated at the town hall", "Customary marriage", "Marriage abroad only"],
+      "ar": ["الزواج الديني فقط", "الزواج المدني الذي يُحتفل به في البلدية", "الزواج العرفي", "الزواج في الخارج فقط"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "En France, seul le mariage civil célébré devant un officier d'état civil à la mairie est légalement reconnu par l'État.",
+      "en": "In France, only civil marriage celebrated before a civil registrar at the town hall is legally recognized by the State.",
+      "ar": "في فرنسا، فقط الزواج المدني الذي يُحتفل به أمام موظف الحالة المدنية في البلدية معترف به قانونيًا من قبل الدولة."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "SOCIETE",
+    "type": "CONNAISSANCE",
+    "level": "B1",
+    "complexity_level": "B1",
+    "content": {
+      "fr": "Dans quel délai maximum un enfant doit-il être déclaré à la mairie après sa naissance?",
+      "en": "Within what maximum period must a child be declared at the town hall after birth?",
+      "ar": "في أي فترة قصوى يجب الإعلان عن الطفل في البلدية بعد ولادته؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["3 jours", "5 jours", "7 jours", "15 jours"],
+      "en": ["3 days", "5 days", "7 days", "15 days"],
+      "ar": ["3 أيام", "5 أيام", "7 أيام", "15 يومًا"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "La déclaration de naissance est une obligation légale qui doit être effectuée à la mairie du lieu de naissance dans les 5 jours suivant l'accouchement.",
+      "en": "Birth registration is a legal obligation that must be done at the town hall of the place of birth within 5 days of delivery.",
+      "ar": "تسجيل المواليد التزام قانوني يجب إجراؤه في بلدية مكان الولادة خلال 5 أيام من الولادة."
+    },
+    "is_premium": true
+  },
+  {
+    "theme": "SOCIETE",
+    "type": "CONNAISSANCE",
+    "level": "A2",
+    "complexity_level": "A2",
+    "content": {
+      "fr": "Jusqu'à quel âge l'instruction (école) est-elle obligatoire pour tous les enfants en France?",
+      "en": "Until what age is education (school) mandatory for all children in France?",
+      "ar": "حتى أي عمر التعليم (المدرسة) إلزامي لجميع الأطفال في فرنسا؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["14 ans", "16 ans", "18 ans", "21 ans"],
+      "en": ["14 years", "16 years", "18 years", "21 years"],
+      "ar": ["14 سنة", "16 سنة", "18 سنة", "21 سنة"]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "L'instruction est obligatoire pour tous les enfants résidant en France, qu'ils soient français ou étrangers, de l'âge de 3 ans jusqu'à 16 ans révolus.",
+      "en": "Education is mandatory for all children residing in France, whether French or foreign, from the age of 3 until they turn 16.",
+      "ar": "التعليم إلزامي لجميع الأطفال المقيمين في فرنسا، سواء كانوا فرنسيين أم أجانب، من سن 3 سنوات حتى بلوغ 16 سنة."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "SOCIETE",
+    "type": "CONNAISSANCE",
+    "level": "A2",
+    "complexity_level": "A2",
+    "content": {
+      "fr": "En cas d'urgence médicale grave, quel numéro court permet d'appeler le SAMU?",
+      "en": "In case of a serious medical emergency, what short number allows you to call SAMU?",
+      "ar": "في حالة طوارئ طبية خطيرة، ما هو الرقم القصير الذي يسمح بالاتصال بـ SAMU؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": ["15", "17", "18", "112"],
+      "en": ["15", "17", "18", "112"],
+      "ar": ["15", "17", "18", "112"]
+    },
+    "correct_answer": 0,
+    "explanation": {
+      "fr": "Le 15 est le numéro d'urgence pour joindre le SAMU (urgence médicale). Le 17 est pour la police et le 18 pour les pompiers.",
+      "en": "15 is the emergency number to reach SAMU (medical emergency). 17 is for the police and 18 for firefighters.",
+      "ar": "15 هو رقم الطوارئ للاتصال بـ SAMU (طوارئ طبية). 17 للشرطة و18 للإطفائيين."
+    },
+    "is_premium": false
+  }
+]

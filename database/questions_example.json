@@ -1,0 +1,84 @@
+[
+  {
+    "theme": "VALEURS",
+    "type": "CONNAISSANCE",
+    "level": "A2",
+    "complexity_level": "A2",
+    "content": {
+      "fr": "Quelle est la devise de la République française?",
+      "en": "What is the motto of the French Republic?",
+      "ar": "ما هو شعار الجمهورية الفرنسية؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": [
+        "Liberté, Égalité, Fraternité",
+        "Travail, Famille, Patrie",
+        "Unité, Justice, Prospérité",
+        "Paix, Amour, Harmonie"
+      ],
+      "en": [
+        "Liberty, Equality, Fraternity",
+        "Work, Family, Fatherland",
+        "Unity, Justice, Prosperity",
+        "Peace, Love, Harmony"
+      ],
+      "ar": [
+        "الحرية، المساواة، الأخوة",
+        "العمل، الأسرة، الوطن",
+        "الوحدة، العدالة، الازدهار",
+        "السلام، الحب، الانسجام"
+      ]
+    },
+    "correct_answer": 0,
+    "explanation": {
+      "fr": "La devise 'Liberté, Égalité, Fraternité' est un symbole de la République inscrit dans la Constitution. Elle apparaît sur les frontons des mairies et les bâtiments publics depuis 1848.",
+      "en": "The motto 'Liberty, Equality, Fraternity' is a symbol of the Republic inscribed in the Constitution. It appears on the facades of town halls and public buildings since 1848.",
+      "ar": "شعار 'الحرية، المساواة، الأخوة' هو رمز للجمهورية منصوص عليه في الدستور. يظهر على واجهات البلديات والمباني العامة منذ عام 1848."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "VALEURS",
+    "type": "SITUATION",
+    "level": "B1",
+    "complexity_level": "B1",
+    "content": {
+      "fr": "Une école publique organise une sortie au musée. Une mère d'élève portant un foulard religieux souhaite accompagner la classe. Est-ce autorisé?",
+      "en": "A public school organizes a museum trip. A student's mother wearing a religious headscarf wants to accompany the class. Is this allowed?",
+      "ar": "تنظم مدرسة عامة رحلة إلى المتحف. تريد أم طالبة ترتدي حجابًا دينيًا مرافقة الفصل. هل هذا مسموح؟"
+    },
+    "scenario_context": {
+      "fr": "Le principe de laïcité à l'école.",
+      "en": "The principle of secularism at school.",
+      "ar": "مبدأ العلمانية في المدرسة."
+    },
+    "options": {
+      "fr": [
+        "Non, aucun signe religieux n'est admis lors d'une activité scolaire",
+        "Oui, car elle est une collaboratrice bénévole et non un agent public soumis à la neutralité",
+        "Oui, mais seulement si elle retire son foulard à l'intérieur du musée",
+        "Non, seuls les parents athées peuvent accompagner les élèves"
+      ],
+      "en": [
+        "No, no religious symbols are allowed during a school activity",
+        "Yes, because she is a volunteer collaborator and not a public agent subject to neutrality",
+        "Yes, but only if she removes her headscarf inside the museum",
+        "No, only atheist parents can accompany students"
+      ],
+      "ar": [
+        "لا، لا يُسمح بأي رموز دينية أثناء نشاط مدرسي",
+        "نعم، لأنها متعاونة تطوعية وليست موظفة عامة خاضعة للحياد",
+        "نعم، ولكن فقط إذا خلعت حجابها داخل المتحف",
+        "لا، فقط الآباء الملحدون يمكنهم مرافقة الطلاب"
+      ]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "La laïcité impose la neutralité aux agents publics. Les parents d'élèves sont des usagers ou des collaborateurs occasionnels ; ils peuvent exprimer leurs convictions religieuses tant que leur tenue ou leur comportement ne constitue pas un acte de prosélytisme.",
+      "en": "Secularism imposes neutrality on public agents. Parents are users or occasional collaborators; they can express their religious beliefs as long as their attire or behavior does not constitute proselytism.",
+      "ar": "تفرض العلمانية الحياد على الموظفين العموميين. أولياء الأمور هم مستخدمون أو متعاونون عرضيون؛ يمكنهم التعبير عن معتقداتهم الدينية طالما أن ملابسهم أو سلوكهم لا يشكل عملاً من أعمال الدعوة."
+    },
+    "is_premium": true
+  }
+]

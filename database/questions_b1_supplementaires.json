@@ -1,0 +1,404 @@
+[
+  {
+    "theme": "POLITIQUE",
+    "type": "CONNAISSANCE",
+    "level": "B1",
+    "complexity_level": "B1",
+    "content": {
+      "fr": "À qui appartient la souveraineté en France?",
+      "en": "Who does sovereignty belong to in France?",
+      "ar": "لمن تنتمي السيادة في فرنسا؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": [
+        "La souveraineté appartient au roi",
+        "La souveraineté appartient au peuple qui l'exerce par ses représentants ou par référendum",
+        "Le Président seul décide des lois",
+        "L'armée dirige le pays"
+      ],
+      "en": [
+        "Sovereignty belongs to the king",
+        "Sovereignty belongs to the people who exercise it through their representatives or by referendum",
+        "The President alone decides the laws",
+        "The army leads the country"
+      ],
+      "ar": [
+        "السلطة ملك للملك",
+        "السلطة ملك للشعب الذي يمارسها عن طريق ممثليه أو عن طريق الاستفتاء",
+        "الرئيس وحده هو من يقرر القوانين",
+        "الجيش يقود البلاد"
+      ]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "La souveraineté nationale appartient au peuple selon l'article 3 de la Constitution de 1958.",
+      "en": "National sovereignty belongs to the people according to Article 3 of the 1958 Constitution.",
+      "ar": "السيادة الوطنية ملك للشعب وفقاً للمادة 3 من دستور 1958."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "VALEURS",
+    "type": "SITUATION",
+    "level": "B1",
+    "complexity_level": "B1",
+    "content": {
+      "fr": "Vous travaillez dans une administration et un usager vous demande d'accorder une priorité à sa demande en échange d'un cadeau. Que devez-vous faire?",
+      "en": "You work in an administration and a user asks you to prioritize their request in exchange for a gift. What should you do?",
+      "ar": "أنت تعمل في إدارة ويطلب منك أحد المستخدمين منح الأولوية لطلبه مقابل هدية. ماذا يجب أن تفعل؟"
+    },
+    "scenario_context": {
+      "fr": "Intégrité des agents publics et lutte contre la corruption.",
+      "en": "Integrity of public officials and the fight against corruption.",
+      "ar": "نزاهة الموظفين العموميين ومكافحة الفساد."
+    },
+    "options": {
+      "fr": [
+        "Accepter si le cadeau est petit",
+        "Refuser fermement, car les agents publics doivent traiter tous les usagers de manière égale et honnête",
+        "Accepter et partager avec vos collègues",
+        "Demander un cadeau plus important"
+      ],
+      "en": [
+        "Accept if the gift is small",
+        "Firmly refuse, as public officials must treat all users equally and honestly",
+        "Accept and share with your colleagues",
+        "Ask for a larger gift"
+      ],
+      "ar": [
+        "القبول إذا كانت الهدية صغيرة",
+        "الرفض بحزم، لأن الموظفين العموميين يجب أن يعاملوا جميع المستخدمين بالتساوي وبنزاهة",
+        "القبول والمشاركة مع زملائك",
+        "طلب هدية أكبر"
+      ]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "La corruption est un délit grave et les agents publics ont un devoir de probité et d'égalité de traitement.",
+      "en": "Corruption is a serious offense and public officials have a duty of integrity and equal treatment.",
+      "ar": "الفساد جنحة خطيرة وللموظفين العموميين واجب الاستقامة والمساواة في المعاملة."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "DROITS",
+    "type": "CONNAISSANCE",
+    "level": "B1",
+    "complexity_level": "B1",
+    "content": {
+      "fr": "Qu'est-ce que l'État de droit en France?",
+      "en": "What is the Rule of Law in France?",
+      "ar": "ما هو دولة القانون في فرنسا؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": [
+        "Un système où seule la police décide",
+        "Un système où la loi s'applique à tous, y compris aux autorités publiques",
+        "Un État où il n'y a pas de tribunaux",
+        "Un État dirigé uniquement par des juges"
+      ],
+      "en": [
+        "A system where only the police decide",
+        "A system where the law applies to everyone, including public authorities",
+        "A state where there are no courts",
+        "A state led only by judges"
+      ],
+      "ar": [
+        "نظام تقرر فيه الشرطة وحدها",
+        "نظام ينطبق فيه القانون على الجميع، بما في ذلك السلطات العامة",
+        "دولة لا توجد فيها محاكم",
+        "دولة يقودها القضاة فقط"
+      ]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "L'État de droit garantit que les droits et libertés de chacun sont protégés par la soumission de tous à la loi.",
+      "en": "The Rule of Law guarantees that everyone's rights and freedoms are protected by everyone's submission to the law.",
+      "ar": "تضمن دولة القانون حماية حقوق وحريات الجميع من خلال خضوع الكل للقانون."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "DROITS",
+    "type": "SITUATION",
+    "level": "B1",
+    "complexity_level": "B1",
+    "content": {
+      "fr": "Vous constatez qu'un commerce refuse l'entrée à une personne en raison de son handicap. Quelle est la nature de cet acte?",
+      "en": "You notice that a shop refuses entry to a person because of their disability. What is the nature of this act?",
+      "ar": "تلاحظ أن محلاً تجارياً يرفض دخول شخص بسبب إعاقته. ما هي طبيعة هذا الفعل؟"
+    },
+    "scenario_context": {
+      "fr": "Lutte contre les discriminations dans l'espace public.",
+      "en": "Fight against discrimination in public spaces.",
+      "ar": "مكافحة التمييز في الأماكن العامة."
+    },
+    "options": {
+      "fr": [
+        "C'est un droit du commerçant",
+        "C'est une discrimination interdite par la loi française",
+        "C'est autorisé si le magasin est trop petit",
+        "C'est une simple erreur de politesse"
+      ],
+      "en": [
+        "It is a right of the shopkeeper",
+        "It is a discrimination prohibited by French law",
+        "It is allowed if the store is too small",
+        "It is a simple error of politeness"
+      ],
+      "ar": [
+        "هذا حق للتاجر",
+        "هذا تمييز يحظره القانون الفرنسي",
+        "هذا مسموح به إذا كان المحل صغيراً جداً",
+        "هذا مجرد خطأ في اللياقة"
+      ]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Le principe d'égalité interdit toute distinction fondée sur le handicap pour l'accès aux lieux publics.",
+      "en": "The principle of equality prohibits any distinction based on disability for access to public places.",
+      "ar": "يمنع مبدأ المساواة أي تمييز قائم على الإعاقة للوصول إلى الأماكن العامة."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "HISTOIRE",
+    "type": "CONNAISSANCE",
+    "level": "B1",
+    "complexity_level": "B1",
+    "content": {
+      "fr": "Lequel de ces personnages historiques est associé à la création du Code civil en 1804?",
+      "en": "Which of these historical figures is associated with the creation of the Civil Code in 1804?",
+      "ar": "أي من هذه الشخصيات التاريخية مرتبطة بإنشاء القانون المدني في عام 1804؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": [
+        "Louis XIV",
+        "Napoléon Bonaparte",
+        "Le général de Gaulle",
+        "Victor Hugo"
+      ],
+      "en": [
+        "Louis XIV",
+        "Napoleon Bonaparte",
+        "General de Gaulle",
+        "Victor Hugo"
+      ],
+      "ar": [
+        "لويس الرابع عشر",
+        "نابليون بونابرت",
+        "الجنرال ديغول",
+        "فيكتور هوغو"
+      ]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Napoléon Ier a promulgué le Code civil, qui reste le fondement du droit privé français.",
+      "en": "Napoleon I promulgated the Civil Code, which remains the foundation of French private law.",
+      "ar": "أصدر نابليون الأول القانون المدني، الذي لا يزال أساس القانون الخاص الفرنسي."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "HISTOIRE",
+    "type": "CONNAISSANCE",
+    "level": "B1",
+    "complexity_level": "B1",
+    "content": {
+      "fr": "Que commémore le 8 mai en France?",
+      "en": "What does May 8th commemorate in France?",
+      "ar": "ماذا يخلد يوم 8 مايو في فرنسا؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": [
+        "Le début de la Révolution",
+        "La victoire des Alliés et la fin de la Seconde Guerre mondiale en Europe",
+        "La signature du traité de Maastricht",
+        "La fête du Travail"
+      ],
+      "en": [
+        "The beginning of the Revolution",
+        "The victory of the Allies and the end of World War II in Europe",
+        "The signing of the Maastricht Treaty",
+        "Labor Day"
+      ],
+      "ar": [
+        "بداية الثورة",
+        "انتصار الحلفاء ونهاية الحرب العالمية الثانية في أوروبا",
+        "التوقيع على معاهدة ماستريخت",
+        "عيد العمال"
+      ]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Le 8 mai 1945 marque la capitulation de l'Allemagne nazie.",
+      "en": "May 8, 1945, marks the surrender of Nazi Germany.",
+      "ar": "يصادف يوم 8 مايو 1945 استسلام ألمانيا النازية."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "POLITIQUE",
+    "type": "CONNAISSANCE",
+    "level": "B1",
+    "complexity_level": "B1",
+    "content": {
+      "fr": "En France, par quel type de scrutin les députés sont-ils élus?",
+      "en": "In France, by what type of ballot are deputies elected?",
+      "ar": "في فرنسا، بأي نوع من الاقتراع يتم انتخاب النواب؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": [
+        "Le suffrage universel indirect",
+        "Le suffrage universel direct",
+        "La nomination par le Président",
+        "Le tirage au sort"
+      ],
+      "en": [
+        "Indirect universal suffrage",
+        "Direct universal suffrage",
+        "Appointment by the President",
+        "Drawing lots"
+      ],
+      "ar": [
+        "الاقتراع العام غير المباشر",
+        "الاقتراع العام المباشر",
+        "التعيين من قبل الرئيس",
+        "القرعة"
+      ]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Les députés sont élus directement par les citoyens lors des élections législatives.",
+      "en": "Deputies are elected directly by citizens during legislative elections.",
+      "ar": "يتم انتخاب النواب مباشرة من قبل المواطنين خلال الانتخابات التشريعية."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "POLITIQUE",
+    "type": "CONNAISSANCE",
+    "level": "B1",
+    "complexity_level": "B1",
+    "content": {
+      "fr": "Quel est le rôle principal du Sénat?",
+      "en": "What is the main role of the Senate?",
+      "ar": "ما هو الدور الرئيسي لمجلس الشيوخ؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": [
+        "Juger les crimes graves",
+        "Voter la loi et contrôler l'action du Gouvernement avec l'Assemblée nationale",
+        "Nommer les ambassadeurs",
+        "Gérer les écoles primaires"
+      ],
+      "en": [
+        "Judge serious crimes",
+        "Vote the law and control the Government's action along with the National Assembly",
+        "Appoint ambassadors",
+        "Manage primary schools"
+      ],
+      "ar": [
+        "المحاكمة في الجرائم الخطيرة",
+        "التصويت على القانون ومراقبة عمل الحكومة مع الجمعية الوطنية",
+        "تعيين السفراء",
+        "إدارة المدارس الابتدائية"
+      ]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Le Sénat compose, avec l'Assemblée nationale, le Parlement français.",
+      "en": "The Senate, together with the National Assembly, makes up the French Parliament.",
+      "ar": "يشكل مجلس الشيوخ، مع الجمعية الوطنية، البرلمان الفرنسي."
+    },
+    "is_premium": true
+  },
+  {
+    "theme": "SOCIETE",
+    "type": "CONNAISSANCE",
+    "level": "B1",
+    "complexity_level": "B1",
+    "content": {
+      "fr": "Quel organisme est chargé du versement des allocations familiales en France?",
+      "en": "Which organization is responsible for paying family allowances in France?",
+      "ar": "أي هيئة مسؤولة عن دفع التعويضات العائلية في فرنسا؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": [
+        "La CPAM",
+        "La CAF",
+        "La Préfecture",
+        "Pôle Emploi"
+      ],
+      "en": [
+        "CPAM",
+        "CAF",
+        "The Prefecture",
+        "Pôle Emploi"
+      ],
+      "ar": [
+        "صندوق التأمين الصحي (CPAM)",
+        "صندوق المساعدات العائلية (CAF)",
+        "المحافظة",
+        "وكالة التوظيف (Pôle Emploi)"
+      ]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "La Caisse d'Allocations Familiales (CAF) assure la solidarité nationale en aidant les familles.",
+      "en": "The Caisse d'Allocations Familiales (CAF) ensures national solidarity by helping families.",
+      "ar": "يضمن صندوق المساعدات العائلية (CAF) التضامن الوطني من خلال مساعدة الأسر."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "SOCIETE",
+    "type": "SITUATION",
+    "level": "B1",
+    "complexity_level": "B1",
+    "content": {
+      "fr": "Votre voisin organise des fêtes bruyantes tous les soirs très tard. Que préconise la loi française pour résoudre ce conflit?",
+      "en": "Your neighbor organizes noisy parties every night very late. What does French law recommend to resolve this conflict?",
+      "ar": "ينظم جارك حفلات صاخبة كل ليلة في وقت متأخر جداً. ماذا ينص القانون الفرنسي لحل هذا النزاع؟"
+    },
+    "scenario_context": {
+      "fr": "Règles de voisinage et tapage nocturne.",
+      "en": "Neighborhood rules and night-time noise disturbance.",
+      "ar": "قواعد الجوار والضجيج الليلي."
+    },
+    "options": {
+      "fr": [
+        "Faire autant de bruit que lui pour se venger",
+        "Privilégier le dialogue, puis contacter un médiateur ou la police si le problème persiste",
+        "Déménager immédiatement sans préavis",
+        "Couper l'électricité de son appartement"
+      ],
+      "en": [
+        "Make as much noise as him to get revenge",
+        "Prioritize dialogue, then contact a mediator or the police if the problem persists",
+        "Move out immediately without notice",
+        "Cut off the electricity to his apartment"
+      ],
+      "ar": [
+        "إحداث ضجيج بقدر ما يفعل للانتقام",
+        "تفضيل الحوار، ثم الاتصال بوسطاء أو بالشرطة إذا استمرت المشكلة",
+        "الانتقال فوراً دون إبلاغ أحد",
+        "قطع الكهرباء عن شقته"
+      ]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Le respect de la tranquillité d'autrui est une règle de vie en société. Le tapage nocturne est une infraction.",
+      "en": "Respecting the peace of others is a rule of living in society. Night-time noise disturbance is an offense.",
+      "ar": "احترام طمأنينة الآخرين قاعدة من قواعد الحياة في المجتمع. الضجيج الليلي مخالفة."
+    },
+    "is_premium": false
+  }
+]

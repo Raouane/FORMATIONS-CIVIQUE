@@ -1,0 +1,48 @@
+{
+  "title": "Revision Center",
+  "description": "Let's review the essential concepts to pass your exam",
+  "all": "All",
+  "chapter": "chapter",
+  "chapters": "chapters",
+  "themes": {
+    "valeurs": {
+      "name": "Principles and Values",
+      "description": "The fundamental values of the French Republic"
+    },
+    "droits": {
+      "name": "Rights and Duties",
+      "description": "The rights and duties of the French citizen"
+    },
+    "histoire": {
+      "name": "History of France",
+      "description": "The major dates and events of French history"
+    },
+    "politique": {
+      "name": "Politics and Institutions",
+      "description": "The functioning of French institutions"
+    },
+    "societe": {
+      "name": "French Society",
+      "description": "Contemporary French society"
+    }
+  },
+  "chapterTitles": {
+    "devise": "The Motto of the Republic",
+    "laicite": "Secularism",
+    "droits-citoyen": "Citizen Rights",
+    "revolution-1789": "The French Revolution of 1789",
+    "president": "The President of the Republic",
+    "systeme-educatif": "The Education System",
+    "education": "The Education System"
+  },
+  "quickQuiz": {
+    "button": "Start a quick quiz",
+    "description": "10 questions, 15 minutes"
+  },
+  "level": {
+    "label": "Level",
+    "a2": "A2 - Residence",
+    "b1": "B1 - Resident",
+    "b2": "B2 - Naturalization"
+  }
+}

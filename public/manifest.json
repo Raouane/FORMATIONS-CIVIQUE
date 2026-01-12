@@ -1,0 +1,26 @@
+{
+  "name": "Formations Civiques 2026",
+  "short_name": "FC 2026",
+  "description": "Plateforme de préparation à l'examen de formation civique officiel 2026",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f6f6f6",
+  "theme_color": "#0050a1",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    }
+  ],
+  "categories": ["education", "government"],
+  "lang": "fr",
+  "dir": "ltr"
+}

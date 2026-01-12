@@ -1,0 +1,158 @@
+[
+  {
+    "theme": "POLITIQUE",
+    "type": "CONNAISSANCE",
+    "level": "B2",
+    "complexity_level": "B2",
+    "content": {
+      "fr": "Quelle est la durée du mandat du Président de la République française?",
+      "en": "What is the term of office of the President of the French Republic?",
+      "ar": "ما هي مدة ولاية رئيس الجمهورية الفرنسية؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": [
+        "4 ans",
+        "5 ans",
+        "6 ans",
+        "7 ans"
+      ],
+      "en": [
+        "4 years",
+        "5 years",
+        "6 years",
+        "7 years"
+      ],
+      "ar": [
+        "4 سنوات",
+        "5 سنوات",
+        "6 سنوات",
+        "7 سنوات"
+      ]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Le mandat du Président de la République française est de 5 ans depuis la réforme constitutionnelle de 2000. Il est rééligible une fois.",
+      "en": "The term of office of the President of the French Republic is 5 years since the 2000 constitutional reform. He is eligible for re-election once.",
+      "ar": "مدة ولاية رئيس الجمهورية الفرنسية هي 5 سنوات منذ الإصلاح الدستوري لعام 2000. يمكن إعادة انتخابه مرة واحدة."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "HISTOIRE",
+    "type": "CONNAISSANCE",
+    "level": "B2",
+    "complexity_level": "B2",
+    "content": {
+      "fr": "Qui a écrit 'Les Misérables' et 'Notre-Dame de Paris'?",
+      "en": "Who wrote 'Les Misérables' and 'Notre-Dame de Paris'?",
+      "ar": "من ألف 'البؤساء' و'نوتردام دو باريس'؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": [
+        "Émile Zola",
+        "Victor Hugo",
+        "Gustave Flaubert",
+        "Honoré de Balzac"
+      ],
+      "en": [
+        "Émile Zola",
+        "Victor Hugo",
+        "Gustave Flaubert",
+        "Honoré de Balzac"
+      ],
+      "ar": [
+        "إميل زولا",
+        "فيكتور هوغو",
+        "غوستاف فلوبير",
+        "أونوريه دي بلزاك"
+      ]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Victor Hugo (1802-1885) est l'auteur de 'Les Misérables' (1862) et 'Notre-Dame de Paris' (1831). Il est considéré comme l'un des plus grands écrivains français.",
+      "en": "Victor Hugo (1802-1885) is the author of 'Les Misérables' (1862) and 'Notre-Dame de Paris' (1831). He is considered one of the greatest French writers.",
+      "ar": "فيكتور هوغو (1802-1885) هو مؤلف 'البؤساء' (1862) و'نوتردام دو باريس' (1831). يُعتبر أحد أعظم الكتاب الفرنسيين."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "SOCIETE",
+    "type": "CONNAISSANCE",
+    "level": "B2",
+    "complexity_level": "B2",
+    "content": {
+      "fr": "Quel est le montant du SMIC (Salaire Minimum Interprofessionnel de Croissance) en France en 2024?",
+      "en": "What is the amount of the SMIC (Minimum Interprofessional Growth Wage) in France in 2024?",
+      "ar": "ما هو مبلغ الحد الأدنى للأجور (SMIC) في فرنسا في عام 2024؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": [
+        "Environ 1 400 € brut par mois",
+        "Environ 1 600 € brut par mois",
+        "Environ 1 800 € brut par mois",
+        "Environ 2 000 € brut par mois"
+      ],
+      "en": [
+        "Approximately 1,400 € gross per month",
+        "Approximately 1,600 € gross per month",
+        "Approximately 1,800 € gross per month",
+        "Approximately 2,000 € gross per month"
+      ],
+      "ar": [
+        "حوالي 1400 يورو إجمالي شهرياً",
+        "حوالي 1600 يورو إجمالي شهرياً",
+        "حوالي 1800 يورو إجمالي شهرياً",
+        "حوالي 2000 يورو إجمالي شهرياً"
+      ]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Le SMIC est révisé chaque année. En 2024, il s'élève à environ 1 766,92 € brut par mois (pour 35 heures hebdomadaires). C'est le salaire minimum légal en France.",
+      "en": "The SMIC is revised each year. In 2024, it amounts to approximately 1,766.92 € gross per month (for 35 weekly hours). It is the legal minimum wage in France.",
+      "ar": "يتم مراجعة الحد الأدنى للأجور كل عام. في عام 2024، يبلغ حوالي 1766.92 يورو إجمالي شهرياً (لـ 35 ساعة أسبوعياً). إنه الحد الأدنى القانوني للأجور في فرنسا."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "DROITS",
+    "type": "CONNAISSANCE",
+    "level": "B2",
+    "complexity_level": "B2",
+    "content": {
+      "fr": "Quel est le rôle du Conseil d'État en France?",
+      "en": "What is the role of the Council of State in France?",
+      "ar": "ما هو دور مجلس الدولة في فرنسا؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": [
+        "Voter les lois",
+        "Conseiller le gouvernement et juger les litiges administratifs",
+        "Élire le Président",
+        "Gérer les impôts"
+      ],
+      "en": [
+        "Vote on laws",
+        "Advise the government and judge administrative disputes",
+        "Elect the President",
+        "Manage taxes"
+      ],
+      "ar": [
+        "التصويت على القوانين",
+        "نصيحة الحكومة والفصل في النزاعات الإدارية",
+        "انتخاب الرئيس",
+        "إدارة الضرائب"
+      ]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Le Conseil d'État a deux fonctions principales : conseiller le gouvernement sur les projets de loi et juger les litiges entre les citoyens et l'administration.",
+      "en": "The Council of State has two main functions: advising the government on draft laws and judging disputes between citizens and the administration.",
+      "ar": "لمجلس الدولة وظيفتان رئيسيتان: نصيحة الحكومة بشأن مشاريع القوانين والفصل في النزاعات بين المواطنين والإدارة."
+    },
+    "is_premium": false
+  }
+]

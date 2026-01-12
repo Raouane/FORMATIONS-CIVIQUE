@@ -1,0 +1,37 @@
+{
+  "title": "Résultats de l'examen",
+  "loading": "Chargement des résultats...",
+  "noResults": "Aucun résultat disponible.",
+  "verdict": {
+    "passed": "Réussi",
+    "failed": "À améliorer",
+    "score": "Score : {{score}}/40 ({{percentage}}%)",
+    "message": {
+      "passed": "Félicitations ! Vous avez réussi l'examen avec un score de {{percentage}}%.",
+      "failed": "Vous avez obtenu {{percentage}}%. Continuez vos révisions pour atteindre les 80% requis."
+    }
+  },
+  "themes": {
+    "title": "Progression par thème",
+    "valeurs": "Principes et Valeurs",
+    "droits": "Droits et Devoirs",
+    "histoire": "Histoire de France",
+    "politique": "Politique et Institutions",
+    "societe": "Société Française"
+  },
+  "questions": {
+    "title": "Détail des questions",
+    "all": "Toutes",
+    "errors": "Erreurs uniquement",
+    "correct": "Bonnes réponses",
+    "explanation": "Explication",
+    "hideExplanation": "Masquer l'explication",
+    "question": "Question {{number}}"
+  },
+  "actions": {
+    "retry": "Recommencer",
+    "reviewErrors": "Réviser les erreurs",
+    "backHome": "Retour à l'accueil",
+    "share": "Partager mon résultat"
+  }
+}

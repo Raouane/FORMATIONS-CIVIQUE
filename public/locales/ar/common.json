@@ -1,0 +1,51 @@
+{
+  "nav": {
+    "home": "الرئيسية",
+    "revision": "المراجعة",
+    "simulation": "المحاكاة",
+    "results": "النتائج",
+    "login": "تسجيل الدخول",
+    "register": "التسجيل",
+    "logout": "تسجيل الخروج",
+    "courses": "الدروس",
+    "simulations": "المحاكاة",
+    "pdfResources": "الموارد PDF",
+    "memberArea": "المساحة الشخصية"
+  },
+  "buttons": {
+    "start": "ابدأ",
+    "continue": "متابعة",
+    "submit": "إرسال",
+    "cancel": "إلغاء",
+    "save": "حفظ",
+    "next": "التالي",
+    "previous": "السابق",
+    "finish": "إنهاء",
+    "retry": "إعادة المحاولة",
+    "back": "رجوع",
+    "share": "مشاركة",
+    "startFree": "ابدأ مجاناً",
+    "startPath": "ابدأ هذا المسار"
+  },
+  "language": {
+    "french": "Français",
+    "english": "English",
+    "arabic": "العربية"
+  },
+  "app": {
+    "name": "التكوين المدني",
+    "year": "2026",
+    "loading": "جاري التحميل...",
+    "noData": "لا توجد بيانات متاحة",
+    "answered": "تم الإجابة عليها",
+    "questions": "أسئلة"
+  },
+  "footer": {
+    "republic": "الجمهورية الفرنسية",
+    "citizenBooklet": "كتيب المواطن (PDF)",
+    "legalNotice": "إشعار قانوني",
+    "privacyPolicy": "سياسة الخصوصية",
+    "copyright": "© 2024 الجمهورية الفرنسية. جميع الحقوق محفوظة.",
+    "description": "منصة رسمية للتحضير لامتحان التكوين المدني 2026"
+  }
+}

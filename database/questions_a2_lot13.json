@@ -1,0 +1,611 @@
+[
+  {
+    "theme": "VALEURS",
+    "type": "CONNAISSANCE",
+    "level": "A2",
+    "complexity_level": "A2",
+    "content": {
+      "fr": "Quelle est la devise de la France?",
+      "en": "What is the motto of France?",
+      "ar": "ما هو شعار فرنسا؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": [
+        "Liberté, Égalité, Fraternité",
+        "Union, Travail, Justice",
+        "Paix, Progrès, Liberté",
+        "Force, Honneur, Patrie"
+      ],
+      "en": [
+        "Liberty, Equality, Fraternity",
+        "Union, Work, Justice",
+        "Peace, Progress, Liberty",
+        "Strength, Honor, Homeland"
+      ],
+      "ar": [
+        "حرية، مساواة، أخوة",
+        "اتحاد، عمل، عدالة",
+        "سلام، تقدم، حرية",
+        "قوة، شرف، وطن"
+      ]
+    },
+    "correct_answer": 0,
+    "explanation": {
+      "fr": "La devise de la France est 'Liberté, Égalité, Fraternité'. Elle est inscrite sur les mairies.",
+      "en": "The motto of France is 'Liberty, Equality, Fraternity'. It is inscribed on town halls.",
+      "ar": "شعار فرنسا هو 'حرية، مساواة، أخوة'. وهو مكتوب على واجهات البلديات."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "VALEURS",
+    "type": "CONNAISSANCE",
+    "level": "A2",
+    "complexity_level": "A2",
+    "content": {
+      "fr": "Quelles sont les couleurs du drapeau français?",
+      "en": "What are the colors of the French flag?",
+      "ar": "ما هي ألوان العلم الفرنسي؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": [
+        "Bleu, blanc, vert",
+        "Rouge, blanc, jaune",
+        "Bleu, blanc, rouge",
+        "Vert, blanc, rouge"
+      ],
+      "en": [
+        "Blue, white, green",
+        "Red, white, yellow",
+        "Blue, white, red",
+        "Green, white, red"
+      ],
+      "ar": [
+        "أزرق، أبيض، أخضر",
+        "أحمر، أبيض، أصفر",
+        "أزرق، أبيض، أحمر",
+        "أخضر، أبيض، أحمر"
+      ]
+    },
+    "correct_answer": 2,
+    "explanation": {
+      "fr": "Le drapeau français est composé de trois couleurs : bleu, blanc et rouge.",
+      "en": "The French flag is made up of three colors: blue, white, and red.",
+      "ar": "يتكون العلم الفرنسي من ثلاثة ألوان: الأزرق والأبيض والأحمر."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "VALEURS",
+    "type": "CONNAISSANCE",
+    "level": "A2",
+    "complexity_level": "A2",
+    "content": {
+      "fr": "Qui est Marianne?",
+      "en": "Who is Marianne?",
+      "ar": "من هي ماريان؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": [
+        "Une reine célèbre",
+        "Une icône de mode",
+        "Un symbole de la République française",
+        "Une politicienne contemporaine"
+      ],
+      "en": [
+        "A famous queen",
+        "A fashion icon",
+        "A symbol of the French Republic",
+        "A contemporary politician"
+      ],
+      "ar": [
+        "ملكة مشهورة",
+        "أيقونة موضة",
+        "رمز للجمهورية الفرنسية",
+        "سياسية معاصرة"
+      ]
+    },
+    "correct_answer": 2,
+    "explanation": {
+      "fr": "Marianne est la figure qui symbolise la République française et la liberté.",
+      "en": "Marianne is the figure that symbolizes the French Republic and liberty.",
+      "ar": "ماريان هي الشخصية التي ترمز إلى الجمهورية الفرنسية والحرية."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "VALEURS",
+    "type": "CONNAISSANCE",
+    "level": "A2",
+    "complexity_level": "A2",
+    "content": {
+      "fr": "Que fête-t-on le 14 juillet en France?",
+      "en": "What is celebrated on July 14th in France?",
+      "ar": "ماذا نحتفل في 14 يوليو في فرنسا؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": [
+        "Le début de l'été",
+        "La fête nationale",
+        "La fin de l'année scolaire",
+        "La fête du travail"
+      ],
+      "en": [
+        "The beginning of summer",
+        "The national holiday",
+        "The end of the school year",
+        "Labor Day"
+      ],
+      "ar": [
+        "بداية الصيف",
+        "العيد الوطني",
+        "نهاية العام الدراسي",
+        "عيد العمال"
+      ]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Le 14 juillet est la fête nationale qui commémore la Révolution de 1789.",
+      "en": "July 14th is the national holiday commemorating the Revolution of 1789.",
+      "ar": "14 يوليو هو العيد الوطني الذي يخلد ذكرى ثورة 1789."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "VALEURS",
+    "type": "CONNAISSANCE",
+    "level": "A2",
+    "complexity_level": "A2",
+    "content": {
+      "fr": "En France, les femmes ont-elles les mêmes droits que les hommes?",
+      "en": "In France, do women have the same rights as men?",
+      "ar": "في فرنسا، هل للمرأة نفس حقوق الرجل؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": [
+        "Non, les hommes ont plus de droits",
+        "Seulement si elles travaillent",
+        "Oui, c'est le principe d'égalité",
+        "Non, sauf le droit de vote"
+      ],
+      "en": [
+        "No, men have more rights",
+        "Only if they work",
+        "Yes, this is the principle of equality",
+        "No, except the right to vote"
+      ],
+      "ar": [
+        "لا، للرجال حقوق أكثر",
+        "فقط إذا كن يعملن",
+        "نعم، هذا هو مبدأ المساواة",
+        "لا، باستثناء حق التصويت"
+      ]
+    },
+    "correct_answer": 2,
+    "explanation": {
+      "fr": "L'égalité entre les femmes et les hommes est un droit protégé par la loi.",
+      "en": "Equality between women and men is a right protected by law.",
+      "ar": "المساواة بين النساء والرجال حق يحميه القانون."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "VALEURS",
+    "type": "SITUATION",
+    "level": "A2",
+    "complexity_level": "A2",
+    "content": {
+      "fr": "Un enfant inscrit à l'école publique peut-il ne pas y aller pour une raison religieuse?",
+      "en": "Can a child enrolled in public school miss school for a religious reason?",
+      "ar": "هل يمكن لطفل مسجل في مدرسة حكومية عدم الذهاب إليها لسبب ديني؟"
+    },
+    "scenario_context": {
+      "fr": "Respect de l'obligation scolaire.",
+      "en": "Respect for compulsory education.",
+      "ar": "احترام إلزامية التعليم."
+    },
+    "options": {
+      "fr": [
+        "Oui, si les parents sont d'accord",
+        "Non, l'école est obligatoire pour tous les enfants",
+        "Oui, un jour par semaine",
+        "Seulement lors des grandes fêtes religieuses"
+      ],
+      "en": [
+        "Yes, if the parents agree",
+        "No, school is mandatory for all children",
+        "Yes, one day per week",
+        "Only during major religious holidays"
+      ],
+      "ar": [
+        "نعم، إذا وافق الوالدان",
+        "لا، المدرسة إلزامية لجميع الأطفال",
+        "نعم، يوماً واحداً في الأسبوع",
+        "فقط في الأعياد الدينية الكبرى"
+      ]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "L'instruction est obligatoire pour tous les enfants de 3 à 16 ans vivant en France.",
+      "en": "Instruction is mandatory for all children aged 3 to 16 living in France.",
+      "ar": "التعليم إلزامي لجميع الأطفال من سن 3 إلى 16 سنة الذين يعيشون في فرنسا."
+    },
+    "is_premium": true
+  },
+  {
+    "theme": "VALEURS",
+    "type": "SITUATION",
+    "level": "A2",
+    "complexity_level": "A2",
+    "content": {
+      "fr": "Une entreprise refuse de vous donner un poste car vous êtes un étranger. Est-ce légal?",
+      "en": "A company refuses to give you a job because you are a foreigner. Is this legal?",
+      "ar": "شركة ترفض توظيفك لأنك أجنبي. هل هذا قانوني؟"
+    },
+    "scenario_context": {
+      "fr": "Lutte contre les discriminations au travail.",
+      "en": "Fight against discrimination at work.",
+      "ar": "مكافحة التمييز في العمل."
+    },
+    "options": {
+      "fr": [
+        "Oui, l'employeur choisit librement",
+        "Non, c'est une discrimination interdite par la loi",
+        "Oui, si l'entreprise est petite",
+        "Seulement si vous n'avez pas de diplôme français"
+      ],
+      "en": [
+        "Yes, the employer chooses freely",
+        "No, this is discrimination prohibited by law",
+        "Yes, if the company is small",
+        "Only if you don't have a French diploma"
+      ],
+      "ar": [
+        "نعم، صاحب العمل يختار بحرية",
+        "لا، هذا تمييز يحظره القانون",
+        "نعم، إذا كانت الشركة صغيرة",
+        "فقط إذا لم يكن لديك دبلوم فرنسي"
+      ]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "La loi interdit de refuser un emploi à une personne en raison de son origine ou de sa nationalité.",
+      "en": "The law prohibits refusing a job to a person because of their origin or nationality.",
+      "ar": "يمنع القانون رفض توظيف شخص بسبب أصله أو جنسيته."
+    },
+    "is_premium": true
+  },
+  {
+    "theme": "VALEURS",
+    "type": "SITUATION",
+    "level": "A2",
+    "complexity_level": "A2",
+    "content": {
+      "fr": "Vous entendez quelqu'un insulter publiquement une personne à cause de sa religion. Que dit la loi?",
+      "en": "You hear someone publicly insulting a person because of their religion. What does the law say?",
+      "ar": "تسمع شخصاً يهين آخر علناً بسبب دينه. ماذا يقول القانون؟"
+    },
+    "scenario_context": {
+      "fr": "Interdiction de l'injure publique.",
+      "en": "Prohibition of public insult.",
+      "ar": "منع الإهانة العلنية."
+    },
+    "options": {
+      "fr": [
+        "C'est autorisé par la liberté d'expression",
+        "C'est une infraction punie par la loi",
+        "C'est permis si c'est une blague",
+        "Ce n'est pas grave"
+      ],
+      "en": [
+        "It is allowed by freedom of speech",
+        "It is an offense punished by law",
+        "It is allowed if it is a joke",
+        "It is not serious"
+      ],
+      "ar": [
+        "مسموح به بموجب حرية التعبير",
+        "إنها مخالفة يعاقب عليها القانون",
+        "مسموح به إذا كان مزاحاً",
+        "الأمر ليس خطيراً"
+      ]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "L'injure publique et la provocation à la haine religieuse sont interdites en France.",
+      "en": "Public insult and incitement to religious hatred are prohibited in France.",
+      "ar": "يُحظر في فرنسا السب العلني والتحريض على الكراهية الدينية."
+    },
+    "is_premium": true
+  },
+  {
+    "theme": "VALEURS",
+    "type": "SITUATION",
+    "level": "A2",
+    "complexity_level": "A2",
+    "content": {
+      "fr": "Un agent de préfecture porte un signe religieux très visible pendant son travail. Est-ce autorisé?",
+      "en": "A prefecture official wears a very visible religious sign during work. Is this allowed?",
+      "ar": "موظف في المحافظة يرتدي رمزاً دينياً واضحاً جداً أثناء عمله. هل هذا مسموح؟"
+    },
+    "scenario_context": {
+      "fr": "Laïcité et neutralité des agents publics.",
+      "en": "Secularism and neutrality of public officials.",
+      "ar": "العلمانية وحياد الموظفين العموميين."
+    },
+    "options": {
+      "fr": [
+        "Oui, c'est sa liberté",
+        "Non, les agents publics doivent respecter la neutralité et ne pas porter de signes religieux",
+        "Seulement le vendredi",
+        "Oui, si le préfet est d'accord"
+      ],
+      "en": [
+        "Yes, it's their freedom",
+        "No, public officials must respect neutrality and not wear religious signs",
+        "Only on Friday",
+        "Yes, if the prefect agrees"
+      ],
+      "ar": [
+        "نعم، هذه حريته",
+        "لا، يجب على الموظفين العموميين التزام الحياد وعدم ارتداء رموز دينية",
+        "فقط يوم الجمعة",
+        "نعم، إذا وافق المحافظ"
+      ]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Le principe de laïcité impose aux agents des services publics de rester neutres.",
+      "en": "The principle of secularism requires public service officials to remain neutral.",
+      "ar": "يفرض مبدأ العلمانية على موظفي الخدمات العامة التزام الحياد."
+    },
+    "is_premium": true
+  },
+  {
+    "theme": "VALEURS",
+    "type": "SITUATION",
+    "level": "A2",
+    "complexity_level": "A2",
+    "content": {
+      "fr": "Vous voyez un accident de la route. Quelle est votre obligation?",
+      "en": "You see a road accident. What is your obligation?",
+      "ar": "ترى حادثاً مرورياً. ما هو التزامك؟"
+    },
+    "scenario_context": {
+      "fr": "Assistance à personne en danger.",
+      "en": "Assistance to a person in danger.",
+      "ar": "مساعدة شخص في خطر."
+    },
+    "options": {
+      "fr": [
+        "Continuer votre route",
+        "Prendre une photo",
+        "Alerter les secours et aider si possible",
+        "Attendre que quelqu'un d'autre appelle"
+      ],
+      "en": [
+        "Continue on your way",
+        "Take a photo",
+        "Alert emergency services and help if possible",
+        "Wait for someone else to call"
+      ],
+      "ar": [
+        "مواصلة طريقك",
+        "التقاط صورة",
+        "إبلاغ الإسعاف والمساعدة إن أمكن",
+        "الانتظار حتى يتصل شخص آخر"
+      ]
+    },
+    "correct_answer": 2,
+    "explanation": {
+      "fr": "En France, on a le devoir d'aider une personne en danger si cela ne présente pas de risque pour soi.",
+      "en": "In France, one has a duty to help a person in danger if it does not present a risk to oneself.",
+      "ar": "في فرنسا، من الواجب مساعدة شخص في خطر إذا كان ذلك لا يشكل خطراً على النفس."
+    },
+    "is_premium": true
+  },
+  {
+    "theme": "VALEURS",
+    "type": "SITUATION",
+    "level": "A2",
+    "complexity_level": "A2",
+    "content": {
+      "fr": "Une personne vous demande de voter à sa place. Est-ce possible?",
+      "en": "Someone asks you to vote in their place. Is this possible?",
+      "ar": "شخص يطلب منك التصويت مكانه. هل هذا ممكن؟"
+    },
+    "scenario_context": {
+      "fr": "Exercice personnel du droit de vote.",
+      "en": "Personal exercise of the right to vote.",
+      "ar": "الممارسة الشخصية لحق التصويت."
+    },
+    "options": {
+      "fr": [
+        "Oui, sans conditions",
+        "Seulement avec une procuration officielle",
+        "Non, c'est interdit",
+        "Oui, si c'est un membre de la famille"
+      ],
+      "en": [
+        "Yes, without conditions",
+        "Only with an official proxy",
+        "No, it's forbidden",
+        "Yes, if it's a family member"
+      ],
+      "ar": [
+        "نعم، دون شروط",
+        "فقط بموجب توكيل رسمي",
+        "لا، هذا ممنوع",
+        "نعم، إذا كان أحد أفراد الأسرة"
+      ]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "Le vote est personnel, mais on peut donner son vote à quelqu'un via une procuration légale.",
+      "en": "Voting is personal, but one can give their vote to someone via a legal proxy.",
+      "ar": "التصويت شخصي، ولكن يمكن إعطاء الصوت لشخص آخر عبر توكيل قانوني."
+    },
+    "is_premium": true
+  },
+  {
+    "theme": "DROITS",
+    "type": "CONNAISSANCE",
+    "level": "A2",
+    "complexity_level": "A2",
+    "content": {
+      "fr": "Comment s'appelle le texte qui contient les lois principales en France?",
+      "en": "What is the name of the text containing the main laws in France?",
+      "ar": "ما هو اسم النص الذي يحتوي على القوانين الرئيسية في فرنسا؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": [
+        "Le Journal officiel",
+        "Le livret du citoyen",
+        "La Constitution",
+        "Le code de la route"
+      ],
+      "en": [
+        "The Official Journal",
+        "The citizen's booklet",
+        "The Constitution",
+        "The highway code"
+      ],
+      "ar": [
+        "الجريدة الرسمية",
+        "كتيب المواطن",
+        "الدستور",
+        "قانون المرور"
+      ]
+    },
+    "correct_answer": 2,
+    "explanation": {
+      "fr": "La Constitution de la Ve République est le texte suprême qui organise l'État.",
+      "en": "The Constitution of the Fifth Republic is the supreme text that organizes the State.",
+      "ar": "دستور الجمهورية الخامسة هو النص الأسمى الذي ينظم الدولة."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "DROITS",
+    "type": "CONNAISSANCE",
+    "level": "A2",
+    "complexity_level": "A2",
+    "content": {
+      "fr": "En France, les citoyens ont-ils le droit de manifester?",
+      "en": "In France, do citizens have the right to protest?",
+      "ar": "في فرنسا، هل يحق للمواطنين التظاهر؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": [
+        "Non, c'est interdit",
+        "Oui, c'est une liberté fondamentale",
+        "Seulement le week-end",
+        "Seulement avec l'accord du Président"
+      ],
+      "en": [
+        "No, it's forbidden",
+        "Yes, it's a fundamental freedom",
+        "Only on weekends",
+        "Only with the President's agreement"
+      ],
+      "ar": [
+        "لا، هذا ممنوع",
+        "نعم، إنها حرية أساسية",
+        "فقط في عطلة نهاية الأسبوع",
+        "فقط بموافقة الرئيس"
+      ]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "La liberté de manifester est un droit garanti par la Constitution française.",
+      "en": "The freedom to protest is a right guaranteed by the French Constitution.",
+      "ar": "حرية التظاهر حق يضمنه الدستور الفرنسي."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "DROITS",
+    "type": "CONNAISSANCE",
+    "level": "A2",
+    "complexity_level": "A2",
+    "content": {
+      "fr": "Peut-on être marié à deux personnes en même temps en France?",
+      "en": "Can a person be married to two people at the same time in France?",
+      "ar": "هل يمكن الزواج من شخصين في نفس الوقت في فرنسا؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": [
+        "Oui",
+        "Non, c'est interdit (la polygamie est interdite)",
+        "Seulement si les deux parties sont d'accord",
+        "Oui, si la personne est étrangère"
+      ],
+      "en": [
+        "Yes",
+        "No, it's forbidden (polygamy is prohibited)",
+        "Only if both parties agree",
+        "Yes, if the person is foreign"
+      ],
+      "ar": [
+        "نعم",
+        "لا، هذا ممنوع (تعدد الزوجات ممنوع)",
+        "فقط إذا وافق الطرفان",
+        "نعم، إذا كان الشخص أجنبياً"
+      ]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "En France, la polygamie est strictement interdite par la loi.",
+      "en": "In France, polygamy is strictly prohibited by law.",
+      "ar": "في فرنسا، يُمنع تعدد الزوجات منعاً باتاً بموجب القانون."
+    },
+    "is_premium": false
+  },
+  {
+    "theme": "DROITS",
+    "type": "CONNAISSANCE",
+    "level": "A2",
+    "complexity_level": "A2",
+    "content": {
+      "fr": "En France, les parents ont-ils des devoirs envers leurs enfants?",
+      "en": "In France, do parents have duties towards their children?",
+      "ar": "في فرنسا، هل على الوالدين واجبات تجاه أطفالهما؟"
+    },
+    "scenario_context": null,
+    "options": {
+      "fr": [
+        "Non, ils font ce qu'ils veulent",
+        "Oui, ils doivent les protéger et les éduquer (l'autorité parentale)",
+        "Seulement jusqu'à 10 ans",
+        "Oui, mais seulement le père"
+      ],
+      "en": [
+        "No, they do what they want",
+        "Yes, they must protect and educate them (parental authority)",
+        "Only until age 10",
+        "Yes, but only the father"
+      ],
+      "ar": [
+        "لا، يفعلان ما يريدان",
+        "نعم، يجب عليهما حمايتهم وتربيتهم (السلطة الأبوية)",
+        "فقط حتى سن 10 سنوات",
+        "نعم، ولكن الأب فقط"
+      ]
+    },
+    "correct_answer": 1,
+    "explanation": {
+      "fr": "L'autorité parentale oblige les parents à assurer la santé, la sécurité et l'éducation de l'enfant.",
+      "en": "Parental authority obliges parents to ensure the child's health, safety, and education.",
+      "ar": "تلزم السلطة الأبوية الوالدين بضمان صحة الطفل وسلامته وتربيته."
+    },
+    "is_premium": false
+  }
+]

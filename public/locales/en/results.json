@@ -1,0 +1,37 @@
+{
+  "title": "Exam results",
+  "loading": "Loading results...",
+  "noResults": "No results available.",
+  "verdict": {
+    "passed": "Passed",
+    "failed": "Needs improvement",
+    "score": "Score: {{score}}/40 ({{percentage}}%)",
+    "message": {
+      "passed": "Congratulations! You passed the exam with a score of {{percentage}}%.",
+      "failed": "You scored {{percentage}}%. Continue your revision to reach the required 80%."
+    }
+  },
+  "themes": {
+    "title": "Progress by theme",
+    "valeurs": "Principles and Values",
+    "droits": "Rights and Duties",
+    "histoire": "History of France",
+    "politique": "Politics and Institutions",
+    "societe": "French Society"
+  },
+  "questions": {
+    "title": "Question details",
+    "all": "All",
+    "errors": "Errors only",
+    "correct": "Correct answers",
+    "explanation": "Explanation",
+    "hideExplanation": "Hide explanation",
+    "question": "Question {{number}}"
+  },
+  "actions": {
+    "retry": "Retry",
+    "reviewErrors": "Review errors",
+    "backHome": "Back to home",
+    "share": "Share my result"
+  }
+}

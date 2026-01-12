@@ -1,0 +1,51 @@
+{
+  "nav": {
+    "home": "Home",
+    "revision": "Revision",
+    "simulation": "Simulation",
+    "results": "Results",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "courses": "Courses",
+    "simulations": "Simulations",
+    "pdfResources": "PDF Resources",
+    "memberArea": "Member Area"
+  },
+  "buttons": {
+    "start": "Start",
+    "continue": "Continue",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "next": "Next",
+    "previous": "Previous",
+    "finish": "Finish",
+    "retry": "Retry",
+    "back": "Back",
+    "share": "Share",
+    "startFree": "Start for Free",
+    "startPath": "Start this path"
+  },
+  "language": {
+    "french": "Français",
+    "english": "English",
+    "arabic": "العربية"
+  },
+  "app": {
+    "name": "Civic Training",
+    "year": "2026",
+    "loading": "Loading...",
+    "noData": "No data available",
+    "answered": "answered",
+    "questions": "questions"
+  },
+  "footer": {
+    "republic": "French Republic",
+    "citizenBooklet": "Citizen's Handbook (PDF)",
+    "legalNotice": "Legal Notice",
+    "privacyPolicy": "Privacy Policy",
+    "copyright": "© 2024 French Republic. All rights reserved.",
+    "description": "Official platform for preparing for the 2026 civic training exam"
+  }
+}
