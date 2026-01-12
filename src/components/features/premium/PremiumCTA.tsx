@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Sparkles, TrendingUp, Target, Zap, CheckCircle2 } from 'lucide-react';
 import { ExamResult } from '@/types/database';
+import { useState } from 'react';
 
 interface PremiumCTAProps {
   examResult: ExamResult;
@@ -15,9 +16,38 @@ interface PremiumCTAProps {
 export function PremiumCTA({ examResult }: PremiumCTAProps) {
   const router = useRouter();
   const { isPremium } = useAuth();
+  const [selectedPlan, setSelectedPlan] = useState<'one-time' | 'monthly'>('one-time');
+  const [loading, setLoading] = useState(false);
 
   // Ne pas afficher si déjà premium
   if (isPremium) return null;
+
+  const handleCheckout = async (planType: 'one-time' | 'monthly') => {
+    setLoading(true);
+    try {
+      const response = await fetch('/api/stripe/checkout-session', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          planType,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        console.error('Erreur lors de la création de la session Stripe');
+        setLoading(false);
+      }
+    } catch (error) {
+      console.error('Erreur:', error);
+      setLoading(false);
+    }
+  };
 
   const handleGoToPricing = () => {
     router.push('/pricing');
@@ -92,19 +122,56 @@ export function PremiumCTA({ examResult }: PremiumCTAProps) {
             </div>
           </div>
 
-          {/* CTA */}
-          <div className="flex flex-col items-center gap-4 md:min-w-[200px]">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-primary">29€</div>
-              <div className="text-sm text-muted-foreground">une fois</div>
+          {/* CTA avec sélecteur de plan */}
+          <div className="flex flex-col items-center gap-4 md:min-w-[250px]">
+            {/* Sélecteur de plan */}
+            <div className="inline-flex rounded-lg border p-1 bg-background w-full">
+              <button
+                onClick={() => setSelectedPlan('one-time')}
+                className={`flex-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                  selectedPlan === 'one-time'
+                    ? 'bg-primary text-primary-foreground'
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                Paiement unique
+              </button>
+              <button
+                onClick={() => setSelectedPlan('monthly')}
+                className={`flex-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                  selectedPlan === 'monthly'
+                    ? 'bg-primary text-primary-foreground'
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                Mensuel
+              </button>
             </div>
+
+            {/* Prix */}
+            <div className="text-center w-full">
+              {selectedPlan === 'one-time' ? (
+                <>
+                  <div className="text-3xl font-bold text-primary">29€</div>
+                  <div className="text-sm text-muted-foreground">une fois</div>
+                </>
+              ) : (
+                <>
+                  <div className="text-3xl font-bold text-primary">9€</div>
+                  <div className="text-sm text-muted-foreground">/ mois</div>
+                </>
+              )}
+            </div>
+
+            {/* Bouton CTA */}
             <Button
-              onClick={handleGoToPricing}
+              onClick={() => handleCheckout(selectedPlan)}
+              disabled={loading}
               size="lg"
               className="w-full"
             >
               <Sparkles className="h-4 w-4 mr-2" />
-              Devenir Premium
+              {loading ? 'Redirection...' : selectedPlan === 'one-time' ? 'Acheter maintenant' : 'S\'abonner'}
             </Button>
             <p className="text-xs text-center text-muted-foreground">
               Paiement sécurisé • Annulation possible
