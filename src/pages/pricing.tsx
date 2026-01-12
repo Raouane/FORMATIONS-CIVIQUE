@@ -154,7 +154,6 @@ export default function PricingPage() {
 
   const proceedWithCheckout = async (accessToken: string, planType: 'one-time' | 'monthly') => {
     try {
-
       console.log('📡 [Pricing] Appel API /api/stripe/checkout-session...');
       
       // Appel API sans AbortController pour éviter les erreurs
@@ -169,52 +168,48 @@ export default function PricingPage() {
         }),
       });
         
-        console.log('📥 [Pricing] Réponse reçue, status:', response.status);
-        console.log('📥 [Pricing] Response OK:', response.ok);
+      console.log('📥 [Pricing] Réponse reçue, status:', response.status);
+      console.log('📥 [Pricing] Response OK:', response.ok);
 
-        if (!response.ok) {
-          console.error('❌ [Pricing] Erreur HTTP:', response.status, response.statusText);
-          const errorText = await response.text();
-          console.error('❌ [Pricing] Contenu de l\'erreur:', errorText);
-          setLoading(false);
-          return;
-        }
+      if (!response.ok) {
+        console.error('❌ [Pricing] Erreur HTTP:', response.status, response.statusText);
+        const errorText = await response.text();
+        console.error('❌ [Pricing] Contenu de l\'erreur:', errorText);
+        setLoading(false);
+        return;
+      }
 
-        const data = await response.json();
-        console.log('📦 [Pricing] Données reçues:', { 
-          hasUrl: !!data.url, 
-          hasError: !!data.error,
-          error: data.error,
-          url: data.url ? data.url.substring(0, 50) + '...' : null
-        });
+      const data = await response.json();
+      console.log('📦 [Pricing] Données reçues:', { 
+        hasUrl: !!data.url, 
+        hasError: !!data.error,
+        error: data.error,
+        url: data.url ? data.url.substring(0, 50) + '...' : null
+      });
 
-        if (data.error) {
-          console.error('❌ [Pricing] Erreur Stripe:', data.error);
-          if (data.error.includes('connecté') || data.error.includes('authentification')) {
-            router.push(`/auth/login?redirect=${encodeURIComponent('/pricing')}`);
-          }
-          setLoading(false);
-          return;
+      if (data.error) {
+        console.error('❌ [Pricing] Erreur Stripe:', data.error);
+        if (data.error.includes('connecté') || data.error.includes('authentification')) {
+          router.push(`/auth/login?redirect=${encodeURIComponent('/pricing')}`);
         }
+        setLoading(false);
+        return;
+      }
 
-        if (data.url) {
-          console.log('✅ [Pricing] URL de checkout reçue, redirection vers Stripe...');
-          console.log('🔗 [Pricing] URL complète:', data.url);
-          window.location.href = data.url;
-        } else {
-          console.error('❌ [Pricing] Aucune URL de checkout reçue dans la réponse');
-          console.error('❌ [Pricing] Réponse complète:', data);
-          setLoading(false);
-        }
-      } catch (fetchError: any) {
-        console.error('❌ [Pricing] Erreur lors de l\'appel API:', fetchError);
-        if (fetchError.name === 'AbortError') {
-          console.error('❌ [Pricing] Requête annulée');
-        }
+      if (data.url) {
+        console.log('✅ [Pricing] URL de checkout reçue, redirection vers Stripe...');
+        console.log('🔗 [Pricing] URL complète:', data.url);
+        window.location.href = data.url;
+      } else {
+        console.error('❌ [Pricing] Aucune URL de checkout reçue dans la réponse');
+        console.error('❌ [Pricing] Réponse complète:', data);
         setLoading(false);
       }
     } catch (error) {
       console.error('❌ [Pricing] Erreur dans proceedWithCheckout:', error);
+      if (error instanceof Error) {
+        console.error('❌ [Pricing] Message:', error.message);
+      }
       setLoading(false);
     }
   };
