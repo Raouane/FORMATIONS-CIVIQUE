@@ -5,6 +5,7 @@ import { Question, UserLevel, ExamResult } from '@/types/database';
 import { examService } from '@/services/examService';
 import { EXAM_CONFIG } from '@/lib/constants';
 import { SupportedLocale } from '@/lib/localization';
+import { useAuth } from '@/providers/AuthProvider';
 
 interface Answer {
   questionId: string;
@@ -25,11 +26,14 @@ interface UseExamSessionReturn {
   pauseTimer: () => void;
   resumeTimer: () => void;
   loading: boolean;
+  showPaywall: boolean;
+  setShowPaywall: (show: boolean) => void;
 }
 
 export function useExamSession(level: UserLevel, totalQuestions: number = EXAM_CONFIG.TOTAL_QUESTIONS): UseExamSessionReturn {
   const router = useRouter();
   const { i18n } = useTranslation();
+  const { isPremium, loading: authLoading } = useAuth();
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Answer[]>([]);
@@ -38,6 +42,7 @@ export function useExamSession(level: UserLevel, totalQuestions: number = EXAM_C
   const [startedAt, setStartedAt] = useState<Date | null>(null);
   const [isTimerPaused, setIsTimerPaused] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [showPaywall, setShowPaywall] = useState(false);
 
   // Déterminer la locale actuelle
   const getCurrentLocale = (): SupportedLocale => {
@@ -48,12 +53,20 @@ export function useExamSession(level: UserLevel, totalQuestions: number = EXAM_C
   // Récupérer le niveau depuis l'URL si disponible, sinon utiliser le paramètre
   const effectiveLevel = (router.query.level as UserLevel) || level;
 
-  // Charger les questions au montage
+  // Charger les questions au montage - ATTENDRE que authLoading soit false
   useEffect(() => {
+    // Ne charger que si l'auth est prête pour éviter le flash
+    if (authLoading) return;
+
     const loadQuestions = async () => {
       try {
         const locale = getCurrentLocale();
-        const loadedQuestions = await examService.startExamSession(effectiveLevel, locale);
+        // Passer isPremium directement au service pour éviter le flash
+        const loadedQuestions = await examService.startExamSession(
+          effectiveLevel, 
+          locale,
+          isPremium // Passer isPremium dès le départ
+        );
         setQuestions(loadedQuestions);
         setStartedAt(new Date());
         setLoading(false);
@@ -64,7 +77,7 @@ export function useExamSession(level: UserLevel, totalQuestions: number = EXAM_C
     };
 
     loadQuestions();
-  }, [effectiveLevel, router.locale, i18n.language, router.query.level]);
+  }, [effectiveLevel, router.locale, i18n.language, router.query.level, isPremium, authLoading]);
 
   // Timer décompte
   useEffect(() => {
@@ -97,13 +110,20 @@ export function useExamSession(level: UserLevel, totalQuestions: number = EXAM_C
   }, []);
 
   const goToNext = useCallback(() => {
+    // Vérifier si l'utilisateur gratuit atteint la 10ème question
+    if (!isPremium && currentQuestionIndex === EXAM_CONFIG.QUIZ_RAPIDE_QUESTIONS - 1) {
+      // Afficher le paywall au lieu de passer à la question suivante
+      setShowPaywall(true);
+      return;
+    }
+
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex((prev) => prev + 1);
     } else {
       // Dernière question, permettre soumission
       setIsCompleted(true);
     }
-  }, [currentQuestionIndex, questions.length]);
+  }, [currentQuestionIndex, questions.length, isPremium]);
 
   const goToPrevious = useCallback(() => {
     if (currentQuestionIndex > 0) {
@@ -176,6 +196,8 @@ export function useExamSession(level: UserLevel, totalQuestions: number = EXAM_C
     submitExam,
     pauseTimer,
     resumeTimer,
-    loading,
+    loading: loading || authLoading, // Inclure authLoading dans le loading
+    showPaywall,
+    setShowPaywall,
   };
 }

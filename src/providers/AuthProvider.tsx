@@ -12,6 +12,7 @@ interface AuthContextType {
   signUp: (email: string, password: string, fullName: string) => Promise<{ error: any }>;
   signOut: () => Promise<void>;
   isPremium: boolean;
+  refreshPremiumStatus: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -66,6 +67,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
+  // Fonction publique pour rafraîchir le statut premium
+  const refreshPremiumStatus = async () => {
+    if (user) {
+      await fetchUserProfile(user.id);
+    }
+  };
+
   const signIn = async (email: string, password: string) => {
     const { error } = await supabase.auth.signInWithPassword({
       email,
@@ -117,6 +125,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         signUp,
         signOut,
         isPremium,
+        refreshPremiumStatus,
       }}
     >
       {children}

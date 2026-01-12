@@ -9,6 +9,7 @@ import { Header } from '@/components/features/home/Header';
 import { Timer } from '@/components/features/exam/Timer';
 import { ProgressBar } from '@/components/features/exam/ProgressBar';
 import { QuestionCard } from '@/components/features/exam/QuestionCard';
+import { PremiumGuard } from '@/components/features/premium/PremiumGuard';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { ChevronLeft, ChevronRight, CheckCircle2 } from 'lucide-react';
@@ -47,6 +48,8 @@ export default function SimulationPage() {
     goToPrevious,
     submitExam,
     loading,
+    showPaywall,
+    setShowPaywall,
   } = useExamSession(level, EXAM_CONFIG.TOTAL_QUESTIONS);
 
   // Authentification optionnelle pour l'instant
@@ -194,6 +197,9 @@ export default function SimulationPage() {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+
+      {/* PremiumGuard - Paywall après la 10ème question */}
+      <PremiumGuard open={showPaywall} onOpenChange={setShowPaywall} />
     </div>
   );
 }

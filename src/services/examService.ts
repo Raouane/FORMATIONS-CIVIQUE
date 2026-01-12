@@ -2,26 +2,40 @@ import { supabase, TABLES } from '@/lib/supabase';
 import { Question, UserLevel, ExamResult } from '@/types/database';
 import { questionService } from './questionService';
 import { SupportedLocale } from '@/lib/localization';
+import { EXAM_CONFIG } from '@/lib/constants';
 
 class ExamService {
-  async startExamSession(level: UserLevel, locale?: SupportedLocale): Promise<Question[]> {
-    // Récupérer le statut premium de l'utilisateur
-    const { data: { user } } = await supabase.auth.getUser();
+  async startExamSession(
+    level: UserLevel, 
+    locale?: SupportedLocale,
+    isPremium?: boolean // Nouveau paramètre optionnel
+  ): Promise<Question[]> {
+    // Si isPremium n'est pas fourni, le récupérer (fallback pour compatibilité)
+    let premiumStatus = isPremium;
     
-    let isPremium = false;
-
-    if (user) {
-      const { data: profile } = await supabase
-        .from(TABLES.PROFILES)
-        .select('is_premium')
-        .eq('id', user.id)
-        .single();
-
-      isPremium = profile?.is_premium ?? false;
+    if (premiumStatus === undefined) {
+      const { data: { user } } = await supabase.auth.getUser();
+      
+      if (user) {
+        const { data: profile } = await supabase
+          .from(TABLES.PROFILES)
+          .select('is_premium')
+          .eq('id', user.id)
+          .single();
+        
+        premiumStatus = profile?.is_premium ?? false;
+      } else {
+        premiumStatus = false;
+      }
     }
 
-    // Récupérer les questions pour l'examen avec la locale
-    const questions = await questionService.getQuestionsForExam(level, isPremium, locale);
+    // Récupérer les questions avec le statut premium connu dès le départ
+    const questions = await questionService.getQuestionsForExam(level, premiumStatus, locale);
+    
+    // Si utilisateur gratuit, limiter à 10 questions côté service
+    if (!premiumStatus) {
+      return questions.slice(0, EXAM_CONFIG.QUIZ_RAPIDE_QUESTIONS);
+    }
     
     return questions;
   }
