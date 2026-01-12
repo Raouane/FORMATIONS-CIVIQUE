@@ -88,16 +88,31 @@ export default async function handler(
         console.log('🔄 [Webhook] Mise à jour du statut premium pour:', userId);
         console.log('🔑 [Webhook] Tentative d\'update Premium pour l\'ID:', userId);
         console.log('🔑 [Webhook] Service Role Key disponible:', !!process.env.SUPABASE_SERVICE_ROLE_KEY);
-        const { error: updateError } = await supabaseAdmin
+        console.log('🔑 [Webhook] Supabase URL:', process.env.NEXT_PUBLIC_SUPABASE_URL ? 'Configuré' : 'MANQUANT');
+        
+        // Vérifier que l'ID est bien un UUID
+        console.log('🔍 [Webhook] Type de userId:', typeof userId, 'Longueur:', userId?.length);
+        
+        const { data: updateData, error: updateError } = await supabaseAdmin
           .from('fc_profiles')
           .update({ is_premium: true })
-          .eq('id', userId);
+          .eq('id', userId)
+          .select();
 
         if (updateError) {
-          console.error('❌ [Webhook] Erreur mise à jour premium:', updateError);
-          return res.status(500).json({ error: 'Failed to update user premium status' });
+          console.error('❌ [Webhook] Erreur Supabase détaillée:', updateError);
+          console.error('❌ [Webhook] Code erreur:', updateError.code);
+          console.error('❌ [Webhook] Message erreur:', updateError.message);
+          console.error('❌ [Webhook] Détails erreur:', updateError.details);
+          console.error('❌ [Webhook] Hint erreur:', updateError.hint);
+          return res.status(500).json({ 
+            error: 'Failed to update user premium status',
+            details: updateError.message,
+            code: updateError.code
+          });
         }
 
+        console.log('✅ [Webhook] Résultat de la mise à jour:', updateData);
         console.log(`✅ [Webhook] Premium activé pour l'utilisateur: ${userId}`);
         break;
       }
