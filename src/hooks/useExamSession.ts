@@ -37,7 +37,10 @@ export function useExamSession(level: UserLevel, totalQuestions: number = EXAM_C
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Answer[]>([]);
-  const [timeRemaining, setTimeRemaining] = useState<number>(EXAM_CONFIG.TIME_LIMIT);
+  // Timer adapté selon le statut premium : 15 min pour gratuit, 45 min pour premium
+  const [timeRemaining, setTimeRemaining] = useState<number>(
+    isPremium ? EXAM_CONFIG.TIME_LIMIT : EXAM_CONFIG.QUIZ_RAPIDE_TIME
+  );
   const [isCompleted, setIsCompleted] = useState(false);
   const [startedAt, setStartedAt] = useState<Date | null>(null);
   const [isTimerPaused, setIsTimerPaused] = useState(false);
@@ -68,6 +71,8 @@ export function useExamSession(level: UserLevel, totalQuestions: number = EXAM_C
           isPremium // Passer isPremium dès le départ
         );
         setQuestions(loadedQuestions);
+        // Mettre à jour le timer selon le statut premium
+        setTimeRemaining(isPremium ? EXAM_CONFIG.TIME_LIMIT : EXAM_CONFIG.QUIZ_RAPIDE_TIME);
         setStartedAt(new Date());
         setLoading(false);
       } catch (error) {
