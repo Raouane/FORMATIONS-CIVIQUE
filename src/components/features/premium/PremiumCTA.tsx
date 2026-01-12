@@ -15,7 +15,7 @@ interface PremiumCTAProps {
 
 export function PremiumCTA({ examResult }: PremiumCTAProps) {
   const router = useRouter();
-  const { isPremium, user, authLoading } = useAuth();
+  const { isPremium, user } = useAuth();
   const [selectedPlan, setSelectedPlan] = useState<'one-time' | 'monthly'>('one-time');
   const [loading, setLoading] = useState(false);
 
