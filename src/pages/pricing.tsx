@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { CheckCircle2, Sparkles, ArrowLeft, Users, Shield } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/providers/AuthProvider';
+import { supabase } from '@/lib/supabase';
 
 export default function PricingPage() {
   const router = useRouter();
@@ -38,10 +39,22 @@ export default function PricingPage() {
 
     setLoading(true);
     try {
+      // Récupérer le token d'accès depuis Supabase
+      const { data: { session } } = await supabase.auth.getSession();
+      const accessToken = session?.access_token;
+
+      if (!accessToken) {
+        console.error('No access token found');
+        router.push(`/auth/login?redirect=${encodeURIComponent('/pricing')}`);
+        setLoading(false);
+        return;
+      }
+
       const response = await fetch('/api/stripe/checkout-session', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${accessToken}`,
         },
         body: JSON.stringify({
           planType,
@@ -49,6 +62,15 @@ export default function PricingPage() {
       });
 
       const data = await response.json();
+
+      if (data.error) {
+        console.error('Erreur Stripe:', data.error);
+        if (data.error.includes('connecté') || data.error.includes('authentification')) {
+          router.push(`/auth/login?redirect=${encodeURIComponent('/pricing')}`);
+        }
+        setLoading(false);
+        return;
+      }
 
       if (data.url) {
         window.location.href = data.url;

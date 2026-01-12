@@ -44,13 +44,23 @@ export default async function handler(
       return res.status(400).json({ error: 'Invalid plan type' });
     }
 
-    // Récupérer l'utilisateur depuis les cookies de session (OBLIGATOIRE)
+    // Récupérer l'utilisateur depuis le token d'authentification dans les headers
     let userId: string | null = null;
     let customerEmail: string | undefined;
 
     try {
-      // Récupérer depuis les cookies de session Supabase
-      const { data: { user }, error: authError } = await supabase.auth.getUser();
+      // Récupérer le token depuis les headers Authorization
+      const authHeader = req.headers.authorization;
+      if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        return res.status(401).json({ 
+          error: 'Vous devez être connecté pour effectuer un paiement. Veuillez vous inscrire ou vous connecter.' 
+        });
+      }
+
+      const token = authHeader.replace('Bearer ', '');
+      
+      // Vérifier le token et récupérer l'utilisateur
+      const { data: { user }, error: authError } = await supabase.auth.getUser(token);
       
       if (authError || !user) {
         console.error('User not authenticated:', authError?.message);

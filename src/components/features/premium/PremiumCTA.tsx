@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/router';
 import { useAuth } from '@/providers/AuthProvider';
+import { supabase } from '@/lib/supabase';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -26,17 +27,28 @@ export function PremiumCTA({ examResult }: PremiumCTAProps) {
     // Vérifier si l'utilisateur est connecté
     if (!user) {
       // Rediriger vers l'inscription avec un redirect vers pricing
-      const currentPath = router.asPath;
       router.push(`/auth/register?redirect=${encodeURIComponent('/pricing')}`);
       return;
     }
 
     setLoading(true);
     try {
+      // Récupérer le token d'accès depuis Supabase
+      const { data: { session } } = await supabase.auth.getSession();
+      const accessToken = session?.access_token;
+
+      if (!accessToken) {
+        console.error('No access token found');
+        router.push(`/auth/login?redirect=${encodeURIComponent('/pricing')}`);
+        setLoading(false);
+        return;
+      }
+
       const response = await fetch('/api/stripe/checkout-session', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${accessToken}`,
         },
         body: JSON.stringify({
           planType,
@@ -44,6 +56,15 @@ export function PremiumCTA({ examResult }: PremiumCTAProps) {
       });
 
       const data = await response.json();
+
+      if (data.error) {
+        console.error('Erreur Stripe:', data.error);
+        if (data.error.includes('connecté') || data.error.includes('authentification')) {
+          router.push(`/auth/login?redirect=${encodeURIComponent('/pricing')}`);
+        }
+        setLoading(false);
+        return;
+      }
 
       if (data.url) {
         window.location.href = data.url;
