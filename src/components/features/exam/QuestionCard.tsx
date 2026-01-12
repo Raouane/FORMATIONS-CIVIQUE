@@ -24,7 +24,7 @@ export function QuestionCard({
   disabled = false,
 }: QuestionCardProps) {
   const { t } = useTranslation('exam');
-  const { isPlaying, isPaused, speak, pause, resume, stop } = useTextToSpeech();
+  const { isPlaying, isPaused, isLanguageSupported, speak, pause, resume, stop } = useTextToSpeech();
 
   const handleReadAloud = () => {
     if (isPlaying) {
@@ -32,6 +32,10 @@ export function QuestionCard({
     } else if (isPaused) {
       resume();
     } else {
+      // Avertir l'utilisateur si la langue n'est pas supportée, mais permettre la lecture
+      if (!isLanguageSupported) {
+        console.warn('⚠️ No voice available for this language. The text will be read with the default voice, which may not pronounce it correctly.');
+      }
       speak(question.content);
     }
   };
@@ -48,8 +52,12 @@ export function QuestionCard({
             variant="outline"
             size="icon"
             onClick={handleReadAloud}
-            className="shrink-0"
+            className={cn(
+              "shrink-0",
+              !isLanguageSupported && "opacity-75"
+            )}
             disabled={disabled}
+            title={!isLanguageSupported ? (t('speech.notSupported') || 'Aucune voix spécifique disponible. La lecture utilisera la voix par défaut.') : undefined}
           >
             {isPlaying ? (
               <Pause className="h-4 w-4" />

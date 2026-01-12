@@ -17,6 +17,9 @@
     "pause": "Pause",
     "resume": "Resume reading"
   },
+  "speech": {
+    "notSupported": "No specific voice available. Reading will use the default voice."
+  },
   "situation": {
     "label": "Situation"
   },

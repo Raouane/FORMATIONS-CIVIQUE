@@ -17,6 +17,9 @@
     "pause": "Mettre en pause",
     "resume": "Reprendre la lecture"
   },
+  "speech": {
+    "notSupported": "Aucune voix spécifique disponible. La lecture utilisera la voix par défaut."
+  },
   "situation": {
     "label": "Mise en situation"
   },
