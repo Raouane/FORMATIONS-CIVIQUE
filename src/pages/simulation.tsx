@@ -111,53 +111,57 @@ export default function SimulationPage() {
         </div>
 
         {/* Carte de question */}
-        <Card className="p-6 md:p-8">
+        <Card className="p-6 md:p-8 mb-24">
           <QuestionCard
             question={currentQuestion}
             selectedAnswer={selectedAnswer}
             onSelectAnswer={(index) =>
               selectAnswer(currentQuestion.id, index)
             }
-            showFeedback={selectedAnswer !== null}
+            showFeedback={false}
             disabled={isCompleted}
           />
         </Card>
 
-        {/* Navigation */}
-        <div className="mt-6 flex items-center justify-between">
-          <Button
-            variant="outline"
-            onClick={goToPrevious}
-            disabled={currentQuestionIndex === 0 || isCompleted}
-            className="flex items-center gap-2"
-          >
-            <ChevronLeft className="h-4 w-4 rtl-flip" />
-            {t('navigation.previous')}
-          </Button>
+        {/* Navigation - Fixe en bas de l'écran */}
+        <div className="fixed bottom-0 left-0 right-0 bg-white border-t shadow-lg z-50">
+          <div className="container mx-auto px-4 py-4 max-w-4xl">
+            <div className="flex items-center justify-between gap-4">
+              <Button
+                variant="outline"
+                onClick={goToPrevious}
+                disabled={currentQuestionIndex === 0 || isCompleted}
+                className="flex items-center gap-2"
+              >
+                <ChevronLeft className="h-4 w-4 rtl-flip" />
+                {t('navigation.previous')}
+              </Button>
 
-          <div className="text-sm text-muted-foreground">
-            {answeredCount} / {totalQuestions} {t('navigation.answered')}
+              <div className="text-sm text-muted-foreground text-center">
+                {answeredCount} / {totalQuestions} {t('navigation.answered')}
+              </div>
+
+              {isLastQuestion ? (
+                <Button
+                  onClick={handleFinish}
+                  disabled={isCompleted}
+                  className="flex items-center gap-2"
+                >
+                  {t('navigation.finish')}
+                  <CheckCircle2 className="h-4 w-4" />
+                </Button>
+              ) : (
+                <Button
+                  onClick={goToNext}
+                  disabled={isCompleted}
+                  className="flex items-center gap-2"
+                >
+                  {t('navigation.next')}
+                  <ChevronRight className="h-4 w-4 rtl-flip" />
+                </Button>
+              )}
+            </div>
           </div>
-
-          {isLastQuestion ? (
-            <Button
-              onClick={handleFinish}
-              disabled={isCompleted}
-              className="flex items-center gap-2"
-            >
-              {t('navigation.finish')}
-              <CheckCircle2 className="h-4 w-4" />
-            </Button>
-          ) : (
-            <Button
-              onClick={goToNext}
-              disabled={isCompleted}
-              className="flex items-center gap-2"
-            >
-              {t('navigation.next')}
-              <ChevronRight className="h-4 w-4 rtl-flip" />
-            </Button>
-          )}
         </div>
       </main>
 
