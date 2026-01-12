@@ -53,16 +53,25 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const fetchUserProfile = async (userId: string) => {
     try {
+      console.log('🔍 [AuthProvider] Récupération du profil pour userId:', userId);
       const { data, error } = await supabase
         .from('fc_profiles')
         .select('is_premium')
         .eq('id', userId)
         .single();
 
-      if (error) throw error;
-      setIsPremium(data?.is_premium ?? false);
+      if (error) {
+        console.error('❌ [AuthProvider] Erreur lors de la récupération du profil:', error);
+        throw error;
+      }
+      
+      console.log('📊 [AuthProvider] Données récupérées:', data);
+      console.log('📊 [AuthProvider] is_premium depuis DB:', data?.is_premium);
+      const premiumStatus = data?.is_premium ?? false;
+      console.log('✅ [AuthProvider] Mise à jour isPremium à:', premiumStatus);
+      setIsPremium(premiumStatus);
     } catch (error) {
-      console.error('Error fetching user profile:', error);
+      console.error('❌ [AuthProvider] Error fetching user profile:', error);
       setIsPremium(false);
     }
   };
@@ -70,7 +79,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   // Fonction publique pour rafraîchir le statut premium
   const refreshPremiumStatus = async () => {
     if (user) {
+      console.log('🔄 [AuthProvider] Rafraîchissement du statut premium pour:', user.id);
       await fetchUserProfile(user.id);
+    } else {
+      console.warn('⚠️ [AuthProvider] Pas d\'utilisateur connecté, impossible de rafraîchir le statut premium');
     }
   };
 

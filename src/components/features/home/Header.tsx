@@ -14,6 +14,11 @@ export function Header() {
   const { t } = useTranslation('common');
   const { user, isPremium } = useAuth();
 
+  // Debug: Afficher le statut premium dans la console
+  if (typeof window !== 'undefined' && user) {
+    console.log('🎯 [Header] Statut premium actuel:', isPremium, 'pour user:', user.id);
+  }
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between px-4">
