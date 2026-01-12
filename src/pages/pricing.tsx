@@ -95,7 +95,17 @@ export default function PricingPage() {
     // Vérifier si l'utilisateur est connecté (depuis user OU session)
     const currentUser = user || authSession?.user;
     
-      if (!currentUser) {
+    console.log('🔍 [Pricing] Vérification utilisateur:', {
+      hasUser: !!user,
+      userId: user?.id,
+      hasSession: !!authSession,
+      hasSessionUser: !!authSession?.user,
+      sessionUserId: authSession?.user?.id,
+      currentUser: currentUser?.id,
+      authLoading
+    });
+    
+    if (!currentUser) {
       console.error('❌ [Pricing] Utilisateur non connecté - État complet:', {
         user: user,
         authSession: authSession,
