@@ -89,6 +89,54 @@ export default async function handler(
         break;
       }
 
+      case 'invoice.payment_succeeded': {
+        // Gérer le renouvellement mensuel de l'abonnement à 9€
+        const invoice = event.data.object as Stripe.Invoice;
+        
+        // Vérifier si c'est un renouvellement d'abonnement (pas un paiement unique)
+        if (invoice.subscription) {
+          const subscriptionId = typeof invoice.subscription === 'string' 
+            ? invoice.subscription 
+            : invoice.subscription.id;
+          
+          const subscription = await stripe.subscriptions.retrieve(subscriptionId);
+          
+          // Vérifier que c'est bien l'abonnement mensuel (9€ = 900 centimes)
+          const priceId = subscription.items.data[0]?.price.id;
+          if (priceId) {
+            const price = await stripe.prices.retrieve(priceId);
+            // Si c'est un abonnement récurrent mensuel (900 centimes = 9€)
+            if (price.recurring && price.recurring.interval === 'month' && price.unit_amount === 900) {
+              const customerId = typeof subscription.customer === 'string' 
+                ? subscription.customer 
+                : subscription.customer.id;
+              
+              // Récupérer l'email du client
+              const customer = await stripe.customers.retrieve(customerId);
+              
+              if (customer && !customer.deleted && 'email' in customer && customer.email) {
+                // Maintenir le premium actif lors du renouvellement
+                const { data: profile } = await supabaseAdmin
+                  .from('fc_profiles')
+                  .select('id')
+                  .eq('email', customer.email)
+                  .single();
+                
+                if (profile) {
+                  await supabaseAdmin
+                    .from('fc_profiles')
+                    .update({ is_premium: true })
+                    .eq('id', profile.id);
+                  
+                  console.log(`Premium renewed (monthly subscription) for user: ${profile.id}`);
+                }
+              }
+            }
+          }
+        }
+        break;
+      }
+
       case 'customer.subscription.deleted':
       case 'invoice.payment_failed': {
         // Désactiver le premium si l'abonnement est annulé ou le paiement échoue
