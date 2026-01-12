@@ -56,22 +56,32 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       console.log('🔍 [AuthProvider] Récupération du profil pour userId:', userId);
       const { data, error } = await supabase
         .from('fc_profiles')
-        .select('is_premium')
+        .select('is_premium') // Colonne SQL avec underscore
         .eq('id', userId)
         .single();
 
       if (error) {
         console.error('❌ [AuthProvider] Erreur lors de la récupération du profil:', error);
+        console.error('❌ [AuthProvider] Détails erreur:', error.message, error.code);
         throw error;
       }
       
-      console.log('📊 [AuthProvider] Données récupérées:', data);
-      console.log('📊 [AuthProvider] is_premium depuis DB:', data?.is_premium);
-      const premiumStatus = data?.is_premium ?? false;
-      console.log('✅ [AuthProvider] Mise à jour isPremium à:', premiumStatus);
+      console.log('📊 [AuthProvider] Données récupérées complètes:', JSON.stringify(data, null, 2));
+      console.log('📊 [AuthProvider] Type de data:', typeof data);
+      console.log('📊 [AuthProvider] data?.is_premium (avec underscore):', data?.is_premium);
+      console.log('📊 [AuthProvider] Type de is_premium:', typeof data?.is_premium);
+      
+      // Transformation CRITIQUE : is_premium (SQL) → isPremium (React)
+      // Vérifier explicitement que la colonne existe avec l'underscore
+      const premiumStatus = data?.is_premium === true || data?.is_premium === 'true';
+      console.log('✅ [AuthProvider] Transformation: is_premium (DB) =', data?.is_premium, '→ isPremium (React) =', premiumStatus);
       setIsPremium(premiumStatus);
+      
+      // Vérification finale
+      console.log('🎯 [AuthProvider] État isPremium mis à jour à:', premiumStatus);
     } catch (error) {
       console.error('❌ [AuthProvider] Error fetching user profile:', error);
+      console.error('❌ [AuthProvider] Stack:', error instanceof Error ? error.stack : 'N/A');
       setIsPremium(false);
     }
   };
