@@ -14,7 +14,7 @@ import { supabase } from '@/lib/supabase';
 export default function PricingPage() {
   const router = useRouter();
   const { t } = useTranslation('common');
-  const { user, session: authSession } = useAuth();
+  const { user, session: authSession, loading: authLoading } = useAuth();
   const [loading, setLoading] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState<'one-time' | 'monthly'>('one-time');
 
@@ -55,48 +55,82 @@ export default function PricingPage() {
 
   const handleCheckout = async (planType: 'one-time' | 'monthly') => {
     console.log('🛒 [Pricing] Début du checkout - Plan:', planType);
+    console.log('👤 [Pricing] État auth:', { 
+      hasUser: !!user, 
+      userId: user?.id,
+      authLoading,
+      hasSession: !!authSession,
+      sessionUserId: authSession?.user?.id
+    });
     
-    // Vérifier si l'utilisateur est connecté
-    if (!user) {
-      console.log('❌ [Pricing] Utilisateur non connecté - Redirection vers inscription');
+    // Attendre que l'authentification soit chargée (max 3 secondes)
+    if (authLoading) {
+      console.log('⏳ [Pricing] Authentification en cours de chargement, attente...');
+      let attempts = 0;
+      while (authLoading && attempts < 6) {
+        await new Promise(resolve => setTimeout(resolve, 500));
+        attempts++;
+        console.log(`⏳ [Pricing] Tentative ${attempts}/6...`);
+      }
+    }
+    
+    // Vérifier si l'utilisateur est connecté (depuis user OU session)
+    const currentUser = user || authSession?.user;
+    
+    if (!currentUser) {
+      console.error('❌ [Pricing] Utilisateur non connecté - État complet:', {
+        user: user,
+        authSession: authSession,
+        authLoading,
+        hasUserFromContext: !!user,
+        hasUserFromSession: !!authSession?.user
+      });
+      console.log('🔄 [Pricing] Redirection vers inscription...');
       router.push(`/auth/register?redirect=${encodeURIComponent('/pricing')}`);
       return;
     }
 
-    console.log('✅ [Pricing] Utilisateur connecté:', user.id);
+    console.log('✅ [Pricing] Utilisateur connecté:', currentUser.id);
 
     setLoading(true);
     try {
       // Utiliser la session depuis AuthProvider (déjà chargée, plus rapide et fiable)
       console.log('🔑 [Pricing] Utilisation de la session depuis AuthProvider...');
       
-      if (!authSession) {
-        console.error('❌ [Pricing] Aucune session dans AuthProvider');
-        // Essayer de rafraîchir la session une fois
-        console.log('🔄 [Pricing] Tentative de rafraîchissement de la session...');
-        const { data: { session: refreshedSession }, error: refreshError } = await supabase.auth.getSession();
-        
-        if (refreshError || !refreshedSession) {
-          console.error('❌ [Pricing] Impossible de récupérer la session:', refreshError);
+      // Utiliser la session depuis AuthProvider ou essayer de la récupérer
+      let accessToken: string | null = null;
+      
+      if (authSession?.access_token) {
+        accessToken = authSession.access_token;
+        console.log('✅ [Pricing] Token depuis AuthProvider');
+      } else {
+        console.log('⚠️ [Pricing] Pas de session dans AuthProvider, tentative de récupération...');
+        try {
+          const { data: { session: refreshedSession }, error: refreshError } = await supabase.auth.getSession();
+          
+          if (refreshError) {
+            console.error('❌ [Pricing] Erreur lors de la récupération:', refreshError);
+            router.push(`/auth/login?redirect=${encodeURIComponent('/pricing')}`);
+            setLoading(false);
+            return;
+          }
+          
+          if (refreshedSession?.access_token) {
+            accessToken = refreshedSession.access_token;
+            console.log('✅ [Pricing] Token récupéré après rafraîchissement');
+          } else {
+            console.error('❌ [Pricing] Aucun token disponible après rafraîchissement');
+            router.push(`/auth/login?redirect=${encodeURIComponent('/pricing')}`);
+            setLoading(false);
+            return;
+          }
+        } catch (sessionError) {
+          console.error('❌ [Pricing] Exception lors de la récupération de session:', sessionError);
           router.push(`/auth/login?redirect=${encodeURIComponent('/pricing')}`);
           setLoading(false);
           return;
         }
-        
-        const refreshedToken = refreshedSession?.access_token;
-        if (!refreshedToken) {
-          console.error('❌ [Pricing] Aucun token après rafraîchissement');
-          router.push(`/auth/login?redirect=${encodeURIComponent('/pricing')}`);
-          setLoading(false);
-          return;
-        }
-        
-        console.log('✅ [Pricing] Token récupéré après rafraîchissement, longueur:', refreshedToken.length);
-        await proceedWithCheckout(refreshedToken, planType);
-        return;
       }
-
-      const accessToken = authSession.access_token;
 
       if (!accessToken) {
         console.error('❌ [Pricing] Aucun token d\'accès dans la session AuthProvider');
@@ -123,24 +157,17 @@ export default function PricingPage() {
 
       console.log('📡 [Pricing] Appel API /api/stripe/checkout-session...');
       
-      // Ajouter un timeout pour éviter les blocages
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 secondes max
-      
-      try {
-        const response = await fetch('/api/stripe/checkout-session', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${accessToken}`,
-          },
-          body: JSON.stringify({
-            planType,
-          }),
-          signal: controller.signal,
-        });
-
-        clearTimeout(timeoutId);
+      // Appel API sans AbortController pour éviter les erreurs
+      const response = await fetch('/api/stripe/checkout-session', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${accessToken}`,
+        },
+        body: JSON.stringify({
+          planType,
+        }),
+      });
         
         console.log('📥 [Pricing] Réponse reçue, status:', response.status);
         console.log('📥 [Pricing] Response OK:', response.ok);
@@ -180,12 +207,9 @@ export default function PricingPage() {
           setLoading(false);
         }
       } catch (fetchError: any) {
-        clearTimeout(timeoutId);
-        
+        console.error('❌ [Pricing] Erreur lors de l\'appel API:', fetchError);
         if (fetchError.name === 'AbortError') {
-          console.error('❌ [Pricing] Timeout: L\'appel API a pris plus de 10 secondes');
-        } else {
-          console.error('❌ [Pricing] Erreur lors de l\'appel API:', fetchError);
+          console.error('❌ [Pricing] Requête annulée');
         }
         setLoading(false);
       }
