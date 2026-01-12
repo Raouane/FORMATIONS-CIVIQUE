@@ -8,10 +8,12 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from '@/components/ui/badge';
 import { CheckCircle2, Sparkles, ArrowLeft, Users, Shield } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { useAuth } from '@/providers/AuthProvider';
 
 export default function PricingPage() {
   const router = useRouter();
   const { t } = useTranslation('common');
+  const { user, authLoading } = useAuth();
   const [loading, setLoading] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState<'one-time' | 'monthly'>('one-time');
 
@@ -27,6 +29,13 @@ export default function PricingPage() {
   }, [router.query]);
 
   const handleCheckout = async (planType: 'one-time' | 'monthly') => {
+    // Vérifier si l'utilisateur est connecté
+    if (!user) {
+      // Rediriger vers l'inscription avec un redirect vers pricing
+      router.push(`/auth/register?redirect=${encodeURIComponent('/pricing')}`);
+      return;
+    }
+
     setLoading(true);
     try {
       const response = await fetch('/api/stripe/checkout-session', {

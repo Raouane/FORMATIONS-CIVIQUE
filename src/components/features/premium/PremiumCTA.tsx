@@ -15,7 +15,7 @@ interface PremiumCTAProps {
 
 export function PremiumCTA({ examResult }: PremiumCTAProps) {
   const router = useRouter();
-  const { isPremium } = useAuth();
+  const { isPremium, user, authLoading } = useAuth();
   const [selectedPlan, setSelectedPlan] = useState<'one-time' | 'monthly'>('one-time');
   const [loading, setLoading] = useState(false);
 
@@ -23,6 +23,14 @@ export function PremiumCTA({ examResult }: PremiumCTAProps) {
   if (isPremium) return null;
 
   const handleCheckout = async (planType: 'one-time' | 'monthly') => {
+    // Vérifier si l'utilisateur est connecté
+    if (!user) {
+      // Rediriger vers l'inscription avec un redirect vers pricing
+      const currentPath = router.asPath;
+      router.push(`/auth/register?redirect=${encodeURIComponent('/pricing')}`);
+      return;
+    }
+
     setLoading(true);
     try {
       const response = await fetch('/api/stripe/checkout-session', {

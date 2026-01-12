@@ -44,7 +44,7 @@ export default async function handler(
       return res.status(400).json({ error: 'Invalid plan type' });
     }
 
-    // Récupérer l'utilisateur depuis les cookies de session (méthode plus fiable)
+    // Récupérer l'utilisateur depuis les cookies de session (OBLIGATOIRE)
     let userId: string | null = null;
     let customerEmail: string | undefined;
 
@@ -52,29 +52,41 @@ export default async function handler(
       // Récupérer depuis les cookies de session Supabase
       const { data: { user }, error: authError } = await supabase.auth.getUser();
       
-      if (authError) {
-        console.warn('Error getting user from Supabase:', authError.message);
-        // Continuer sans utilisateur (paiement anonyme possible)
-      } else {
-        userId = user?.id || null;
+      if (authError || !user) {
+        console.error('User not authenticated:', authError?.message);
+        return res.status(401).json({ 
+          error: 'Vous devez être connecté pour effectuer un paiement. Veuillez vous inscrire ou vous connecter.' 
+        });
       }
 
-      if (userId) {
-        const { data: profile, error: profileError } = await supabase
-          .from('fc_profiles')
-          .select('email')
-          .eq('id', userId)
-          .single();
-        
-        if (profileError) {
-          console.warn('Error getting profile:', profileError.message);
-        } else {
-          customerEmail = profile?.email;
-        }
+      userId = user.id;
+
+      // Récupérer l'email depuis le profil
+      const { data: profile, error: profileError } = await supabase
+        .from('fc_profiles')
+        .select('email')
+        .eq('id', userId)
+        .single();
+      
+      if (profileError) {
+        console.warn('Error getting profile:', profileError.message);
+        // Utiliser l'email de l'utilisateur Supabase en fallback
+        customerEmail = user.email;
+      } else {
+        customerEmail = profile?.email || user.email;
       }
     } catch (userError: any) {
-      console.warn('Error retrieving user:', userError.message);
-      // Continuer sans utilisateur (paiement anonyme possible)
+      console.error('Error retrieving user:', userError.message);
+      return res.status(401).json({ 
+        error: 'Erreur d\'authentification. Veuillez vous reconnecter.' 
+      });
+    }
+
+    // Vérifier que nous avons un userId
+    if (!userId) {
+      return res.status(401).json({ 
+        error: 'Vous devez être connecté pour effectuer un paiement.' 
+      });
     }
 
     // Créer la session Stripe

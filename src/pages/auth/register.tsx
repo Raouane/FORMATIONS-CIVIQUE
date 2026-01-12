@@ -36,7 +36,14 @@ export default function RegisterPage() {
 
     try {
       await signUp(email, password, fullName);
-      router.push('/');
+      
+      // Récupérer le redirect depuis la query string
+      const redirect = router.query.redirect as string;
+      if (redirect) {
+        router.push(redirect);
+      } else {
+        router.push('/');
+      }
     } catch (err: any) {
       setError(err.message || t('errors.emailExists'));
     } finally {
