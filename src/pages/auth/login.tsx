@@ -29,7 +29,14 @@ export default function LoginPage() {
 
     try {
       await signIn(email, password);
-      router.push('/');
+      
+      // Récupérer le redirect depuis la query string
+      const redirect = router.query.redirect as string;
+      if (redirect) {
+        router.push(redirect);
+      } else {
+        router.push('/');
+      }
     } catch (err: any) {
       setError(err.message || t('errors.invalidCredentials'));
     } finally {
@@ -107,7 +114,13 @@ export default function LoginPage() {
 
               <div className="text-center text-sm text-muted-foreground">
                 {t('login.noAccount')}{' '}
-                <Link href="/auth/register" className="text-primary hover:underline">
+                <Link 
+                  href={router.query.redirect 
+                    ? `/auth/register?redirect=${encodeURIComponent(router.query.redirect as string)}`
+                    : '/auth/register'
+                  } 
+                  className="text-primary hover:underline"
+                >
                   {t('login.register')}
                 </Link>
               </div>
