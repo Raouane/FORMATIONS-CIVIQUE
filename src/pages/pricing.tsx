@@ -14,7 +14,7 @@ import { supabase } from '@/lib/supabase';
 export default function PricingPage() {
   const router = useRouter();
   const { t } = useTranslation('common');
-  const { user } = useAuth();
+  const { user, session: authSession } = useAuth();
   const [loading, setLoading] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState<'one-time' | 'monthly'>('one-time');
 
@@ -67,98 +67,130 @@ export default function PricingPage() {
 
     setLoading(true);
     try {
-      // Récupérer le token d'accès depuis Supabase
-      console.log('🔑 [Pricing] Récupération du token Supabase...');
-      const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+      // Utiliser la session depuis AuthProvider (déjà chargée, plus rapide et fiable)
+      console.log('🔑 [Pricing] Utilisation de la session depuis AuthProvider...');
       
-      console.log('📋 [Pricing] Session récupérée:', {
-        hasSession: !!session,
-        hasError: !!sessionError,
-        error: sessionError,
-        hasAccessToken: !!session?.access_token,
-        sessionExpiresAt: session?.expires_at
-      });
-      
-      if (sessionError) {
-        console.error('❌ [Pricing] Erreur lors de la récupération de la session:', sessionError);
-        router.push(`/auth/login?redirect=${encodeURIComponent('/pricing')}`);
-        setLoading(false);
+      if (!authSession) {
+        console.error('❌ [Pricing] Aucune session dans AuthProvider');
+        // Essayer de rafraîchir la session une fois
+        console.log('🔄 [Pricing] Tentative de rafraîchissement de la session...');
+        const { data: { session: refreshedSession }, error: refreshError } = await supabase.auth.getSession();
+        
+        if (refreshError || !refreshedSession) {
+          console.error('❌ [Pricing] Impossible de récupérer la session:', refreshError);
+          router.push(`/auth/login?redirect=${encodeURIComponent('/pricing')}`);
+          setLoading(false);
+          return;
+        }
+        
+        const refreshedToken = refreshedSession?.access_token;
+        if (!refreshedToken) {
+          console.error('❌ [Pricing] Aucun token après rafraîchissement');
+          router.push(`/auth/login?redirect=${encodeURIComponent('/pricing')}`);
+          setLoading(false);
+          return;
+        }
+        
+        console.log('✅ [Pricing] Token récupéré après rafraîchissement, longueur:', refreshedToken.length);
+        await proceedWithCheckout(refreshedToken, planType);
         return;
       }
 
-      if (!session) {
-        console.error('❌ [Pricing] Aucune session trouvée');
-        router.push(`/auth/login?redirect=${encodeURIComponent('/pricing')}`);
-        setLoading(false);
-        return;
-      }
-
-      const accessToken = session?.access_token;
+      const accessToken = authSession.access_token;
 
       if (!accessToken) {
-        console.error('❌ [Pricing] Aucun token d\'accès trouvé');
+        console.error('❌ [Pricing] Aucun token d\'accès dans la session AuthProvider');
         router.push(`/auth/login?redirect=${encodeURIComponent('/pricing')}`);
         setLoading(false);
         return;
       }
 
-      console.log('✅ [Pricing] Token récupéré, longueur:', accessToken.length);
-
-      console.log('📡 [Pricing] Appel API /api/stripe/checkout-session...');
-      const response = await fetch('/api/stripe/checkout-session', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${accessToken}`,
-        },
-        body: JSON.stringify({
-          planType,
-        }),
-      });
-
-      console.log('📥 [Pricing] Réponse reçue, status:', response.status);
-      console.log('📥 [Pricing] Response OK:', response.ok);
-
-      if (!response.ok) {
-        console.error('❌ [Pricing] Erreur HTTP:', response.status, response.statusText);
-        const errorText = await response.text();
-        console.error('❌ [Pricing] Contenu de l\'erreur:', errorText);
-        setLoading(false);
-        return;
-      }
-
-      const data = await response.json();
-      console.log('📦 [Pricing] Données reçues:', { 
-        hasUrl: !!data.url, 
-        hasError: !!data.error,
-        error: data.error,
-        url: data.url ? data.url.substring(0, 50) + '...' : null
-      });
-
-      if (data.error) {
-        console.error('❌ [Pricing] Erreur Stripe:', data.error);
-        if (data.error.includes('connecté') || data.error.includes('authentification')) {
-          router.push(`/auth/login?redirect=${encodeURIComponent('/pricing')}`);
-        }
-        setLoading(false);
-        return;
-      }
-
-      if (data.url) {
-        console.log('✅ [Pricing] URL de checkout reçue, redirection vers Stripe...');
-        console.log('🔗 [Pricing] URL complète:', data.url);
-        window.location.href = data.url;
-      } else {
-        console.error('❌ [Pricing] Aucune URL de checkout reçue dans la réponse');
-        console.error('❌ [Pricing] Réponse complète:', data);
-        setLoading(false);
-      }
+      console.log('✅ [Pricing] Token récupéré depuis AuthProvider, longueur:', accessToken.length);
+      
+      await proceedWithCheckout(accessToken, planType);
     } catch (error) {
       console.error('❌ [Pricing] Erreur exception:', error);
       if (error instanceof Error) {
         console.error('❌ [Pricing] Message d\'erreur:', error.message);
         console.error('❌ [Pricing] Stack:', error.stack);
       }
+      setLoading(false);
+    }
+  };
+
+  const proceedWithCheckout = async (accessToken: string, planType: 'one-time' | 'monthly') => {
+    try {
+
+      console.log('📡 [Pricing] Appel API /api/stripe/checkout-session...');
+      
+      // Ajouter un timeout pour éviter les blocages
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 secondes max
+      
+      try {
+        const response = await fetch('/api/stripe/checkout-session', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`,
+          },
+          body: JSON.stringify({
+            planType,
+          }),
+          signal: controller.signal,
+        });
+
+        clearTimeout(timeoutId);
+        
+        console.log('📥 [Pricing] Réponse reçue, status:', response.status);
+        console.log('📥 [Pricing] Response OK:', response.ok);
+
+        if (!response.ok) {
+          console.error('❌ [Pricing] Erreur HTTP:', response.status, response.statusText);
+          const errorText = await response.text();
+          console.error('❌ [Pricing] Contenu de l\'erreur:', errorText);
+          setLoading(false);
+          return;
+        }
+
+        const data = await response.json();
+        console.log('📦 [Pricing] Données reçues:', { 
+          hasUrl: !!data.url, 
+          hasError: !!data.error,
+          error: data.error,
+          url: data.url ? data.url.substring(0, 50) + '...' : null
+        });
+
+        if (data.error) {
+          console.error('❌ [Pricing] Erreur Stripe:', data.error);
+          if (data.error.includes('connecté') || data.error.includes('authentification')) {
+            router.push(`/auth/login?redirect=${encodeURIComponent('/pricing')}`);
+          }
+          setLoading(false);
+          return;
+        }
+
+        if (data.url) {
+          console.log('✅ [Pricing] URL de checkout reçue, redirection vers Stripe...');
+          console.log('🔗 [Pricing] URL complète:', data.url);
+          window.location.href = data.url;
+        } else {
+          console.error('❌ [Pricing] Aucune URL de checkout reçue dans la réponse');
+          console.error('❌ [Pricing] Réponse complète:', data);
+          setLoading(false);
+        }
+      } catch (fetchError: any) {
+        clearTimeout(timeoutId);
+        
+        if (fetchError.name === 'AbortError') {
+          console.error('❌ [Pricing] Timeout: L\'appel API a pris plus de 10 secondes');
+        } else {
+          console.error('❌ [Pricing] Erreur lors de l\'appel API:', fetchError);
+        }
+        setLoading(false);
+      }
+    } catch (error) {
+      console.error('❌ [Pricing] Erreur dans proceedWithCheckout:', error);
       setLoading(false);
     }
   };
