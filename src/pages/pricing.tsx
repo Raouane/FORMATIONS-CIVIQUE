@@ -54,26 +54,42 @@ export default function PricingPage() {
   }, [router.isReady, router.query]);
 
   const handleCheckout = async (planType: 'one-time' | 'monthly') => {
+    console.log('🛒 [Pricing] Début du checkout - Plan:', planType);
+    
     // Vérifier si l'utilisateur est connecté
     if (!user) {
-      // Rediriger vers l'inscription avec un redirect vers pricing
+      console.log('❌ [Pricing] Utilisateur non connecté - Redirection vers inscription');
       router.push(`/auth/register?redirect=${encodeURIComponent('/pricing')}`);
       return;
     }
 
+    console.log('✅ [Pricing] Utilisateur connecté:', user.id);
+
     setLoading(true);
     try {
       // Récupérer le token d'accès depuis Supabase
-      const { data: { session } } = await supabase.auth.getSession();
-      const accessToken = session?.access_token;
-
-      if (!accessToken) {
-        console.error('No access token found');
+      console.log('🔑 [Pricing] Récupération du token Supabase...');
+      const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+      
+      if (sessionError) {
+        console.error('❌ [Pricing] Erreur lors de la récupération de la session:', sessionError);
         router.push(`/auth/login?redirect=${encodeURIComponent('/pricing')}`);
         setLoading(false);
         return;
       }
 
+      const accessToken = session?.access_token;
+
+      if (!accessToken) {
+        console.error('❌ [Pricing] Aucun token d\'accès trouvé');
+        router.push(`/auth/login?redirect=${encodeURIComponent('/pricing')}`);
+        setLoading(false);
+        return;
+      }
+
+      console.log('✅ [Pricing] Token récupéré, longueur:', accessToken.length);
+
+      console.log('📡 [Pricing] Appel API /api/stripe/checkout-session...');
       const response = await fetch('/api/stripe/checkout-session', {
         method: 'POST',
         headers: {
@@ -85,10 +101,27 @@ export default function PricingPage() {
         }),
       });
 
+      console.log('📥 [Pricing] Réponse reçue, status:', response.status);
+      console.log('📥 [Pricing] Response OK:', response.ok);
+
+      if (!response.ok) {
+        console.error('❌ [Pricing] Erreur HTTP:', response.status, response.statusText);
+        const errorText = await response.text();
+        console.error('❌ [Pricing] Contenu de l\'erreur:', errorText);
+        setLoading(false);
+        return;
+      }
+
       const data = await response.json();
+      console.log('📦 [Pricing] Données reçues:', { 
+        hasUrl: !!data.url, 
+        hasError: !!data.error,
+        error: data.error,
+        url: data.url ? data.url.substring(0, 50) + '...' : null
+      });
 
       if (data.error) {
-        console.error('Erreur Stripe:', data.error);
+        console.error('❌ [Pricing] Erreur Stripe:', data.error);
         if (data.error.includes('connecté') || data.error.includes('authentification')) {
           router.push(`/auth/login?redirect=${encodeURIComponent('/pricing')}`);
         }
@@ -97,13 +130,20 @@ export default function PricingPage() {
       }
 
       if (data.url) {
+        console.log('✅ [Pricing] URL de checkout reçue, redirection vers Stripe...');
+        console.log('🔗 [Pricing] URL complète:', data.url);
         window.location.href = data.url;
       } else {
-        console.error('Erreur lors de la création de la session Stripe');
+        console.error('❌ [Pricing] Aucune URL de checkout reçue dans la réponse');
+        console.error('❌ [Pricing] Réponse complète:', data);
         setLoading(false);
       }
     } catch (error) {
-      console.error('Erreur:', error);
+      console.error('❌ [Pricing] Erreur exception:', error);
+      if (error instanceof Error) {
+        console.error('❌ [Pricing] Message d\'erreur:', error.message);
+        console.error('❌ [Pricing] Stack:', error.stack);
+      }
       setLoading(false);
     }
   };
