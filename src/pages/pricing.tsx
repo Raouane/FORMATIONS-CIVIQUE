@@ -16,7 +16,7 @@ import { supabase } from '@/lib/supabase';
 export default function PricingPage() {
   const router = useRouter();
   const { t } = useTranslation('common');
-  const { user, session: authSession, loading: authLoading, refreshPremiumStatus } = useAuth();
+  const { user, session: authSession, loading: authLoading, refreshPremiumStatus, isPremium } = useAuth();
   const [loading, setLoading] = useState<{ oneTime: boolean; monthly: boolean }>({
     oneTime: false,
     monthly: false,
@@ -321,7 +321,26 @@ export default function PricingPage() {
           <span>Rejoint par <strong className="text-foreground">+500 candidats</strong> ce mois-ci</span>
         </div>
 
-        {/* Grille des deux offres côte à côte */}
+        {/* Message si déjà premium */}
+        {isPremium && (
+          <Card className="max-w-2xl mx-auto mb-8 border-2 border-primary bg-primary/5">
+            <CardContent className="pt-6 text-center">
+              <div className="flex items-center justify-center gap-2 mb-4">
+                <Sparkles className="h-6 w-6 text-primary" />
+                <h2 className="text-2xl font-bold text-primary">Vous êtes déjà Premium ! 🎉</h2>
+              </div>
+              <p className="text-muted-foreground mb-4">
+                Profitez de toutes les fonctionnalités premium : simulations illimitées, corrections détaillées et accès à toute la banque de données.
+              </p>
+              <Button onClick={() => router.push('/simulation')} className="bg-primary hover:bg-primary/90">
+                Commencer une simulation
+              </Button>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Grille des deux offres côte à côte - Masquée si premium */}
+        {!isPremium && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto mb-8">
           {/* Carte de gauche : Abonnement mensuel */}
           <Card className="border-2 border-border relative">
@@ -408,6 +427,7 @@ export default function PricingPage() {
             </CardFooter>
           </Card>
         </div>
+        )}
 
         <div className="mt-12 text-center text-sm text-muted-foreground">
           <p>
