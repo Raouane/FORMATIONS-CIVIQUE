@@ -24,32 +24,76 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [isPremium, setIsPremium] = useState(false);
 
   useEffect(() => {
-    // Récupérer la session initiale
-    supabase.auth.getSession().then(async ({ data: { session } }) => {
-      setSession(session);
-      setUser(session?.user ?? null);
-      if (session?.user) {
-        // ATTENDRE que le profil soit chargé avant de mettre loading à false
-        await fetchUserProfile(session.user.id);
+    let mounted = true;
+
+    // Fonction pour initialiser la session
+    const initializeSession = async () => {
+      try {
+        console.log('🔄 [AuthProvider] Initialisation de la session...');
+        
+        // Récupérer la session depuis le storage
+        const { data: { session }, error } = await supabase.auth.getSession();
+        
+        if (error) {
+          console.error('❌ [AuthProvider] Erreur lors de la récupération de la session:', error);
+          if (mounted) {
+            setLoading(false);
+          }
+          return;
+        }
+
+        console.log('📦 [AuthProvider] Session récupérée:', session ? 'Oui' : 'Non');
+        
+        if (mounted) {
+          setSession(session);
+          setUser(session?.user ?? null);
+          
+          if (session?.user) {
+            console.log('👤 [AuthProvider] Utilisateur trouvé:', session.user.id);
+            // ATTENDRE que le profil soit chargé avant de mettre loading à false
+            await fetchUserProfile(session.user.id);
+          } else {
+            console.log('👤 [AuthProvider] Aucun utilisateur connecté');
+            setIsPremium(false);
+          }
+          
+          setLoading(false);
+        }
+      } catch (error) {
+        console.error('❌ [AuthProvider] Erreur lors de l\'initialisation:', error);
+        if (mounted) {
+          setLoading(false);
+        }
       }
-      setLoading(false);
-    });
+    };
+
+    // Initialiser la session
+    initializeSession();
 
     // Écouter les changements d'authentification
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange(async (_event, session) => {
-      setSession(session);
-      setUser(session?.user ?? null);
-      if (session?.user) {
-        await fetchUserProfile(session.user.id);
-      } else {
-        setIsPremium(false);
+    } = supabase.auth.onAuthStateChange(async (event, session) => {
+      console.log('🔄 [AuthProvider] Changement d\'état auth:', event, session ? 'Session présente' : 'Session absente');
+      
+      if (mounted) {
+        setSession(session);
+        setUser(session?.user ?? null);
+        
+        if (session?.user) {
+          await fetchUserProfile(session.user.id);
+        } else {
+          setIsPremium(false);
+        }
+        
+        setLoading(false);
       }
-      setLoading(false);
     });
 
-    return () => subscription.unsubscribe();
+    return () => {
+      mounted = false;
+      subscription.unsubscribe();
+    };
   }, []);
 
   const fetchUserProfile = async (userId: string) => {

@@ -60,17 +60,32 @@ export function Hero() {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
-            <Button
-              size="lg"
-              onClick={() => {
-                const locale = router.locale || 'fr';
-                router.push('/simulation', '/simulation', { locale });
-              }}
-              className="text-lg px-8 py-6 w-full sm:w-auto bg-[#2ECC71] hover:bg-[#27AE60] text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              {t('hero.cta')}
-              <ChevronDown className="ml-2 h-5 w-5" />
-            </Button>
+            {/* Masquer le bouton "Commencer un test gratuit" pour les utilisateurs Premium */}
+            {isPremium !== true ? (
+              <Button
+                size="lg"
+                onClick={() => {
+                  const locale = router.locale || 'fr';
+                  router.push('/simulation', '/simulation', { locale });
+                }}
+                className="text-lg px-8 py-6 w-full sm:w-auto bg-[#2ECC71] hover:bg-[#27AE60] text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                {t('hero.cta')}
+                <ChevronDown className="ml-2 h-5 w-5" />
+              </Button>
+            ) : (
+              <Button
+                size="lg"
+                onClick={() => {
+                  const locale = router.locale || 'fr';
+                  router.push('/simulation', '/simulation', { locale });
+                }}
+                className="text-lg px-8 py-6 w-full sm:w-auto bg-[#2ECC71] hover:bg-[#27AE60] text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                {t('hero.ctaPremium', { defaultValue: 'Lancer un entraînement' })}
+                <ChevronDown className="ml-2 h-5 w-5" />
+              </Button>
+            )}
             
             {/* Masquer le bouton "Passer Premium" si l'utilisateur est déjà premium */}
             {isPremium !== true && (

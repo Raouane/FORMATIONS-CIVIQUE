@@ -143,7 +143,10 @@ export function MobileNav() {
               className="w-full h-12 text-base font-medium rounded-lg"
               onClick={handleStartPath}
             >
-              {t('buttons.startFree')}
+              {isPremium 
+                ? t('buttons.startTraining', { defaultValue: 'Lancer un entraînement' })
+                : t('buttons.startFree')
+              }
             </Button>
           </div>
         </div>

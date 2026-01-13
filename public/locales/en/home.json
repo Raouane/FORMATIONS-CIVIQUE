@@ -3,7 +3,8 @@
     "badge": "New 2026 program",
     "title": "Prepare for the civic training exam",
     "description": "Simulate the official exam with 40 questions and get your result instantly",
-    "cta": "Start a free test"
+    "cta": "Start a free test",
+    "ctaPremium": "Start training"
   },
   "stats": {
     "questions": "Questions",
