@@ -1,16 +1,16 @@
-import { Router } from 'next/router';
+import { NextRouter } from 'next/router';
 import { User } from '@supabase/supabase-js';
 
 /**
  * Fonction helper pour gérer la redirection intelligente vers la page Premium
  * Évite les boucles infinies en vérifiant l'état de l'utilisateur
  * 
- * @param router - Instance Next.js Router
+ * @param router - Instance Next.js Router (NextRouter)
  * @param user - Utilisateur actuel (peut être null)
  * @param isPremium - Statut premium de l'utilisateur
  */
 export function handlePremiumRedirect(
-  router: Router,
+  router: NextRouter,
   user: User | null,
   isPremium: boolean
 ) {
