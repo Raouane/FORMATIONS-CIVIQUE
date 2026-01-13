@@ -77,88 +77,58 @@ export default function PricingPage() {
       [planType === 'one-time' ? 'oneTime' : 'monthly']: true,
     }));
     console.log('🛒 [Pricing] Début du checkout - Plan:', planType);
-    console.log('👤 [Pricing] État auth initial:', { 
-      hasUser: !!user, 
-      userId: user?.id,
-      authLoading,
-      hasSession: !!authSession,
-      sessionUserId: authSession?.user?.id,
-      sessionAccessToken: authSession?.access_token ? 'Présent' : 'Absent'
-    });
     
-    // CRITIQUE: Attendre que l'authentification soit complètement chargée
-    // Si authLoading est true, attendre jusqu'à 5 secondes maximum
-    if (authLoading) {
-      console.log('⏳ [Pricing] Authentification en cours de chargement, attente...');
-      let attempts = 0;
-      const maxAttempts = 10; // 5 secondes max (10 * 500ms)
+    // Attente intelligente de la session (jusqu'à 3 secondes)
+    // On essaie plusieurs fois car l'utilisateur vient peut-être de s'inscrire
+    let currentUser = user || authSession?.user;
+    let accessToken: string | null = authSession?.access_token || null;
+    
+    if (!currentUser || !accessToken) {
+      console.log('⏳ [Pricing] Préparation du paiement...');
       
-      while (authLoading && attempts < maxAttempts) {
+      // Attendre intelligemment jusqu'à 3 secondes
+      for (let attempt = 0; attempt < 6; attempt++) {
         await new Promise(resolve => setTimeout(resolve, 500));
-        attempts++;
-        console.log(`⏳ [Pricing] Tentative ${attempts}/${maxAttempts}...`);
         
-        // Re-vérifier l'état depuis le contexte (mais on ne peut pas le faire directement)
-        // On attend juste que authLoading passe à false
+        // Essayer de récupérer la session
+        try {
+          const { data: { session: directSession } } = await supabase.auth.getSession();
+          if (directSession?.user && directSession?.access_token) {
+            currentUser = directSession.user;
+            accessToken = directSession.access_token;
+            console.log(`✅ [Pricing] Session trouvée après ${attempt + 1} tentative(s)`);
+            break;
+          }
+        } catch (error) {
+          console.log(`⏳ [Pricing] Tentative ${attempt + 1}/6...`);
+        }
       }
       
-      // Attendre encore un peu pour que la session soit bien stabilisée
-      await new Promise(resolve => setTimeout(resolve, 500));
-      
-      console.log('👤 [Pricing] État auth après attente complète');
-    }
-    
-    // Vérifier si l'utilisateur est connecté (depuis user OU session)
-    // Utiliser une nouvelle récupération de session pour être sûr
-    let currentUser = user || authSession?.user;
-    
-    // Si toujours pas d'utilisateur, essayer de récupérer la session directement
-    if (!currentUser) {
-      console.log('🔄 [Pricing] Pas d\'utilisateur dans le contexte, tentative de récupération directe...');
-      try {
-        // Essayer d'abord getSession()
-        const { data: { session: directSession } } = await supabase.auth.getSession();
-        if (directSession?.user) {
-          currentUser = directSession.user;
-          console.log('✅ [Pricing] Utilisateur trouvé via getSession()');
-        } else {
-          // Si getSession() ne fonctionne pas, essayer getUser()
-          console.log('🔄 [Pricing] Pas de session, tentative avec getUser()...');
+      // Si toujours pas d'utilisateur, essayer getUser() en dernier recours
+      if (!currentUser) {
+        try {
           const { data: { user: directUser }, error: getUserError } = await supabase.auth.getUser();
           if (directUser && !getUserError) {
             currentUser = directUser;
             console.log('✅ [Pricing] Utilisateur trouvé via getUser()');
-            // Rafraîchir l'état auth pour synchroniser
+            // Rafraîchir l'état auth
             await refreshAuth();
-          } else {
-            console.log('⚠️ [Pricing] getUser() a échoué:', getUserError?.message);
+            // Réessayer de récupérer le token
+            const { data: { session: finalSession } } = await supabase.auth.getSession();
+            if (finalSession?.access_token) {
+              accessToken = finalSession.access_token;
+            }
           }
+        } catch (error) {
+          console.error('❌ [Pricing] Erreur getUser():', error);
         }
-      } catch (error) {
-        console.error('❌ [Pricing] Erreur lors de la récupération directe:', error);
       }
     }
     
-    console.log('🔍 [Pricing] Vérification utilisateur finale:', {
-      hasUser: !!user,
-      userId: user?.id,
-      hasSession: !!authSession,
-      hasSessionUser: !!authSession?.user,
-      sessionUserId: authSession?.user?.id,
-      currentUser: currentUser?.id,
-      authLoading
-    });
-    
-    // Seulement maintenant, si vraiment pas d'utilisateur, rediriger
-    if (!currentUser) {
-      console.error('❌ [Pricing] Utilisateur non connecté après toutes les tentatives - État complet:', {
-        user: user,
-        authSession: authSession,
-        authLoading,
-        hasUserFromContext: !!user,
-        hasUserFromSession: !!authSession?.user
-      });
-      console.log('🔄 [Pricing] Redirection vers inscription...');
+    // Si vraiment pas d'utilisateur après toutes les tentatives, afficher une alerte
+    if (!currentUser || !accessToken) {
+      console.warn('⚠️ [Pricing] Utilisateur non connecté - Affichage alerte');
+      alert('Veuillez vous connecter pour procéder au paiement.\n\nVous allez être redirigé vers la page d\'inscription.');
       setLoading(prev => ({
         ...prev,
         [planType === 'one-time' ? 'oneTime' : 'monthly']: false,
@@ -168,78 +138,10 @@ export default function PricingPage() {
     }
 
     console.log('✅ [Pricing] Utilisateur connecté:', currentUser.id);
-    try {
-      // Utiliser la session depuis AuthProvider (déjà chargée, plus rapide et fiable)
-      console.log('🔑 [Pricing] Utilisation de la session depuis AuthProvider...');
-      
-      // Utiliser la session depuis AuthProvider ou essayer de la récupérer
-      let accessToken: string | null = null;
-      
-      if (authSession?.access_token) {
-        accessToken = authSession.access_token;
-        console.log('✅ [Pricing] Token depuis AuthProvider');
-      } else {
-        console.log('⚠️ [Pricing] Pas de session dans AuthProvider, tentative de récupération...');
-        try {
-          const { data: { session: refreshedSession }, error: refreshError } = await supabase.auth.getSession();
-          
-          if (refreshError) {
-            console.error('❌ [Pricing] Erreur lors de la récupération:', refreshError);
-            router.push(`/auth/login?redirect=${encodeURIComponent('/pricing')}`);
-            setLoading(prev => ({
-              ...prev,
-              [planType === 'one-time' ? 'oneTime' : 'monthly']: false,
-            }));
-            return;
-          }
-          
-          if (refreshedSession?.access_token) {
-            accessToken = refreshedSession.access_token;
-            console.log('✅ [Pricing] Token récupéré après rafraîchissement');
-          } else {
-            console.error('❌ [Pricing] Aucun token disponible après rafraîchissement');
-            router.push(`/auth/login?redirect=${encodeURIComponent('/pricing')}`);
-            setLoading(prev => ({
-              ...prev,
-              [planType === 'one-time' ? 'oneTime' : 'monthly']: false,
-            }));
-            return;
-          }
-        } catch (sessionError) {
-          console.error('❌ [Pricing] Exception lors de la récupération de session:', sessionError);
-          router.push(`/auth/login?redirect=${encodeURIComponent('/pricing')}`);
-          setLoading(prev => ({
-            ...prev,
-            [planType === 'one-time' ? 'oneTime' : 'monthly']: false,
-          }));
-          return;
-        }
-      }
-
-      if (!accessToken) {
-        console.error('❌ [Pricing] Aucun token d\'accès dans la session AuthProvider');
-        router.push(`/auth/login?redirect=${encodeURIComponent('/pricing')}`);
-        setLoading(prev => ({
-          ...prev,
-          [planType === 'one-time' ? 'oneTime' : 'monthly']: false,
-        }));
-        return;
-      }
-
-      console.log('✅ [Pricing] Token récupéré depuis AuthProvider, longueur:', accessToken.length);
-      
-      await proceedWithCheckout(accessToken, planType);
-    } catch (error) {
-      console.error('❌ [Pricing] Erreur exception:', error);
-      if (error instanceof Error) {
-        console.error('❌ [Pricing] Message d\'erreur:', error.message);
-        console.error('❌ [Pricing] Stack:', error.stack);
-      }
-      setLoading(prev => ({
-        ...prev,
-        [planType === 'one-time' ? 'oneTime' : 'monthly']: false,
-      }));
-    }
+    console.log('✅ [Pricing] Token disponible, longueur:', accessToken.length);
+    
+    // Lancer le paiement
+    await proceedWithCheckout(accessToken, planType);
   };
 
   const proceedWithCheckout = async (accessToken: string, planType: 'one-time' | 'monthly') => {
@@ -410,7 +312,7 @@ export default function PricingPage() {
                 size="lg"
                 variant="outline"
               >
-                {loading.monthly ? 'Redirection...' : 'S\'abonner'}
+                {loading.monthly ? 'Préparation du paiement...' : 'S\'abonner'}
               </Button>
               <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground mt-2">
                 <Shield className="h-3 w-3" />
@@ -454,7 +356,7 @@ export default function PricingPage() {
                 className="w-full text-lg h-12 bg-primary hover:bg-primary/90"
                 size="lg"
               >
-                {loading.oneTime ? 'Redirection...' : 'Acheter maintenant'}
+                {loading.oneTime ? 'Préparation du paiement...' : 'Acheter maintenant'}
               </Button>
               <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground mt-2">
                 <Shield className="h-3 w-3" />

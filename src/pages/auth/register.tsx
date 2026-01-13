@@ -11,7 +11,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { UserPlus, Mail, Lock, User, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { UserPlus, Mail, Lock, User, AlertCircle } from 'lucide-react';
 import Link from 'next/link';
 
 export default function RegisterPage() {
@@ -23,12 +23,10 @@ export default function RegisterPage() {
   const [fullName, setFullName] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const [emailSent, setEmailSent] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
-    setEmailSent(false);
 
     if (password.length < 6) {
       setError(t('errors.weakPassword'));
@@ -46,88 +44,17 @@ export default function RegisterPage() {
         return;
       }
 
-      // Vérifier si l'utilisateur est vérifié (email confirmé)
-      const user = data?.user;
-      const session = data?.session;
+      // Si l'inscription réussit, rediriger DIRECTEMENT vers pricing
+      // On ne bloque plus sur la session - la page pricing gérera ça intelligemment
+      console.log('✅ [Register] Inscription réussie, redirection directe vers pricing');
       
-      // email_confirmed_at est null ou undefined si l'email n'est pas confirmé
-      // Il faut vérifier qu'il existe ET qu'il n'est pas null/undefined
-      const isEmailConfirmed = !!user?.email_confirmed_at;
-      
-      console.log('📧 [Register] Statut vérification email:', {
-        userId: user?.id,
-        email: user?.email,
-        emailConfirmed: isEmailConfirmed,
-        emailConfirmedAt: user?.email_confirmed_at,
-        hasSession: !!session,
-        sessionUserId: session?.user?.id
-      });
-
-      // Si une session est présente dans la réponse, l'utiliser directement
-      if (session?.user) {
-        console.log('✅ [Register] Session présente dans la réponse, redirection immédiate...');
-        // Attendre un peu pour que le profil soit chargé
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        
-        // Récupérer le redirect depuis la query string avec valeur par défaut
-        const redirect = (router.query.redirect as string) || '/profile';
-        console.log('🔄 [Register] Redirection vers:', redirect);
-        router.push(redirect);
-        setLoading(false);
-        return;
-      }
-
-      if (!isEmailConfirmed) {
-        // L'utilisateur doit confirmer son email
-        console.log('📧 [Register] Email non confirmé, affichage du message de confirmation');
-        setEmailSent(true);
-        setLoading(false);
-        return;
-      }
-
-      // Si l'email est confirmé mais pas de session dans la réponse, attendre que la session soit créée
-      console.log('✅ [Register] Email confirmé, attente de la session...');
-      
-      // Attendre que la session soit créée (jusqu'à 5 secondes)
-      let sessionCreated = false;
-      let attempts = 0;
-      const maxAttempts = 10; // 5 secondes max
-      
-      while (!sessionCreated && attempts < maxAttempts) {
-        await new Promise(resolve => setTimeout(resolve, 500));
-        attempts++;
-        
-        // Vérifier si une session existe maintenant
-        const { data: { session: currentSession } } = await supabase.auth.getSession();
-        if (currentSession?.user) {
-          console.log('✅ [Register] Session créée après', attempts, 'tentatives');
-          sessionCreated = true;
-          break;
-        }
-        
-        console.log(`⏳ [Register] Tentative ${attempts}/${maxAttempts} - Session pas encore créée...`);
-      }
-      
-      if (!sessionCreated) {
-        // Si la session n'est pas créée après 5 secondes, c'est probablement que l'email n'est pas confirmé
-        // ou que la confirmation d'email est activée dans Supabase
-        console.warn('⚠️ [Register] Session non créée après attente, redirection quand même...');
-        
-        // Rediriger quand même vers pricing si c'était la destination
-        const redirect = (router.query.redirect as string) || '/profile';
-        console.log('🔄 [Register] Redirection vers:', redirect);
-        router.push(redirect);
-        setLoading(false);
-        return;
-      }
-      
-      // Attendre encore un peu pour que le profil soit chargé
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Récupérer le redirect depuis la query string avec valeur par défaut
-      const redirect = (router.query.redirect as string) || '/profile';
+      // Récupérer le redirect depuis la query string avec valeur par défaut /pricing
+      const redirect = (router.query.redirect as string) || '/pricing';
       console.log('🔄 [Register] Redirection vers:', redirect);
+      
+      // Redirection immédiate - pas d'attente
       router.push(redirect);
+      setLoading(false);
     } catch (err: any) {
       setError(err.message || t('errors.emailExists'));
       setLoading(false);
@@ -148,41 +75,7 @@ export default function RegisterPage() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            {emailSent ? (
-              <div className="space-y-4">
-                <Alert className="border-green-500 bg-green-50">
-                  <CheckCircle2 className="h-4 w-4 text-green-600" />
-                  <AlertDescription className="text-green-800">
-                    <strong>Email de confirmation envoyé !</strong>
-                    <p className="mt-2 text-sm">
-                      Nous avons envoyé un email de confirmation à <strong>{email}</strong>.
-                      Veuillez cliquer sur le lien dans l'email pour vérifier votre compte et continuer vers le paiement.
-                    </p>
-                    <p className="mt-3 text-xs text-green-700">
-                      💡 <strong>Astuce :</strong> Vérifiez aussi vos spams si vous ne voyez pas l'email.
-                    </p>
-                  </AlertDescription>
-                </Alert>
-                <Button
-                  onClick={() => {
-                    setEmailSent(false);
-                    setEmail('');
-                    setPassword('');
-                    setFullName('');
-                  }}
-                  variant="outline"
-                  className="w-full"
-                >
-                  Créer un autre compte
-                </Button>
-                <div className="text-center text-sm text-muted-foreground">
-                  <Link href="/auth/login" className="text-primary hover:underline">
-                    Déjà un compte ? Se connecter
-                  </Link>
-                </div>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4">
                 {error && (
                   <Alert variant="destructive">
                     <AlertCircle className="h-4 w-4" />
@@ -253,7 +146,6 @@ export default function RegisterPage() {
                   </Link>
                 </div>
               </form>
-            )}
           </CardContent>
         </Card>
       </main>
