@@ -149,18 +149,29 @@ export function MobileNav() {
             )}
           </div>
 
-          {/* Bouton CTA en bas */}
-          <div className="p-6 border-t bg-background">
-            <Button
-              className="w-full h-12 text-base font-medium rounded-lg"
-              onClick={handleStartPath}
-            >
-              {isPremium 
-                ? t('buttons.startTraining', { defaultValue: 'Lancer un entraînement' })
-                : t('buttons.startFree')
-              }
-            </Button>
-          </div>
+          {/* Bouton CTA en bas - Masqué pour les Premium */}
+          {!isPremium && (
+            <div className="p-6 border-t bg-background">
+              <Button
+                className="w-full h-12 text-base font-medium rounded-lg"
+                onClick={handleStartPath}
+              >
+                {t('buttons.startFree')}
+              </Button>
+            </div>
+          )}
+          
+          {/* Pour les Premium, afficher un bouton "Mon Espace" à la place */}
+          {user && isPremium && (
+            <div className="p-6 border-t bg-background">
+              <Button
+                className="w-full h-12 text-base font-medium rounded-lg"
+                onClick={() => handleNavigation('/profile')}
+              >
+                Mon Espace
+              </Button>
+            </div>
+          )}
         </div>
       </SheetContent>
     </Sheet>
