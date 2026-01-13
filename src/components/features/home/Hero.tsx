@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { useAuth } from '@/providers/AuthProvider';
+import { handlePremiumRedirect } from '@/lib/navigation';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Check, ChevronDown, Sparkles } from 'lucide-react';
@@ -91,7 +92,7 @@ export function Hero() {
             {isPremium !== true && (
               <Button
                 size="lg"
-                onClick={() => router.push('/pricing')}
+                onClick={() => handlePremiumRedirect(router, user || null, isPremium)}
                 variant="outline"
                 className="text-lg px-8 py-6 w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white border-white/30 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 backdrop-blur-sm"
               >

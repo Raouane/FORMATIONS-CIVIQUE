@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 import { useAuth } from '@/providers/AuthProvider';
+import { handlePremiumRedirect } from '@/lib/navigation';
 import { examService } from '@/services/examService';
 import { questionService } from '@/services/questionService';
 import { ExamResult, Question, QuestionTheme } from '@/types';
@@ -301,7 +302,7 @@ export default function ResultsPage() {
           {/* Bouton Premium dans les actions */}
           {isPremium !== true && (
             <Button 
-              onClick={() => router.push('/pricing')}
+              onClick={() => handlePremiumRedirect(router, user || null, isPremium)}
               className="bg-primary hover:bg-primary/90"
             >
               <Sparkles className="h-4 w-4 mr-2" />

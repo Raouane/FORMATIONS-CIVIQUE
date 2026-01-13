@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { useEffect } from 'react';
 import { useAuth } from '@/providers/AuthProvider';
+import { handlePremiumRedirect } from '@/lib/navigation';
 import { Header } from '@/components/features/home/Header';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -163,7 +164,7 @@ export default function ProfilePage() {
               </Button>
               {isPremium !== true && (
                 <Button
-                  onClick={() => router.push('/pricing')}
+                  onClick={() => handlePremiumRedirect(router, user || null, isPremium)}
                   variant="outline"
                   className="w-full"
                   size="lg"

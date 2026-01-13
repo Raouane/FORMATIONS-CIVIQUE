@@ -35,18 +35,24 @@ export default function RegisterPage() {
     setLoading(true);
 
     try {
-      await signUp(email, password, fullName);
+      const { error } = await signUp(email, password, fullName);
       
-      // Récupérer le redirect depuis la query string
-      const redirect = router.query.redirect as string;
-      if (redirect) {
-        router.push(redirect);
-      } else {
-        router.push('/');
+      if (error) {
+        setError(error.message || t('errors.emailExists'));
+        setLoading(false);
+        return;
       }
+      
+      // Attendre un peu pour que l'utilisateur soit bien connecté et le profil chargé
+      // (onAuthStateChange devrait se déclencher)
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Récupérer le redirect depuis la query string avec valeur par défaut
+      const redirect = (router.query.redirect as string) || '/profile';
+      console.log('🔄 [Register] Redirection vers:', redirect);
+      router.push(redirect);
     } catch (err: any) {
       setError(err.message || t('errors.emailExists'));
-    } finally {
       setLoading(false);
     }
   };
