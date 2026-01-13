@@ -1,6 +1,5 @@
 'use client';
 
-import { useEffect } from 'react';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { useAuth } from '@/providers/AuthProvider';
@@ -13,16 +12,6 @@ export function Hero() {
   const { t } = useTranslation('home');
   const router = useRouter();
   const { isPremium, user } = useAuth();
-
-  // Debug: Afficher le statut premium dans la console à chaque changement
-  useEffect(() => {
-    if (typeof window !== 'undefined' && user) {
-      console.log('🎯 [Hero] Statut premium actuel:', isPremium, 'pour user:', user.id);
-      console.log('🎯 [Hero] Type de isPremium:', typeof isPremium);
-      console.log('🎯 [Hero] isPremium === true?', isPremium === true);
-      console.log('🎯 [Hero] !isPremium?', !isPremium);
-    }
-  }, [isPremium, user]);
 
   const advantages = [
     t('hero.advantages.question1'),

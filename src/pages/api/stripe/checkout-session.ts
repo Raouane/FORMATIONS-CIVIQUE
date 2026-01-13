@@ -3,12 +3,17 @@ import Stripe from 'stripe';
 import { supabase } from '@/lib/supabase';
 
 // Vérifier que STRIPE_SECRET_KEY est définie
-if (!process.env.STRIPE_SECRET_KEY) {
-  console.error('STRIPE_SECRET_KEY is not defined');
+const stripeKey = process.env.STRIPE_SECRET_KEY;
+if (!stripeKey) {
+  console.error('❌ [Stripe API] STRIPE_SECRET_KEY is not defined');
+  console.error('❌ [Stripe API] Available env vars:', Object.keys(process.env).filter(k => k.includes('STRIPE')));
+} else {
+  console.log('✅ [Stripe API] STRIPE_SECRET_KEY is defined, length:', stripeKey.length);
+  console.log('✅ [Stripe API] Key starts with:', stripeKey.substring(0, 7) + '...');
 }
 
-const stripe = process.env.STRIPE_SECRET_KEY 
-  ? new Stripe(process.env.STRIPE_SECRET_KEY, {
+const stripe = stripeKey 
+  ? new Stripe(stripeKey.trim(), {
       apiVersion: '2023-10-16',
     })
   : null;
@@ -24,8 +29,11 @@ export default async function handler(
   // Vérifier que Stripe est configuré
   if (!stripe) {
     console.error('Stripe is not configured: STRIPE_SECRET_KEY is missing');
+    const errorMessage = process.env.NODE_ENV === 'development'
+      ? 'Stripe is not configured. Please add STRIPE_SECRET_KEY to your .env.local file.'
+      : 'Stripe is not configured. Please contact support.';
     return res.status(500).json({ 
-      error: 'Stripe is not configured. Please contact support.' 
+      error: errorMessage 
     });
   }
 

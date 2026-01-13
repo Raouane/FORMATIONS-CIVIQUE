@@ -37,7 +37,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         // Récupérer la session depuis le storage
         const { data: { session }, error } = await supabase.auth.getSession();
         
+        // Ignorer les erreurs d'abort (signal is aborted) - c'est normal si le composant est démonté
         if (error) {
+          // Vérifier si c'est une erreur d'abort
+          if (error.message?.includes('aborted') || error.message?.includes('signal')) {
+            console.log('⚠️ [AuthProvider] Requête annulée (normal si composant démonté)');
+            return;
+          }
           console.error('❌ [AuthProvider] Erreur lors de la récupération de la session:', error);
           if (mounted) {
             setLoading(false);
@@ -54,7 +60,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           
         if (session?.user) {
           // Charger le profil sans bloquer
-          fetchUserProfile(session.user.id).catch(() => setIsPremium(false));
+          fetchUserProfile(session.user.id).catch(() => {
+            if (mounted) setIsPremium(false);
+          });
         } else {
           setIsPremium(false);
         }
@@ -65,7 +73,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             console.log('🏁 [AuthProvider] initializeSession - loading mis à false');
           }
         }
-      } catch (error) {
+      } catch (error: any) {
+        // Ignorer les erreurs d'abort DOMException
+        if (error?.name === 'AbortError' || error?.message?.includes('aborted') || error?.message?.includes('signal')) {
+          console.log('⚠️ [AuthProvider] Requête annulée (normal si composant démonté)');
+          return;
+        }
         console.error('❌ [AuthProvider] Erreur lors de l\'initialisation:', error);
         if (mounted) {
           setLoading(false);
@@ -81,28 +94,47 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange(async (event, session) => {
-      console.log('🔄 [AuthProvider] Changement d\'état auth:', event, session ? 'Session présente' : 'Session absente', 'isInitializing:', isInitializingRef.current);
-      
-      // Si on est encore en train d'initialiser, ne pas interférer
-      if (isInitializingRef.current && event === 'SIGNED_IN') {
-        console.log('⏸️ [AuthProvider] onAuthStateChange ignoré car initializeSession est en cours');
-        return;
-      }
-      
-      if (mounted) {
-        setSession(session);
-        setUser(session?.user ?? null);
+      try {
+        console.log('🔄 [AuthProvider] Changement d\'état auth:', event, session ? 'Session présente' : 'Session absente', 'isInitializing:', isInitializingRef.current);
         
-        if (session?.user) {
-          // Charger le profil sans bloquer
-          fetchUserProfile(session.user.id).catch(() => setIsPremium(false));
-        } else {
-          setIsPremium(false);
+        // Si on est encore en train d'initialiser, ne pas interférer
+        if (isInitializingRef.current && event === 'SIGNED_IN') {
+          console.log('⏸️ [AuthProvider] onAuthStateChange ignoré car initializeSession est en cours');
+          return;
         }
         
         if (mounted) {
+          setSession(session);
+          setUser(session?.user ?? null);
+          
+          if (session?.user) {
+            // Charger le profil sans bloquer, avec gestion d'erreur
+            fetchUserProfile(session.user.id).catch((err: any) => {
+              // Ignorer les erreurs d'abort
+              if (err?.name === 'AbortError' || err?.message?.includes('aborted') || err?.message?.includes('signal')) {
+                console.log('⚠️ [AuthProvider] Requête profil annulée dans onAuthStateChange');
+                return;
+              }
+              if (mounted) setIsPremium(false);
+            });
+          } else {
+            setIsPremium(false);
+          }
+          
+          if (mounted) {
+            setLoading(false);
+            console.log('🏁 [AuthProvider] onAuthStateChange - loading mis à false');
+          }
+        }
+      } catch (error: any) {
+        // Ignorer les erreurs d'abort dans onAuthStateChange
+        if (error?.name === 'AbortError' || error?.message?.includes('aborted') || error?.message?.includes('signal')) {
+          console.log('⚠️ [AuthProvider] Requête annulée dans onAuthStateChange (normal si composant démonté)');
+          return;
+        }
+        console.error('❌ [AuthProvider] Erreur dans onAuthStateChange:', error);
+        if (mounted) {
           setLoading(false);
-          console.log('🏁 [AuthProvider] onAuthStateChange - loading mis à false');
         }
       }
     });
@@ -122,6 +154,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         .single();
 
       if (error) {
+        // Ignorer les erreurs d'abort
+        if (error.message?.includes('aborted') || error.message?.includes('signal')) {
+          console.log('⚠️ [AuthProvider] Requête profil annulée');
+          return;
+        }
         // Si le profil n'existe pas encore, c'est normal (sera créé par trigger)
         if (error.code === 'PGRST116') {
           setIsPremium(false);
@@ -134,7 +171,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       // Transformation : is_premium (SQL) → isPremium (React)
       const premiumStatus = data?.is_premium === true || data?.is_premium === 'true';
       setIsPremium(premiumStatus);
-    } catch (error) {
+    } catch (error: any) {
+      // Ignorer les erreurs d'abort
+      if (error?.name === 'AbortError' || error?.message?.includes('aborted') || error?.message?.includes('signal')) {
+        console.log('⚠️ [AuthProvider] Requête profil annulée dans fetchUserProfile');
+        return;
+      }
+      console.warn('⚠️ [AuthProvider] Erreur lors de la récupération du profil:', error);
       setIsPremium(false);
     }
   };
@@ -155,7 +198,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     try {
       const { data: { session }, error } = await supabase.auth.getSession();
       
+      // Ignorer les erreurs d'abort
       if (error) {
+        if (error.message?.includes('aborted') || error.message?.includes('signal')) {
+          console.log('⚠️ [AuthProvider] Requête annulée lors du rafraîchissement');
+          return;
+        }
         console.error('❌ [AuthProvider] Erreur lors du rafraîchissement:', error);
         setSession(null);
         setUser(null);
@@ -174,7 +222,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         setUser(null);
         setIsPremium(false);
       }
-    } catch (error) {
+    } catch (error: any) {
+      // Ignorer les erreurs d'abort DOMException
+      if (error?.name === 'AbortError' || error?.message?.includes('aborted') || error?.message?.includes('signal')) {
+        console.log('⚠️ [AuthProvider] Requête annulée lors du rafraîchissement');
+        return;
+      }
       console.error('❌ [AuthProvider] Exception lors du rafraîchissement:', error);
       setSession(null);
       setUser(null);

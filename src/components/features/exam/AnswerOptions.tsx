@@ -24,14 +24,6 @@ export function AnswerOptions({
 }: AnswerOptionsProps) {
   const { t } = useTranslation('exam');
   
-  // Log pour déboguer
-  console.log('[AnswerOptions] Options reçues:', {
-    options,
-    type: typeof options,
-    isArray: Array.isArray(options),
-    length: Array.isArray(options) ? options.length : 'N/A'
-  });
-  
   // S'assurer que options est un tableau
   const optionsArray = Array.isArray(options) ? options : [];
   
@@ -45,8 +37,12 @@ export function AnswerOptions({
 
   return (
     <RadioGroup
-      value={selectedAnswer !== null ? selectedAnswer.toString() : undefined}
-      onValueChange={(value) => onSelect(parseInt(value, 10))}
+      value={selectedAnswer !== null ? selectedAnswer.toString() : ""}
+      onValueChange={(value) => {
+        if (value) {
+          onSelect(parseInt(value, 10));
+        }
+      }}
       disabled={disabled}
       className="space-y-3"
     >

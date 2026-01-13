@@ -75,7 +75,12 @@ export function useExamSession(level: UserLevel, totalQuestions: number = EXAM_C
         setTimeRemaining(isPremium ? EXAM_CONFIG.TIME_LIMIT : EXAM_CONFIG.QUIZ_RAPIDE_TIME);
         setStartedAt(new Date());
         setLoading(false);
-      } catch (error) {
+      } catch (error: any) {
+        // Ignorer les erreurs d'abort (signal is aborted) - c'est normal si le composant est démonté
+        if (error?.name === 'AbortError' || error?.message?.includes('aborted') || error?.message?.includes('signal')) {
+          console.log('⚠️ [useExamSession] Requête annulée (normal si composant démonté)');
+          return;
+        }
         console.error('Error loading questions:', error);
         setLoading(false);
       }

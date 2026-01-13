@@ -10,34 +10,93 @@ class ExamService {
     locale?: SupportedLocale,
     isPremium?: boolean // Nouveau paramètre optionnel
   ): Promise<Question[]> {
-    // Si isPremium n'est pas fourni, le récupérer (fallback pour compatibilité)
-    let premiumStatus = isPremium;
-    
-    if (premiumStatus === undefined) {
-      const { data: { user } } = await supabase.auth.getUser();
+    try {
+      // Si isPremium n'est pas fourni, le récupérer (fallback pour compatibilité)
+      let premiumStatus = isPremium;
       
-      if (user) {
-        const { data: profile } = await supabase
-          .from(TABLES.PROFILES)
-          .select('is_premium')
-          .eq('id', user.id)
-          .single();
-        
-        premiumStatus = profile?.is_premium ?? false;
-      } else {
-        premiumStatus = false;
+      if (premiumStatus === undefined) {
+        try {
+          const { data: { user }, error: userError } = await supabase.auth.getUser();
+          
+          // Ignorer les erreurs d'abort
+          if (userError) {
+            if (userError.message?.includes('aborted') || userError.message?.includes('signal')) {
+              console.log('⚠️ [ExamService] Requête getUser annulée, utilisation du statut par défaut');
+              premiumStatus = false;
+            } else {
+              console.warn('⚠️ [ExamService] Erreur lors de la récupération de l\'utilisateur:', userError);
+              premiumStatus = false;
+            }
+          } else if (user) {
+            try {
+              const { data: profile, error: profileError } = await supabase
+                .from(TABLES.PROFILES)
+                .select('is_premium')
+                .eq('id', user.id)
+                .single();
+              
+              if (profileError) {
+                // Ignorer les erreurs d'abort et les erreurs de profil inexistant (normal pour nouveaux utilisateurs)
+                if (profileError.message?.includes('aborted') || profileError.message?.includes('signal')) {
+                  console.log('⚠️ [ExamService] Requête profil annulée, utilisation du statut par défaut');
+                } else if (profileError.code === 'PGRST116') {
+                  // Profil n'existe pas encore, c'est normal
+                  console.log('ℹ️ [ExamService] Profil non trouvé, utilisation du statut par défaut');
+                } else {
+                  console.warn('⚠️ [ExamService] Erreur lors de la récupération du profil:', profileError);
+                }
+                premiumStatus = false;
+              } else {
+                premiumStatus = profile?.is_premium ?? false;
+              }
+            } catch (profileErr: any) {
+              // Ignorer les erreurs d'abort
+              if (profileErr?.name === 'AbortError' || profileErr?.message?.includes('aborted') || profileErr?.message?.includes('signal')) {
+                console.log('⚠️ [ExamService] Requête profil annulée, utilisation du statut par défaut');
+              } else {
+                console.warn('⚠️ [ExamService] Exception lors de la récupération du profil:', profileErr);
+              }
+              premiumStatus = false;
+            }
+          } else {
+            premiumStatus = false;
+          }
+        } catch (userErr: any) {
+          // Ignorer les erreurs d'abort
+          if (userErr?.name === 'AbortError' || userErr?.message?.includes('aborted') || userErr?.message?.includes('signal')) {
+            console.log('⚠️ [ExamService] Requête getUser annulée, utilisation du statut par défaut');
+          } else {
+            console.warn('⚠️ [ExamService] Exception lors de la récupération de l\'utilisateur:', userErr);
+          }
+          premiumStatus = false;
+        }
       }
-    }
 
-    // Récupérer les questions avec le statut premium connu dès le départ
-    const questions = await questionService.getQuestionsForExam(level, premiumStatus, locale);
-    
-    // Si utilisateur gratuit, limiter à 10 questions côté service
-    if (!premiumStatus) {
-      return questions.slice(0, EXAM_CONFIG.QUIZ_RAPIDE_QUESTIONS);
+      // Récupérer les questions avec le statut premium connu dès le départ
+      const questions = await questionService.getQuestionsForExam(level, premiumStatus, locale);
+      
+      // Si utilisateur gratuit, limiter à 10 questions côté service
+      if (!premiumStatus) {
+        return questions.slice(0, EXAM_CONFIG.QUIZ_RAPIDE_QUESTIONS);
+      }
+      
+      return questions;
+    } catch (error: any) {
+      // Ignorer les erreurs d'abort
+      if (error?.name === 'AbortError' || error?.message?.includes('aborted') || error?.message?.includes('signal')) {
+        console.log('⚠️ [ExamService] Requête annulée (normal si composant démonté)');
+        throw error; // Re-lancer pour que le composant puisse gérer
+      }
+      // Pour les autres erreurs, logger avec plus de détails
+      console.error('❌ [ExamService] Erreur lors du chargement des questions:', {
+        error,
+        message: error?.message,
+        code: error?.code,
+        details: error?.details,
+        hint: error?.hint,
+      });
+      throw error;
     }
-    
-    return questions;
   }
 
   async submitExamResult(result: {

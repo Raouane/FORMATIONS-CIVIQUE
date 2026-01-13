@@ -61,17 +61,55 @@ export default function QuizRapidePage() {
     const loadQuestions = async () => {
       try {
         // Récupérer le statut premium de l'utilisateur
-        const { data: { user: authUser } } = await supabase.auth.getUser();
         let isPremium = false;
+        
+        try {
+          const { data: { user: authUser }, error: userError } = await supabase.auth.getUser();
+          
+          // Ignorer les erreurs d'abort
+          if (userError) {
+            if (userError.message?.includes('aborted') || userError.message?.includes('signal')) {
+              console.log('⚠️ [QuizRapide] Requête getUser annulée, utilisation du statut par défaut');
+            } else {
+              console.warn('⚠️ [QuizRapide] Erreur lors de la récupération de l\'utilisateur:', userError);
+            }
+          } else if (authUser) {
+            try {
+              const { data: profile, error: profileError } = await supabase
+                .from(TABLES.PROFILES)
+                .select('is_premium')
+                .eq('id', authUser.id)
+                .single();
 
-        if (authUser) {
-          const { data: profile } = await supabase
-            .from(TABLES.PROFILES)
-            .select('is_premium')
-            .eq('id', authUser.id)
-            .single();
-
-          isPremium = profile?.is_premium ?? false;
+              if (profileError) {
+                // Ignorer les erreurs d'abort et les erreurs de profil inexistant
+                if (profileError.message?.includes('aborted') || profileError.message?.includes('signal')) {
+                  console.log('⚠️ [QuizRapide] Requête profil annulée, utilisation du statut par défaut');
+                } else if (profileError.code === 'PGRST116') {
+                  // Profil n'existe pas encore, c'est normal
+                  console.log('ℹ️ [QuizRapide] Profil non trouvé, utilisation du statut par défaut');
+                } else {
+                  console.warn('⚠️ [QuizRapide] Erreur lors de la récupération du profil:', profileError);
+                }
+              } else {
+                isPremium = profile?.is_premium ?? false;
+              }
+            } catch (profileErr: any) {
+              // Ignorer les erreurs d'abort
+              if (profileErr?.name === 'AbortError' || profileErr?.message?.includes('aborted') || profileErr?.message?.includes('signal')) {
+                console.log('⚠️ [QuizRapide] Requête profil annulée, utilisation du statut par défaut');
+              } else {
+                console.warn('⚠️ [QuizRapide] Exception lors de la récupération du profil:', profileErr);
+              }
+            }
+          }
+        } catch (userErr: any) {
+          // Ignorer les erreurs d'abort
+          if (userErr?.name === 'AbortError' || userErr?.message?.includes('aborted') || userErr?.message?.includes('signal')) {
+            console.log('⚠️ [QuizRapide] Requête getUser annulée, utilisation du statut par défaut');
+          } else {
+            console.warn('⚠️ [QuizRapide] Exception lors de la récupération de l\'utilisateur:', userErr);
+          }
         }
 
         // Récupérer les questions pour le quiz rapide avec la locale
@@ -80,8 +118,20 @@ export default function QuizRapidePage() {
         setQuestions(loadedQuestions);
         setStartedAt(new Date());
         setLoading(false);
-      } catch (error) {
-        console.error('Error loading questions:', error);
+      } catch (error: any) {
+        // Ignorer les erreurs d'abort (signal is aborted) - c'est normal si le composant est démonté
+        if (error?.name === 'AbortError' || error?.message?.includes('aborted') || error?.message?.includes('signal')) {
+          console.log('⚠️ [QuizRapide] Requête annulée (normal si composant démonté)');
+          return;
+        }
+        // Logger les erreurs réelles avec plus de détails
+        console.error('❌ [QuizRapide] Erreur lors du chargement des questions:', {
+          error,
+          message: error?.message,
+          code: error?.code,
+          details: error?.details,
+          hint: error?.hint,
+        });
         setLoading(false);
       }
     };

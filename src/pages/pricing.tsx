@@ -57,14 +57,17 @@ export default function PricingPage() {
       setShowConfetti(true);
       setShowToast(true);
       
-      console.log('⏳ [Pricing] Attente de 2 secondes pour le webhook...');
+      console.log('⏳ [Pricing] Attente de 3 secondes pour le webhook...');
       // Rafraîchir le statut premium après un court délai pour que le webhook ait le temps de s'exécuter
       setTimeout(async () => {
         console.log('🔄 [Pricing] Rafraîchissement du statut premium...');
         await refreshPremiumStatus();
-        console.log('🚀 [Pricing] Redirection vers la page d\'accueil');
-        router.push('/?premium_activated=true');
-      }, 2000);
+        // Attendre encore 3 secondes pour que l'utilisateur puisse voir le message de félicitations
+        setTimeout(() => {
+          console.log('🚀 [Pricing] Redirection vers la page d\'accueil');
+          router.push('/?premium_activated=true');
+        }, 3000);
+      }, 3000);
     } else {
       console.log('ℹ️ [Pricing] Accès normal à la page pricing (pas de retour Stripe)');
     }
@@ -133,8 +136,32 @@ export default function PricingPage() {
 
       if (!response.ok) {
         console.error('❌ [Pricing] Erreur HTTP:', response.status, response.statusText);
-        const errorText = await response.text();
-        console.error('❌ [Pricing] Contenu de l\'erreur:', errorText);
+        
+        // Essayer de parser l'erreur JSON
+        let errorMessage = 'Erreur lors de la préparation du paiement. Veuillez réessayer.';
+        try {
+          const errorText = await response.text();
+          console.error('❌ [Pricing] Contenu de l\'erreur:', errorText);
+          
+          try {
+            const errorData = JSON.parse(errorText);
+            errorMessage = errorData.error || errorMessage;
+            
+            // Message spécifique pour Stripe non configuré (en développement)
+            if (errorMessage.includes('Stripe is not configured')) {
+              errorMessage = 'Stripe n\'est pas configuré en développement. Veuillez ajouter STRIPE_SECRET_KEY dans votre fichier .env.local';
+            }
+          } catch (parseError) {
+            // Si ce n'est pas du JSON, utiliser le texte brut
+            if (errorText.includes('Stripe is not configured')) {
+              errorMessage = 'Stripe n\'est pas configuré en développement. Veuillez ajouter STRIPE_SECRET_KEY dans votre fichier .env.local';
+            }
+          }
+        } catch (textError) {
+          console.error('❌ [Pricing] Erreur lors de la lecture de la réponse:', textError);
+        }
+        
+        alert(errorMessage);
         setLoading(prev => ({
           ...prev,
           [planType === 'one-time' ? 'oneTime' : 'monthly']: false,
@@ -152,7 +179,14 @@ export default function PricingPage() {
 
       if (data.error) {
         console.error('❌ [Pricing] Erreur Stripe:', data.error);
-        alert('Erreur lors de la préparation du paiement. Veuillez réessayer.');
+        
+        // Message spécifique pour Stripe non configuré
+        let errorMessage = data.error;
+        if (data.error.includes('Stripe is not configured')) {
+          errorMessage = 'Stripe n\'est pas configuré en développement. Veuillez ajouter STRIPE_SECRET_KEY dans votre fichier .env.local';
+        }
+        
+        alert(errorMessage);
         setLoading(prev => ({
           ...prev,
           [planType === 'one-time' ? 'oneTime' : 'monthly']: false,
@@ -206,24 +240,29 @@ export default function PricingPage() {
           Retour à l'accueil
         </Button>
 
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">
-            <Sparkles className="h-4 w-4" />
-            Accès Premium
-          </div>
-          <h1 className="text-4xl font-bold mb-4">
-            Passez au niveau supérieur
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Accédez à toutes les fonctionnalités premium et préparez-vous efficacement à l'examen
-          </p>
-        </div>
+        {/* En-tête et Social Proof - Masqués pour les utilisateurs premium */}
+        {!isPremium && !authLoading && (
+          <>
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">
+                <Sparkles className="h-4 w-4" />
+                Accès Premium
+              </div>
+              <h1 className="text-4xl font-bold mb-4">
+                Passez au niveau supérieur
+              </h1>
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                Accédez à toutes les fonctionnalités premium et préparez-vous efficacement à l'examen
+              </p>
+            </div>
 
-        {/* Social Proof */}
-        <div className="flex justify-center items-center gap-2 mb-8 text-sm text-muted-foreground">
-          <Users className="h-4 w-4" />
-          <span>Rejoint par <strong className="text-foreground">+500 candidats</strong> ce mois-ci</span>
-        </div>
+            {/* Social Proof */}
+            <div className="flex justify-center items-center gap-2 mb-8 text-sm text-muted-foreground">
+              <Users className="h-4 w-4" />
+              <span>Rejoint par <strong className="text-foreground">+500 candidats</strong> ce mois-ci</span>
+            </div>
+          </>
+        )}
 
         {/* Message si déjà premium - Les boutons d'achat sont masqués */}
         {isPremium && !authLoading && (
@@ -350,11 +389,11 @@ export default function PricingPage() {
         title="🎉 Félicitations !"
         description="Votre accès Premium est désormais activé. Profitez de toutes les fonctionnalités !"
         variant="success"
-        duration={5000}
+        duration={8000}
       />
 
       {/* Animation de confettis */}
-      <Confetti trigger={showConfetti} duration={3000} />
+      <Confetti trigger={showConfetti} duration={6000} />
     </div>
   );
 }
