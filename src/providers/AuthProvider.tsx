@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useEffect, useState, useMemo } from 'react';
+import React, { createContext, useContext, useEffect, useState, useMemo, useRef } from 'react';
 import { User, Session } from '@supabase/supabase-js';
 import { supabase } from '@/lib/supabase';
 
@@ -22,6 +22,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
   const [isPremium, setIsPremium] = useState(false);
+  const isInitializingRef = useRef(true); // Ref pour éviter les conflits entre initializeSession et onAuthStateChange
 
   useEffect(() => {
     let mounted = true;
@@ -30,6 +31,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const initializeSession = async () => {
       try {
         console.log('🔄 [AuthProvider] Initialisation de la session...');
+        isInitializingRef.current = true;
         
         // Récupérer la session depuis le storage
         const { data: { session }, error } = await supabase.auth.getSession();
@@ -38,6 +40,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           console.error('❌ [AuthProvider] Erreur lors de la récupération de la session:', error);
           if (mounted) {
             setLoading(false);
+            isInitializingRef.current = false;
           }
           return;
         }
@@ -52,17 +55,23 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             console.log('👤 [AuthProvider] Utilisateur trouvé:', session.user.id);
             // ATTENDRE que le profil soit chargé avant de mettre loading à false
             await fetchUserProfile(session.user.id);
+            console.log('✅ [AuthProvider] initializeSession - Profil chargé');
           } else {
             console.log('👤 [AuthProvider] Aucun utilisateur connecté');
             setIsPremium(false);
           }
           
-          setLoading(false);
+          if (mounted) {
+            setLoading(false);
+            isInitializingRef.current = false;
+            console.log('🏁 [AuthProvider] initializeSession - loading mis à false');
+          }
         }
       } catch (error) {
         console.error('❌ [AuthProvider] Erreur lors de l\'initialisation:', error);
         if (mounted) {
           setLoading(false);
+          isInitializingRef.current = false;
         }
       }
     };
@@ -74,19 +83,32 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange(async (event, session) => {
-      console.log('🔄 [AuthProvider] Changement d\'état auth:', event, session ? 'Session présente' : 'Session absente');
+      console.log('🔄 [AuthProvider] Changement d\'état auth:', event, session ? 'Session présente' : 'Session absente', 'isInitializing:', isInitializingRef.current);
+      
+      // Si on est encore en train d'initialiser, ne pas interférer
+      if (isInitializingRef.current && event === 'SIGNED_IN') {
+        console.log('⏸️ [AuthProvider] onAuthStateChange ignoré car initializeSession est en cours');
+        return;
+      }
       
       if (mounted) {
         setSession(session);
         setUser(session?.user ?? null);
         
         if (session?.user) {
+          console.log('👤 [AuthProvider] onAuthStateChange - Chargement du profil pour:', session.user.id);
+          // ATTENDRE que le profil soit chargé avant de mettre loading à false
           await fetchUserProfile(session.user.id);
+          console.log('✅ [AuthProvider] onAuthStateChange - Profil chargé, isPremium devrait être à jour');
         } else {
+          console.log('👤 [AuthProvider] onAuthStateChange - Aucun utilisateur, isPremium = false');
           setIsPremium(false);
         }
         
-        setLoading(false);
+        if (mounted) {
+          setLoading(false);
+          console.log('🏁 [AuthProvider] onAuthStateChange - loading mis à false');
+        }
       }
     });
 
@@ -98,7 +120,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const fetchUserProfile = async (userId: string) => {
     try {
-      console.log('🔍 [AuthProvider] Récupération du profil pour userId:', userId);
+      console.log('🔍 [AuthProvider] fetchUserProfile DÉBUT pour userId:', userId);
       const { data, error } = await supabase
         .from('fc_profiles')
         .select('is_premium') // Colonne SQL avec underscore
@@ -108,7 +130,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       if (error) {
         console.error('❌ [AuthProvider] Erreur lors de la récupération du profil:', error);
         console.error('❌ [AuthProvider] Détails erreur:', error.message, error.code);
-        throw error;
+        setIsPremium(false);
+        return; // Ne pas throw, juste retourner
       }
       
       console.log('📊 [AuthProvider] Données récupérées complètes:', JSON.stringify(data, null, 2));
@@ -121,19 +144,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const premiumStatus = data?.is_premium === true || data?.is_premium === 'true';
       console.log('✅ [AuthProvider] Transformation: is_premium (DB) =', data?.is_premium, '→ isPremium (React) =', premiumStatus);
       
-      // Vérifier l'état actuel avant de mettre à jour
-      console.log('🔄 [AuthProvider] État isPremium AVANT setIsPremium:', isPremium);
+      // Mettre à jour l'état
+      console.log('🔄 [AuthProvider] setIsPremium appelé avec:', premiumStatus);
       setIsPremium(premiumStatus);
-      console.log('🎯 [AuthProvider] setIsPremium appelé avec:', premiumStatus);
-      
-      // Vérification finale - utiliser un setTimeout pour voir l'état après le re-render
-      setTimeout(() => {
-        console.log('✅ [AuthProvider] État isPremium APRÈS re-render (vérification):', premiumStatus);
-      }, 0);
+      console.log('✅ [AuthProvider] fetchUserProfile FIN - isPremium mis à jour à:', premiumStatus);
     } catch (error) {
       console.error('❌ [AuthProvider] Error fetching user profile:', error);
       console.error('❌ [AuthProvider] Stack:', error instanceof Error ? error.stack : 'N/A');
       setIsPremium(false);
+      console.log('⚠️ [AuthProvider] fetchUserProfile FIN avec erreur - isPremium = false');
     }
   };
 
