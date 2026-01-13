@@ -7,6 +7,7 @@ import { useAuth } from '@/providers/AuthProvider';
 import { useNavigation } from '@/hooks/useNavigation';
 import { UserLevel } from '@/types';
 import { isRTL } from '@/lib/rtl';
+import { supabase } from '@/lib/supabase';
 import {
   Sheet,
   SheetContent,
@@ -135,6 +136,17 @@ export function MobileNav() {
               <Users className="h-5 w-5 mr-3 rtl:mr-0 rtl:ml-3 text-muted-foreground" />
               <span className="text-base">{t('nav.memberArea')}</span>
             </Button>
+
+            {/* Déconnexion - affiché seulement si user est présent */}
+            {user && (
+              <Button
+                variant="ghost"
+                className="w-full justify-start h-auto py-3 px-4"
+                onClick={async () => { await supabase.auth.signOut(); window.location.href = '/'; }}
+              >
+                <span className="text-base">{t('nav.logout')}</span>
+              </Button>
+            )}
           </div>
 
           {/* Bouton CTA en bas */}

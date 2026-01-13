@@ -71,6 +71,13 @@ export default function PricingPage() {
   }, [router.isReady, router.query, refreshPremiumStatus]);
 
   const handleCheckout = async (planType: 'one-time' | 'monthly') => {
+    // SÉCURITÉ : Bloquer si l'utilisateur est déjà Premium
+    if (isPremium) {
+      console.warn('⚠️ [Pricing] Tentative de paiement bloquée - Utilisateur déjà Premium');
+      alert('Vous êtes déjà membre Premium. Vous n\'avez pas besoin de repayer.');
+      return;
+    }
+
     // Mettre à jour le loading pour le plan spécifique
     setLoading(prev => ({
       ...prev,
@@ -218,19 +225,19 @@ export default function PricingPage() {
           <span>Rejoint par <strong className="text-foreground">+500 candidats</strong> ce mois-ci</span>
         </div>
 
-        {/* Message si déjà premium */}
+        {/* Message si déjà premium - Les boutons d'achat sont masqués */}
         {isPremium && !authLoading && (
           <Card className="max-w-2xl mx-auto mb-8 border-2 border-primary bg-primary/5">
             <CardContent className="pt-6 text-center">
               <div className="flex items-center justify-center gap-2 mb-4">
                 <Sparkles className="h-6 w-6 text-primary" />
-                <h2 className="text-2xl font-bold text-primary">Vous êtes déjà Premium ! 🎉</h2>
+                <h2 className="text-2xl font-bold text-primary">✅ Vous êtes déjà membre Premium</h2>
               </div>
               <p className="text-muted-foreground mb-4">
                 Profitez de toutes les fonctionnalités premium : simulations illimitées, corrections détaillées et accès à toute la banque de données.
               </p>
               <Button onClick={() => router.push('/simulation')} className="bg-primary hover:bg-primary/90">
-                Commencer une simulation
+                Accéder à mon espace
               </Button>
             </CardContent>
           </Card>

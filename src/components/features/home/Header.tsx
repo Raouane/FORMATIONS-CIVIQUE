@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { useAuth } from '@/providers/AuthProvider';
 import { isRTL } from '@/lib/rtl';
+import { supabase } from '@/lib/supabase';
 import { Button } from '@/components/ui/button';
 import { PremiumBadge } from '@/components/features/premium/PremiumBadge';
 import { MobileNav } from '../navigation/MobileNav';
@@ -49,7 +50,7 @@ export function Header() {
               {user ? (
                 <>
                   {isPremium && <PremiumBadge size="sm" />}
-                  <Button variant="ghost" onClick={() => router.push('/auth/login')}>
+                  <Button variant="ghost" onClick={async () => { await supabase.auth.signOut(); window.location.href = '/'; }}>
                     {t('nav.logout')}
                   </Button>
                 </>
