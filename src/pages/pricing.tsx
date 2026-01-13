@@ -23,6 +23,10 @@ export default function PricingPage() {
   });
   const [showToast, setShowToast] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
+  
+  // IMPORTANT: La page pricing est PUBLIQUE
+  // On ne redirige PAS automatiquement si user est null
+  // La vérification se fait uniquement au clic sur "Acheter"
 
   // Vérifier si l'utilisateur revient d'un paiement réussi
   useEffect(() => {

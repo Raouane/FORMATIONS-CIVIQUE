@@ -116,10 +116,14 @@ ALTER TABLE fc_questions ENABLE ROW LEVEL SECURITY;
 ALTER TABLE fc_user_progress ENABLE ROW LEVEL SECURITY;
 ALTER TABLE fc_exam_results ENABLE ROW LEVEL SECURITY;
 
--- Politique fc_profiles : Les utilisateurs peuvent voir et modifier leur propre profil
+-- Politique fc_profiles : Les utilisateurs peuvent voir, créer et modifier leur propre profil
 CREATE POLICY "Users can view own profile"
   ON fc_profiles FOR SELECT
   USING (auth.uid() = id);
+
+CREATE POLICY "Users can insert own profile"
+  ON fc_profiles FOR INSERT
+  WITH CHECK (auth.uid() = id);
 
 CREATE POLICY "Users can update own profile"
   ON fc_profiles FOR UPDATE

@@ -4,13 +4,14 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 import { useAuth } from '@/providers/AuthProvider';
+import { supabase } from '@/lib/supabase';
 import { Header } from '@/components/features/home/Header';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { UserPlus, Mail, Lock, User, AlertCircle } from 'lucide-react';
+import { UserPlus, Mail, Lock, User, AlertCircle, CheckCircle2 } from 'lucide-react';
 import Link from 'next/link';
 
 export default function RegisterPage() {
@@ -22,10 +23,12 @@ export default function RegisterPage() {
   const [fullName, setFullName] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [emailSent, setEmailSent] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+    setEmailSent(false);
 
     if (password.length < 6) {
       setError(t('errors.weakPassword'));
@@ -35,16 +38,61 @@ export default function RegisterPage() {
     setLoading(true);
 
     try {
-      const { error } = await signUp(email, password, fullName);
+      const { error, data } = await signUp(email, password, fullName);
       
       if (error) {
         setError(error.message || t('errors.emailExists'));
         setLoading(false);
         return;
       }
+
+      // Vérifier si l'utilisateur est vérifié (email confirmé)
+      const user = data?.user;
+      const isEmailConfirmed = user?.email_confirmed_at !== null;
       
-      // Attendre un peu pour que l'utilisateur soit bien connecté et le profil chargé
-      // (onAuthStateChange devrait se déclencher)
+      console.log('📧 [Register] Statut vérification email:', {
+        userId: user?.id,
+        email: user?.email,
+        emailConfirmed: isEmailConfirmed,
+        emailConfirmedAt: user?.email_confirmed_at
+      });
+
+      if (!isEmailConfirmed) {
+        // L'utilisateur doit confirmer son email
+        console.log('📧 [Register] Email non confirmé, affichage du message de confirmation');
+        setEmailSent(true);
+        setLoading(false);
+        return;
+      }
+
+      // Si l'email est confirmé, attendre que la session soit créée
+      console.log('✅ [Register] Email confirmé, attente de la session...');
+      
+      // Attendre que la session soit créée (jusqu'à 5 secondes)
+      let sessionCreated = false;
+      let attempts = 0;
+      const maxAttempts = 10; // 5 secondes max
+      
+      while (!sessionCreated && attempts < maxAttempts) {
+        await new Promise(resolve => setTimeout(resolve, 500));
+        attempts++;
+        
+        // Vérifier si une session existe maintenant
+        const { data: { session } } = await supabase.auth.getSession();
+        if (session?.user) {
+          console.log('✅ [Register] Session créée après', attempts, 'tentatives');
+          sessionCreated = true;
+          break;
+        }
+        
+        console.log(`⏳ [Register] Tentative ${attempts}/${maxAttempts} - Session pas encore créée...`);
+      }
+      
+      if (!sessionCreated) {
+        console.warn('⚠️ [Register] Session non créée après attente, redirection quand même...');
+      }
+      
+      // Attendre encore un peu pour que le profil soit chargé
       await new Promise(resolve => setTimeout(resolve, 1000));
       
       // Récupérer le redirect depuis la query string avec valeur par défaut
@@ -71,13 +119,47 @@ export default function RegisterPage() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              {error && (
-                <Alert variant="destructive">
-                  <AlertCircle className="h-4 w-4" />
-                  <AlertDescription>{error}</AlertDescription>
+            {emailSent ? (
+              <div className="space-y-4">
+                <Alert className="border-green-500 bg-green-50">
+                  <CheckCircle2 className="h-4 w-4 text-green-600" />
+                  <AlertDescription className="text-green-800">
+                    <strong>Email de confirmation envoyé !</strong>
+                    <p className="mt-2 text-sm">
+                      Nous avons envoyé un email de confirmation à <strong>{email}</strong>.
+                      Veuillez cliquer sur le lien dans l'email pour vérifier votre compte et continuer vers le paiement.
+                    </p>
+                    <p className="mt-3 text-xs text-green-700">
+                      💡 <strong>Astuce :</strong> Vérifiez aussi vos spams si vous ne voyez pas l'email.
+                    </p>
+                  </AlertDescription>
                 </Alert>
-              )}
+                <Button
+                  onClick={() => {
+                    setEmailSent(false);
+                    setEmail('');
+                    setPassword('');
+                    setFullName('');
+                  }}
+                  variant="outline"
+                  className="w-full"
+                >
+                  Créer un autre compte
+                </Button>
+                <div className="text-center text-sm text-muted-foreground">
+                  <Link href="/auth/login" className="text-primary hover:underline">
+                    Déjà un compte ? Se connecter
+                  </Link>
+                </div>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-4">
+                {error && (
+                  <Alert variant="destructive">
+                    <AlertCircle className="h-4 w-4" />
+                    <AlertDescription>{error}</AlertDescription>
+                  </Alert>
+                )}
 
               <div className="space-y-2">
                 <Label htmlFor="fullName">{t('register.fullName')}</Label>
@@ -135,13 +217,14 @@ export default function RegisterPage() {
                 {loading ? 'Inscription...' : t('register.submit')}
               </Button>
 
-              <div className="text-center text-sm text-muted-foreground">
-                {t('register.hasAccount')}{' '}
-                <Link href="/auth/login" className="text-primary hover:underline">
-                  {t('register.login')}
-                </Link>
-              </div>
-            </form>
+                <div className="text-center text-sm text-muted-foreground">
+                  {t('register.hasAccount')}{' '}
+                  <Link href="/auth/login" className="text-primary hover:underline">
+                    {t('register.login')}
+                  </Link>
+                </div>
+              </form>
+            )}
           </CardContent>
         </Card>
       </main>

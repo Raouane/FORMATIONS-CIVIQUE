@@ -9,7 +9,7 @@ interface AuthContextType {
   session: Session | null;
   loading: boolean;
   signIn: (email: string, password: string) => Promise<{ error: any }>;
-  signUp: (email: string, password: string, fullName: string) => Promise<{ error: any }>;
+  signUp: (email: string, password: string, fullName: string) => Promise<{ error: any; data?: { user: User | null } }>;
   signOut: () => Promise<void>;
   isPremium: boolean;
   refreshPremiumStatus: () => Promise<void>;
@@ -244,43 +244,29 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         }
 
         // Retourner un succès car l'utilisateur est maintenant connecté
-        return { error: null };
+        return { error: null, data: { user: signInData.user } };
       }
     }
 
-    // Si l'inscription a réussi, créer le profil (le trigger SQL peut aussi le faire)
+    // Si l'inscription a réussi, le profil sera créé par le trigger SQL
+    // On ne tente pas de créer le profil manuellement car :
+    // 1. Si l'email n'est pas confirmé, l'utilisateur n'a pas de session → erreur 401 (RLS)
+    // 2. Le trigger SQL le fera automatiquement quand l'utilisateur confirmera son email
+    // 3. Si l'email est confirmé, onAuthStateChange créera le profil
     if (!error && data.user) {
-      // Vérifier d'abord si le profil existe déjà (créé par le trigger)
-      const { data: existingProfile } = await supabase
-        .from('fc_profiles')
-        .select('id')
-        .eq('id', data.user.id)
-        .single();
-
-      // Si le profil n'existe pas, le créer manuellement
-      if (!existingProfile) {
-        console.log('📝 [Auth] Création manuelle du profil fc_profiles...');
-        const { error: profileError } = await supabase
-          .from('fc_profiles')
-          .insert({
-            id: data.user.id,
-            email: data.user.email!,
-            full_name: fullName,
-            objective: 'A2',
-            is_premium: false,
-          });
-
-        if (profileError) {
-          console.error('❌ [Auth] Erreur lors de la création du profil:', profileError);
-        } else {
-          console.log('✅ [Auth] Profil fc_profiles créé avec succès');
-        }
+      console.log('✅ [Auth] Inscription réussie, userId:', data.user.id);
+      console.log('📧 [Auth] Email confirmé:', data.user.email_confirmed_at ? 'Oui' : 'Non');
+      
+      // Si l'email est confirmé, onAuthStateChange devrait se déclencher et créer le profil
+      // Si l'email n'est pas confirmé, l'utilisateur devra confirmer avant d'avoir une session
+      if (data.user.email_confirmed_at) {
+        console.log('✅ [Auth] Email confirmé, le profil sera créé par onAuthStateChange');
       } else {
-        console.log('✅ [Auth] Profil fc_profiles déjà créé par le trigger SQL');
+        console.log('📧 [Auth] Email non confirmé, le profil sera créé après confirmation');
       }
     }
 
-    return { error };
+    return { error, data: data ? { user: data.user } : undefined };
   };
 
   const signOut = async () => {
