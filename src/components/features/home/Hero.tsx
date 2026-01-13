@@ -1,7 +1,9 @@
 'use client';
 
+import { useEffect } from 'react';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
+import { useAuth } from '@/providers/AuthProvider';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Check, ChevronDown, Sparkles } from 'lucide-react';
@@ -9,6 +11,17 @@ import { Check, ChevronDown, Sparkles } from 'lucide-react';
 export function Hero() {
   const { t } = useTranslation('home');
   const router = useRouter();
+  const { isPremium, user } = useAuth();
+
+  // Debug: Afficher le statut premium dans la console à chaque changement
+  useEffect(() => {
+    if (typeof window !== 'undefined' && user) {
+      console.log('🎯 [Hero] Statut premium actuel:', isPremium, 'pour user:', user.id);
+      console.log('🎯 [Hero] Type de isPremium:', typeof isPremium);
+      console.log('🎯 [Hero] isPremium === true?', isPremium === true);
+      console.log('🎯 [Hero] !isPremium?', !isPremium);
+    }
+  }, [isPremium, user]);
 
   const advantages = [
     t('hero.advantages.question1'),
@@ -59,15 +72,18 @@ export function Hero() {
               <ChevronDown className="ml-2 h-5 w-5" />
             </Button>
             
-            <Button
-              size="lg"
-              onClick={() => router.push('/pricing')}
-              variant="outline"
-              className="text-lg px-8 py-6 w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white border-white/30 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 backdrop-blur-sm"
-            >
-              <Sparkles className="mr-2 h-5 w-5" />
-              Passer Premium
-            </Button>
+            {/* Masquer le bouton "Passer Premium" si l'utilisateur est déjà premium */}
+            {isPremium !== true && (
+              <Button
+                size="lg"
+                onClick={() => router.push('/pricing')}
+                variant="outline"
+                className="text-lg px-8 py-6 w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white border-white/30 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 backdrop-blur-sm"
+              >
+                <Sparkles className="mr-2 h-5 w-5" />
+                Passer Premium
+              </Button>
+            )}
           </div>
         </div>
       </div>

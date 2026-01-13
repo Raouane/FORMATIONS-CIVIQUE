@@ -299,7 +299,7 @@ export default function ResultsPage() {
             {t('actions.retry')}
           </Button>
           {/* Bouton Premium dans les actions */}
-          {!isPremium && (
+          {isPremium !== true && (
             <Button 
               onClick={() => router.push('/pricing')}
               className="bg-primary hover:bg-primary/90"

@@ -161,7 +161,7 @@ export default function ProfilePage() {
               >
                 Commencer une simulation
               </Button>
-              {!isPremium && (
+              {isPremium !== true && (
                 <Button
                   onClick={() => router.push('/pricing')}
                   variant="outline"
