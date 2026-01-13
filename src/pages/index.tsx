@@ -20,23 +20,28 @@ export default function Home() {
     if (router.query.premium_activated === 'true') {
       console.log('🎉 [Home] Premium activé détecté, rafraîchissement du statut...');
       // Attendre un peu pour que le webhook ait le temps de s'exécuter
+      let isMounted = true;
       const refreshStatus = async () => {
-        // Rafraîchir plusieurs fois pour être sûr
+        // Attendre 2 secondes pour que le webhook s'exécute
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        if (!isMounted) return;
+        
+        // Rafraîchir une fois
         await refreshPremiumStatus();
-        setTimeout(async () => {
-          await refreshPremiumStatus();
-          console.log('✅ [Home] Statut premium rafraîchi (2ème tentative), isPremium:', isPremium);
-        }, 2000);
-        setTimeout(async () => {
-          await refreshPremiumStatus();
-          console.log('✅ [Home] Statut premium rafraîchi (3ème tentative), isPremium:', isPremium);
-          // Nettoyer l'URL après le dernier rafraîchissement
+        console.log('✅ [Home] Statut premium rafraîchi, isPremium:', isPremium);
+        
+        // Nettoyer l'URL après le rafraîchissement
+        if (isMounted) {
           router.replace('/', undefined, { shallow: true });
-        }, 4000);
+        }
       };
       refreshStatus();
+      
+      return () => {
+        isMounted = false;
+      };
     }
-  }, [router.query.premium_activated, refreshPremiumStatus, router]);
+  }, [router.query.premium_activated, refreshPremiumStatus, router, isPremium]);
 
   return (
     <div className="min-h-screen flex flex-col">

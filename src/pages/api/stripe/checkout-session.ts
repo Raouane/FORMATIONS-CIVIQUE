@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import Stripe from 'stripe';
-import { supabase } from '@/lib/supabase';
+import { supabase, createServiceRoleClient } from '@/lib/supabase';
 
 // Vérifier que STRIPE_SECRET_KEY est définie
 const stripeKey = process.env.STRIPE_SECRET_KEY;
@@ -10,6 +10,16 @@ if (!stripeKey) {
 } else {
   console.log('✅ [Stripe API] STRIPE_SECRET_KEY is defined, length:', stripeKey.length);
   console.log('✅ [Stripe API] Key starts with:', stripeKey.substring(0, 7) + '...');
+}
+
+// Vérifier que SUPABASE_SERVICE_ROLE_KEY est définie
+const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+if (!serviceRoleKey) {
+  console.error('❌ [Stripe API] SUPABASE_SERVICE_ROLE_KEY is not defined');
+  console.error('❌ [Stripe API] Redémarrez le serveur Next.js après avoir ajouté la clé dans .env.local');
+} else {
+  console.log('✅ [Stripe API] SUPABASE_SERVICE_ROLE_KEY is defined, length:', serviceRoleKey.length);
+  console.log('✅ [Stripe API] Key starts with:', serviceRoleKey.substring(0, 20) + '...');
 }
 
 const stripe = stripeKey 
@@ -58,6 +68,7 @@ export default async function handler(
     // Récupérer l'utilisateur depuis le token d'authentification dans les headers
     let userId: string | null = null;
     let customerEmail: string | undefined;
+    let existingCustomerId: string | undefined;
 
     try {
       // Récupérer le token depuis les headers Authorization
@@ -88,22 +99,30 @@ export default async function handler(
       userId = user.id;
       console.log('✅ [Checkout API] Utilisateur authentifié:', userId);
 
-      // Récupérer l'email depuis le profil
-      console.log('📧 [Checkout API] Récupération de l\'email...');
-      const { data: profile, error: profileError } = await supabase
+      // Récupérer l'email et le stripe_customer_id depuis le profil
+      console.log('📧 [Checkout API] Récupération du profil...');
+      const { data: profileData, error: profileError } = await supabase
         .from('fc_profiles')
-        .select('email')
+        .select('email, stripe_customer_id')
         .eq('id', userId)
-        .single();
+        .maybeSingle(); // Utiliser maybeSingle() au lieu de single() pour éviter l'erreur si le profil n'existe pas
       
       if (profileError) {
         console.warn('⚠️ [Checkout API] Erreur récupération profil:', profileError.message);
         // Utiliser l'email de l'utilisateur Supabase en fallback
         customerEmail = user.email;
         console.log('📧 [Checkout API] Email depuis Supabase:', customerEmail);
-      } else {
-        customerEmail = profile?.email || user.email;
+      } else if (profileData) {
+        customerEmail = profileData.email || user.email;
         console.log('✅ [Checkout API] Email récupéré:', customerEmail);
+        if (profileData.stripe_customer_id) {
+          existingCustomerId = profileData.stripe_customer_id;
+          console.log('💳 [Checkout API] Customer Stripe existant trouvé:', existingCustomerId);
+        }
+      } else {
+        // Profil n'existe pas encore
+        console.log('ℹ️ [Checkout API] Profil n\'existe pas encore, utilisation de l\'email Supabase');
+        customerEmail = user.email;
       }
     } catch (userError: any) {
       console.error('Error retrieving user:', userError.message);
@@ -119,8 +138,57 @@ export default async function handler(
       });
     }
 
+    // Créer ou récupérer le customer Stripe
+    console.log('💳 [Checkout API] Création/récupération du customer Stripe...');
+    let stripeCustomerId = existingCustomerId;
+    
+    // Si aucun customer n'existe, en créer un explicitement
+    if (!stripeCustomerId && customerEmail) {
+      try {
+        console.log('💳 [Checkout API] Création d\'un nouveau customer Stripe...');
+        const customer = await stripe.customers.create({
+          email: customerEmail,
+          metadata: {
+            userId: userId || 'anonymous',
+          },
+        });
+        stripeCustomerId = customer.id;
+        console.log('✅ [Checkout API] Customer Stripe créé:', stripeCustomerId);
+        
+        // Enregistrer le customer ID dans le profil (optionnel, le webhook le fera aussi)
+        try {
+          // Diagnostic : vérifier si la clé est chargée
+          const hasServiceRoleKey = !!process.env.SUPABASE_SERVICE_ROLE_KEY;
+          console.log('🔑 [Checkout API] SUPABASE_SERVICE_ROLE_KEY disponible:', hasServiceRoleKey);
+          if (!hasServiceRoleKey) {
+            console.error('❌ [Checkout API] SUPABASE_SERVICE_ROLE_KEY n\'est pas chargée. Redémarrez le serveur Next.js !');
+            throw new Error('Missing SUPABASE_SERVICE_ROLE_KEY - Redémarrez le serveur Next.js');
+          }
+          
+          const supabaseAdmin = createServiceRoleClient();
+          const { error: updateError } = await supabaseAdmin
+            .from('fc_profiles')
+            .update({ stripe_customer_id: stripeCustomerId })
+            .eq('id', userId);
+          
+          if (updateError) {
+            console.warn('⚠️ [Checkout API] Erreur lors de l\'enregistrement du customer ID (sera fait par webhook):', updateError.message);
+          } else {
+            console.log('✅ [Checkout API] Customer ID enregistré dans le profil');
+          }
+        } catch (updateError: any) {
+          console.warn('⚠️ [Checkout API] Exception lors de l\'enregistrement du customer ID (sera fait par webhook):', updateError.message);
+        }
+      } catch (customerError: any) {
+        console.error('❌ [Checkout API] Erreur lors de la création du customer:', customerError.message);
+        // Continuer avec customer_email en fallback
+        console.log('⚠️ [Checkout API] Utilisation de customer_email en fallback');
+      }
+    }
+    
     // Créer la session Stripe
     console.log('💳 [Checkout API] Création de la session Stripe...');
+    
     const sessionParams: Stripe.Checkout.SessionCreateParams = {
       mode: planType === 'one-time' ? 'payment' : 'subscription',
       payment_method_types: ['card'],
@@ -140,7 +208,8 @@ export default async function handler(
       ],
       success_url: `${process.env.NEXT_PUBLIC_APP_URL}/pricing?success=true&session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/pricing?canceled=true`,
-      customer_email: customerEmail,
+      // Utiliser le customer créé/récupéré, sinon fallback sur customer_email
+      ...(stripeCustomerId ? { customer: stripeCustomerId } : { customer_email: customerEmail }),
       metadata: {
         userId: userId || 'anonymous',
         planType,

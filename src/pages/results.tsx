@@ -19,6 +19,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { QuestionCard } from '@/components/features/exam/QuestionCard';
 import { CircularProgress } from '@/components/ui/circular-progress';
 import { PremiumCTA } from '@/components/features/premium/PremiumCTA';
+import { InstallButton } from '@/components/features/navigation/InstallButton';
 
 export default function ResultsPage() {
   const router = useRouter();
@@ -316,6 +317,24 @@ export default function ResultsPage() {
             </Button>
           )}
         </div>
+
+        {/* Suggestion d'installation après un test réussi - Moment optimal */}
+        {examResult.passed && examResult.percentage >= 80 && (
+          <Card className="mt-8 border-primary bg-gradient-to-br from-primary/5 to-primary/10">
+            <CardContent className="pt-6">
+              <div className="flex items-start gap-3">
+                <Sparkles className="h-5 w-5 text-primary mt-0.5 shrink-0" />
+                <div className="flex-1">
+                  <h3 className="font-semibold mb-1">📱 Continuez à réviser partout</h3>
+                  <p className="text-sm text-muted-foreground mb-3">
+                    Excellent résultat ! Installez l'application pour accéder à vos révisions depuis votre écran d'accueil.
+                  </p>
+                  <InstallButton variant="default" size="sm" showIOSInstructions={true} />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        )}
       </main>
     </div>
   );

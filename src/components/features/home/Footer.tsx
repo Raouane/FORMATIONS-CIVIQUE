@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { Shield, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { InstallButton } from '../navigation/InstallButton';
 
 export function Footer() {
   const router = useRouter();
@@ -20,6 +21,12 @@ export function Footer() {
             <span className="font-bold text-lg">{t('footer.republic')}</span>
           </div>
           <div className="flex flex-wrap items-center gap-4">
+            {/* Bouton d'installation PWA - discret dans le footer */}
+            <InstallButton
+              variant="ghost"
+              className="text-primary-foreground hover:bg-primary-foreground/10"
+              showText={true}
+            />
             <Button
               variant="ghost"
               className="text-primary-foreground hover:bg-primary-foreground/10"

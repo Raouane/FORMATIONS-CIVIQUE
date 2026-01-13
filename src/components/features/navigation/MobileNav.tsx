@@ -18,6 +18,7 @@ import {
 } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { PremiumBadge } from '@/components/features/premium/PremiumBadge';
+import { InstallButton } from '../navigation/InstallButton';
 import { Menu, Book, Play, FileText, Users } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -147,6 +148,13 @@ export function MobileNav() {
                 <span className="text-base">{t('nav.logout')}</span>
               </Button>
             )}
+
+            {/* Bouton d'installation PWA - discret dans le menu mobile */}
+            <div className="pt-2 border-t mt-2">
+              <div className="px-4 py-2">
+                <InstallButton variant="outline" size="sm" className="w-full" />
+              </div>
+            </div>
           </div>
 
           {/* Bouton CTA en bas - Masqué pour les Premium */}

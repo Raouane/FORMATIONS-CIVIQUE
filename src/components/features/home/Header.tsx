@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { PremiumBadge } from '@/components/features/premium/PremiumBadge';
 import { MobileNav } from '../navigation/MobileNav';
 import { LanguageSelector } from '../navigation/LanguageSelector';
+import { InstallButton } from '../navigation/InstallButton';
 
 export function Header() {
   const router = useRouter();
@@ -36,6 +37,10 @@ export function Header() {
           {/* Sélecteur de langue - visible sur mobile et desktop */}
           <div className="flex items-center gap-4">
             <LanguageSelector />
+            {/* Bouton d'installation PWA - discret, visible uniquement si installable */}
+            <div className="hidden md:block">
+              <InstallButton variant="ghost" size="sm" compact showText={false} />
+            </div>
             <div className="hidden md:flex items-center gap-2">
               {user ? (
                 <>

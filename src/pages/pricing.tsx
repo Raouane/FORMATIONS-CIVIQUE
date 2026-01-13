@@ -8,6 +8,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from '@/components/ui/badge';
 import { Toast } from '@/components/ui/toast';
 import { Confetti } from '@/components/features/premium/Confetti';
+import { InstallButton } from '@/components/features/navigation/InstallButton';
 import { CheckCircle2, Sparkles, ArrowLeft, Users, Shield } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/providers/AuthProvider';
@@ -65,7 +66,8 @@ export default function PricingPage() {
         // Attendre encore 3 secondes pour que l'utilisateur puisse voir le message de félicitations
         setTimeout(() => {
           console.log('🚀 [Pricing] Redirection vers la page d\'accueil');
-          router.push('/?premium_activated=true');
+          // Utiliser window.location pour éviter l'erreur "Loading initial props cancelled"
+          window.location.href = '/?premium_activated=true';
         }, 3000);
       }, 3000);
     } else {
@@ -382,7 +384,7 @@ export default function PricingPage() {
         </div>
       </main>
 
-      {/* Toast de succès */}
+      {/* Toast de succès avec suggestion d'installation */}
       <Toast
         open={showToast}
         onOpenChange={setShowToast}
@@ -391,6 +393,25 @@ export default function PricingPage() {
         variant="success"
         duration={8000}
       />
+      
+      {/* Carte d'installation après paiement réussi - Moment optimal pour proposer l'installation */}
+      {showToast && (
+        <div className="fixed bottom-4 left-4 right-4 z-50 md:left-auto md:right-4 md:w-96">
+          <Card className="shadow-lg border-primary bg-gradient-to-br from-primary/5 to-primary/10">
+            <CardContent className="pt-6">
+              <div className="flex items-start gap-3">
+                <div className="flex-1">
+                  <h3 className="font-semibold mb-1">📱 Révisez partout, même sans connexion</h3>
+                  <p className="text-sm text-muted-foreground mb-3">
+                    Installez l'application pour accéder à vos révisions depuis votre écran d'accueil.
+                  </p>
+                  <InstallButton variant="default" size="sm" showIOSInstructions={true} />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      )}
 
       {/* Animation de confettis */}
       <Confetti trigger={showConfetti} duration={6000} />
