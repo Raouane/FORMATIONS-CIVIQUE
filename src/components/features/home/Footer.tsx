@@ -51,9 +51,24 @@ export function Footer() {
             </Button>
           </div>
         </div>
-        <div className="border-t border-primary-foreground/20 pt-6 text-center text-sm text-primary-foreground/80">
-          <p>{t('footer.copyright')}</p>
-          <p className="mt-2">{t('footer.description')}</p>
+        <div className="border-t border-primary-foreground/20 pt-6">
+          <div className="text-center text-sm text-primary-foreground/80 mb-4">
+            <p>{t('footer.copyright')}</p>
+            <p className="mt-2">{t('footer.description')}</p>
+            <p className="mt-2 text-xs text-primary-foreground/60 italic">
+              {t('footer.notOfficial', { defaultValue: 'Ce site n\'est pas un site officiel du gouvernement français' })}
+            </p>
+          </div>
+          
+          {/* Logos de paiement */}
+          <div className="flex items-center justify-center gap-3 mt-4 pt-4 border-t border-primary-foreground/20">
+            <span className="text-xs text-primary-foreground/60 mr-2">Paiement sécurisé :</span>
+            <div className="flex items-center gap-2">
+              <div className="bg-white rounded px-2 py-1 text-xs font-semibold text-gray-700">VISA</div>
+              <div className="bg-white rounded px-2 py-1 text-xs font-semibold text-gray-700">Mastercard</div>
+              <div className="bg-white rounded px-2 py-1 text-xs font-semibold text-gray-700">CB</div>
+            </div>
+          </div>
         </div>
       </div>
     </footer>

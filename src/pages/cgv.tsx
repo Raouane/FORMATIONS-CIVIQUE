@@ -57,12 +57,14 @@ export default function CGVPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold mb-4">3. Modalités de paiement</h2>
+              <h2 className="text-2xl font-semibold mb-4">3. Prix et paiement</h2>
               <p>
-                Le paiement s'effectue par carte bancaire via la plateforme sécurisée <strong>Stripe</strong>.
+                Les prix sont indiqués en <strong>Euros TTC (Toutes Taxes Comprises)</strong>. 
+                Le paiement est exigible immédiatement à la commande par carte bancaire via le prestataire 
+                sécurisé <strong>Stripe</strong>.
               </p>
               <p>
-                Les cartes bancaires acceptées sont : Visa, Mastercard, American Express.
+                Les cartes bancaires acceptées sont : Visa, Mastercard, American Express, Cartes Bancaires (CB).
               </p>
             </section>
 
@@ -70,14 +72,13 @@ export default function CGVPage() {
               <h2 className="text-2xl font-semibold mb-4">4. Droit de rétractation</h2>
               <p>
                 Conformément à l'article L.221-28 du Code de la consommation, le droit de rétractation 
-                ne peut être exercé pour les contrats de fourniture de contenu numérique qui ne sont pas 
-                fournis sur un support matériel, dont l'exécution a commencé après accord préalable 
-                exprès du consommateur et renonciation expresse à son droit de rétractation.
+                ne peut être exercé pour la fourniture de contenus numériques non fournis sur un support 
+                matériel dont l'exécution a commencé après accord préalable exprès du consommateur et 
+                renonciation expresse à son droit de rétractation.
               </p>
-              <p className="mt-4">
-                <strong>En acceptant ces CGV et en procédant au paiement, vous reconnaissez avoir 
-                expressément demandé l'exécution immédiate du service et renoncé à votre droit de 
-                rétractation.</strong>
+              <p className="mt-4 p-4 bg-yellow-50 border-l-4 border-yellow-400">
+                <strong>En validant votre achat Premium, vous acceptez l'accès immédiat au contenu et 
+                renoncez expressément à votre droit de rétractation de 14 jours.</strong>
               </p>
             </section>
 
@@ -122,12 +123,16 @@ export default function CGVPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold mb-4">8. Contact</h2>
+              <h2 className="text-2xl font-semibold mb-4">8. Support et réclamations</h2>
               <p>
-                Pour toute question concernant ces CGV, vous pouvez nous contacter à :
+                Pour toute question, réclamation ou problème technique concernant ces CGV ou votre abonnement, 
+                vous pouvez contacter le support à :
               </p>
-              <p>
+              <p className="mt-2">
                 <strong>Email :</strong> support@formations-civiques.fr
+              </p>
+              <p className="mt-4">
+                Nous nous engageons à répondre à toutes les demandes dans un délai de 48 heures ouvrables.
               </p>
             </section>
           </CardContent>

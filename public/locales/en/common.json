@@ -42,11 +42,12 @@
     "questions": "questions"
   },
   "footer": {
-    "republic": "French Republic",
+    "republic": "Civic Training",
     "citizenBooklet": "Citizen's Handbook (PDF)",
     "legalNotice": "Legal Notice",
     "privacyPolicy": "Privacy Policy",
-    "copyright": "© 2024 French Republic. All rights reserved.",
-    "description": "Official platform for preparing for the 2026 civic training exam"
+    "copyright": "© 2026 Civic Training - Private site independent of the administration",
+    "description": "Private platform for preparing for the 2026 civic training exam",
+    "notOfficial": "This site is not an official website of the French government"
   }
 }

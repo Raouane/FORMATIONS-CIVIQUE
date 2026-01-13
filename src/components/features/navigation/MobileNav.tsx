@@ -70,16 +70,16 @@ export function MobileNav() {
         <SheetTitle className="sr-only">Menu de navigation</SheetTitle>
         <SheetDescription className="sr-only">Menu principal de navigation</SheetDescription>
         <div className="flex flex-col h-full">
-          {/* Header avec logo RF */}
+          {/* Header avec logo FC (Formations Civiques) */}
           <div className="p-6 border-b">
             <SheetClose asChild>
               <button
                 onClick={() => handleNavigation('/')}
                 className="flex items-center gap-3 w-full hover:opacity-80 transition-opacity cursor-pointer"
               >
-                {/* Logo RF - carré bleu arrondi */}
+                {/* Logo FC - carré bleu arrondi */}
                 <div className="w-12 h-12 rounded-lg bg-primary flex items-center justify-center shadow-sm flex-shrink-0">
-                  <span className="text-white font-bold text-xl">RF</span>
+                  <span className="text-white font-bold text-xl">FC</span>
                 </div>
                 <div className={cn("flex-1", isRTL(router.locale) ? "text-right" : "text-left")}>
                   <div className="flex items-center gap-2">
