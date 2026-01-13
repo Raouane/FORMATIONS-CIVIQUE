@@ -22,6 +22,11 @@ export default function RevisionPage() {
   const [loading, setLoading] = useState(true);
   const locale = (router.locale || 'fr') as 'fr' | 'en' | 'ar';
 
+  // Debug: Logger les changements de selectedLevel
+  useEffect(() => {
+    console.log('[Revision] selectedLevel a changé:', selectedLevel);
+  }, [selectedLevel]);
+
   // Charger les chapitres depuis la BD
   useEffect(() => {
     async function loadChapters() {
@@ -63,11 +68,31 @@ export default function RevisionPage() {
   // Filtrer le contenu par niveau si sélectionné
   const filteredContent = useMemo(() => {
     if (!chapters || chapters.length === 0) {
+      console.log('[Revision] Aucun chapitre disponible');
       return [];
     }
-    return selectedLevel === 'all'
+    
+    console.log('[Revision] Filtrage:', {
+      selectedLevel,
+      totalChapters: chapters.length,
+      chaptersByLevel: {
+        all: chapters.length,
+        A2: chapters.filter(c => c.level === UserLevel.A2).length,
+        B1: chapters.filter(c => c.level === UserLevel.B1).length,
+        B2: chapters.filter(c => c.level === UserLevel.B2).length,
+      }
+    });
+    
+    const filtered = selectedLevel === 'all'
       ? chapters
-      : chapters.filter((chapter) => chapter.level === selectedLevel);
+      : chapters.filter((chapter) => {
+          const matches = chapter.level === selectedLevel;
+          console.log('[Revision] Chapitre:', chapter.id, 'level:', chapter.level, 'selectedLevel:', selectedLevel, 'matches:', matches);
+          return matches;
+        });
+    
+    console.log('[Revision] Résultat filtré:', filtered.length, 'chapitres');
+    return filtered;
   }, [chapters, selectedLevel]);
 
   // Grouper le contenu par thème
@@ -132,7 +157,11 @@ export default function RevisionPage() {
             <div>
               <Button
                 variant="ghost"
-                onClick={() => router.push('/')}
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  router.push('/');
+                }}
                 className="mb-4"
               >
                 <ArrowLeft className="h-4 w-4 mr-2 rtl:mr-0 rtl:ml-2 rtl-flip" />
@@ -151,30 +180,55 @@ export default function RevisionPage() {
           <div className="flex items-center gap-2 mb-6 flex-wrap">
             <span className="text-sm font-medium">{t('level.label')}:</span>
             <Button
+              type="button"
               variant={selectedLevel === 'all' ? 'default' : 'outline'}
               size="sm"
-              onClick={() => setSelectedLevel('all')}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('[Revision] Clic sur bouton Tous');
+                setSelectedLevel('all');
+              }}
             >
               {t('all')}
             </Button>
             <Button
+              type="button"
               variant={selectedLevel === UserLevel.A2 ? 'default' : 'outline'}
               size="sm"
-              onClick={() => setSelectedLevel(UserLevel.A2)}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('[Revision] Clic sur bouton A2');
+                setSelectedLevel(UserLevel.A2);
+              }}
             >
               {t('level.a2')}
             </Button>
             <Button
+              type="button"
               variant={selectedLevel === UserLevel.B1 ? 'default' : 'outline'}
               size="sm"
-              onClick={() => setSelectedLevel(UserLevel.B1)}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('[Revision] Clic sur bouton B1');
+                setSelectedLevel(UserLevel.B1);
+              }}
             >
               {t('level.b1')}
             </Button>
             <Button
+              type="button"
               variant={selectedLevel === UserLevel.B2 ? 'default' : 'outline'}
               size="sm"
-              onClick={() => setSelectedLevel(UserLevel.B2)}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('[Revision] Clic sur bouton B2, valeur UserLevel.B2:', UserLevel.B2);
+                setSelectedLevel(UserLevel.B2);
+                console.log('[Revision] selectedLevel mis à jour à:', UserLevel.B2);
+              }}
             >
               {t('level.b2')}
             </Button>
@@ -183,12 +237,30 @@ export default function RevisionPage() {
 
         {/* Contenu par thème */}
         <div className="space-y-6">
-          {Object.entries(contentByTheme).map(([theme, themeChapters]) => {
-            const themeInfo = getThemeInfo(theme as QuestionTheme);
-            if (!themeInfo) return null;
+          {Object.keys(contentByTheme).length === 0 ? (
+            <Card>
+              <CardContent className="pt-6 text-center">
+                <p className="text-muted-foreground">
+                  {selectedLevel === 'all' 
+                    ? t('noContent', { defaultValue: 'Aucun contenu disponible pour le moment.' })
+                    : t('noContentForLevel', { 
+                        defaultValue: `Aucun contenu disponible pour le niveau ${selectedLevel}.`,
+                        level: selectedLevel 
+                      })
+                  }
+                </p>
+                <p className="text-sm text-muted-foreground mt-2">
+                  {t('tryOtherLevel', { defaultValue: 'Essayez de sélectionner un autre niveau ou "Tous".' })}
+                </p>
+              </CardContent>
+            </Card>
+          ) : (
+            Object.entries(contentByTheme).map(([theme, themeChapters]) => {
+              const themeInfo = getThemeInfo(theme as QuestionTheme);
+              if (!themeInfo) return null;
 
-            return (
-              <Card key={theme}>
+              return (
+                <Card key={theme}>
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <div>
@@ -239,7 +311,8 @@ export default function RevisionPage() {
                 </CardContent>
               </Card>
             );
-          })}
+          })
+          )}
         </div>
 
         {/* Bouton Quiz Rapide */}
@@ -255,9 +328,15 @@ export default function RevisionPage() {
           </CardHeader>
           <CardContent>
             <Button
+              type="button"
               variant="secondary"
               size="lg"
-              onClick={() => router.push('/quiz-rapide')}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('[Revision] Clic sur bouton Quiz Rapide');
+                router.push('/quiz-rapide');
+              }}
               className="w-full md:w-auto"
             >
               <Play className="h-4 w-4 mr-2 rtl:mr-0 rtl:ml-2" />

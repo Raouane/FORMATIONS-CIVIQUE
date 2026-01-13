@@ -85,7 +85,7 @@ export function QuestionCard({
         options={question.options}
         selectedAnswer={selectedAnswer}
         onSelect={onSelectAnswer}
-        correctAnswer={showFeedback ? question.correct_answer : null}
+        correctAnswer={question.correct_answer}
         showFeedback={showFeedback}
         disabled={disabled}
       />

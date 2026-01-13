@@ -32,10 +32,10 @@ export function Themes() {
           {t('themes.title')}
         </h2>
         <p className="text-white/80 text-center mb-12 max-w-2xl mx-auto">
-          Couvrez l'ensemble des sujets du nouveau programme officiel 2026.
+          {t('themes.subtitle', { defaultValue: 'Couvrez l\'ensemble des sujets du nouveau programme officiel 2026.' })}
         </p>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
-          {THEMES_DATA.slice(0, 4).map((theme, index) => {
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 max-w-6xl mx-auto">
+          {THEMES_DATA.map((theme, index) => {
             const Icon = iconMap[theme.id] || Settings;
             const themeKey = theme.id.toLowerCase();
             const bgColor = themeColors[index % themeColors.length];

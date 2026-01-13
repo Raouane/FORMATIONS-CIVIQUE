@@ -38,6 +38,13 @@ export function Footer() {
             <Button
               variant="ghost"
               className="text-primary-foreground hover:bg-primary-foreground/10"
+              onClick={() => router.push('/cgv')}
+            >
+              CGV
+            </Button>
+            <Button
+              variant="ghost"
+              className="text-primary-foreground hover:bg-primary-foreground/10"
               onClick={() => router.push('/politique-confidentialite')}
             >
               {t('footer.privacyPolicy')}

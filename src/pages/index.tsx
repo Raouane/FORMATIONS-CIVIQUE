@@ -5,7 +5,6 @@ import { useEffect } from 'react';
 import { useAuth } from '@/providers/AuthProvider';
 import { Header } from '@/components/features/home/Header';
 import { Hero } from '@/components/features/home/Hero';
-import { Stats } from '@/components/features/home/Stats';
 import { PathSelector } from '@/components/features/home/PathSelector';
 import { HowItWorks } from '@/components/features/home/HowItWorks';
 import { Themes } from '@/components/features/home/Themes';
@@ -44,7 +43,6 @@ export default function Home() {
       <Header />
       <main className="flex-1">
         <Hero />
-        <Stats />
         <PathSelector />
         <HowItWorks />
         <Themes />

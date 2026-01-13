@@ -48,7 +48,8 @@ export function PathSelector() {
             const isA2 = path.level === UserLevel.A2;
             const cardBgColor = isA2 ? '#F5D76E' : 'transparent';
             const cardIconBg = isA2 ? '#F4D03F' : colors.iconBg;
-            const cardButtonBg = isA2 ? '#F5D76E' : colors.bg;
+            // Bouton avec couleur différente du fond pour A2 (bleu pour contraste)
+            const cardButtonBg = isA2 ? '#0050a1' : colors.bg;
             
             return (
               <Card 
@@ -103,7 +104,7 @@ export function PathSelector() {
                     </div>
                   </div>
                   <Button
-                    className={`w-full rounded-xl font-semibold shadow-md hover:shadow-lg transition-all duration-300 ${isA2 ? 'text-gray-900 hover:bg-[#F4D03F]' : 'text-white'}`}
+                    className={`w-full rounded-xl font-semibold shadow-md hover:shadow-lg transition-all duration-300 ${isA2 ? 'text-white hover:bg-[#003d7a]' : 'text-white'}`}
                     style={{ backgroundColor: cardButtonBg }}
                     onClick={() => handleStartPath(path.level)}
                   >

@@ -53,16 +53,22 @@ export function AnswerOptions({
       {optionsArray.map((option, index) => {
         const isSelected = selectedAnswer === index;
         const isCorrect = correctAnswer === index;
-        const isWrong = isSelected && showFeedback && !isCorrect;
+        // Afficher les couleurs immédiatement si une réponse est sélectionnée
+        const showImmediateFeedback = isSelected && correctAnswer !== null;
+        const isWrong = isSelected && showImmediateFeedback && !isCorrect;
 
         return (
           <div
             key={index}
             className={cn(
               'flex items-start space-x-3 rtl:space-x-reverse p-4 rounded-lg border-2 transition-all',
-              isSelected && !showFeedback && 'border-primary bg-primary/5',
+              // Si une réponse est sélectionnée et qu'on connaît la bonne réponse, afficher les couleurs
+              showImmediateFeedback && isCorrect && 'border-green-500 bg-green-50',
+              showImmediateFeedback && isWrong && 'border-red-500 bg-red-50',
+              // Si pas de feedback immédiat mais sélectionné, style par défaut
+              isSelected && !showImmediateFeedback && 'border-primary bg-primary/5',
+              // Si showFeedback est true, toujours mettre en évidence la bonne réponse
               showFeedback && isCorrect && 'border-green-500 bg-green-50',
-              showFeedback && isWrong && 'border-red-500 bg-red-50',
               disabled && 'opacity-60 cursor-not-allowed',
               !disabled && 'cursor-pointer hover:bg-gray-50'
             )}
@@ -80,6 +86,10 @@ export function AnswerOptions({
               htmlFor={`option-${index}`}
               className={cn(
                 'flex-1 cursor-pointer text-left rtl:text-right',
+                // Couleurs immédiates si feedback disponible
+                showImmediateFeedback && isCorrect && 'text-green-700 font-semibold',
+                showImmediateFeedback && isWrong && 'text-red-700',
+                // Couleurs avec showFeedback (pour la page de résultats)
                 showFeedback && isCorrect && 'text-green-700 font-semibold',
                 showFeedback && isWrong && 'text-red-700'
               )}
