@@ -78,70 +78,20 @@ export default function PricingPage() {
     }));
     console.log('🛒 [Pricing] Début du checkout - Plan:', planType);
     
-    // Attente intelligente de la session (jusqu'à 3 secondes)
-    // On essaie plusieurs fois car l'utilisateur vient peut-être de s'inscrire
-    let currentUser = user || authSession?.user;
-    let accessToken: string | null = authSession?.access_token || null;
+    // SIMPLIFICATION RADICALE : Juste getSession() et si session existe, on lance Stripe
+    const { data: { session } } = await supabase.auth.getSession();
     
-    if (!currentUser || !accessToken) {
-      console.log('⏳ [Pricing] Préparation du paiement...');
-      
-      // Attendre intelligemment jusqu'à 3 secondes
-      for (let attempt = 0; attempt < 6; attempt++) {
-        await new Promise(resolve => setTimeout(resolve, 500));
-        
-        // Essayer de récupérer la session
-        try {
-          const { data: { session: directSession } } = await supabase.auth.getSession();
-          if (directSession?.user && directSession?.access_token) {
-            currentUser = directSession.user;
-            accessToken = directSession.access_token;
-            console.log(`✅ [Pricing] Session trouvée après ${attempt + 1} tentative(s)`);
-            break;
-          }
-        } catch (error) {
-          console.log(`⏳ [Pricing] Tentative ${attempt + 1}/6...`);
-        }
-      }
-      
-      // Si toujours pas d'utilisateur, essayer getUser() en dernier recours
-      if (!currentUser) {
-        try {
-          const { data: { user: directUser }, error: getUserError } = await supabase.auth.getUser();
-          if (directUser && !getUserError) {
-            currentUser = directUser;
-            console.log('✅ [Pricing] Utilisateur trouvé via getUser()');
-            // Rafraîchir l'état auth
-            await refreshAuth();
-            // Réessayer de récupérer le token
-            const { data: { session: finalSession } } = await supabase.auth.getSession();
-            if (finalSession?.access_token) {
-              accessToken = finalSession.access_token;
-            }
-          }
-        } catch (error) {
-          console.error('❌ [Pricing] Erreur getUser():', error);
-        }
-      }
-    }
-    
-    // Si vraiment pas d'utilisateur après toutes les tentatives, afficher une alerte
-    if (!currentUser || !accessToken) {
-      console.warn('⚠️ [Pricing] Utilisateur non connecté - Affichage alerte');
-      alert('Veuillez vous connecter pour procéder au paiement.\n\nVous allez être redirigé vers la page d\'inscription.');
+    if (session?.access_token) {
+      console.log('✅ [Pricing] Session trouvée, lancement du paiement');
+      await proceedWithCheckout(session.access_token, planType);
+    } else {
+      console.warn('⚠️ [Pricing] Pas de session - Affichage message');
+      alert('Veuillez vous connecter pour procéder au paiement.');
       setLoading(prev => ({
         ...prev,
         [planType === 'one-time' ? 'oneTime' : 'monthly']: false,
       }));
-      router.push(`/auth/register?redirect=${encodeURIComponent('/pricing')}`);
-      return;
     }
-
-    console.log('✅ [Pricing] Utilisateur connecté:', currentUser.id);
-    console.log('✅ [Pricing] Token disponible, longueur:', accessToken.length);
-    
-    // Lancer le paiement
-    await proceedWithCheckout(accessToken, planType);
   };
 
   const proceedWithCheckout = async (accessToken: string, planType: 'one-time' | 'monthly') => {
@@ -184,9 +134,7 @@ export default function PricingPage() {
 
       if (data.error) {
         console.error('❌ [Pricing] Erreur Stripe:', data.error);
-        if (data.error.includes('connecté') || data.error.includes('authentification')) {
-          router.push(`/auth/login?redirect=${encodeURIComponent('/pricing')}`);
-        }
+        alert('Erreur lors de la préparation du paiement. Veuillez réessayer.');
         setLoading(prev => ({
           ...prev,
           [planType === 'one-time' ? 'oneTime' : 'monthly']: false,

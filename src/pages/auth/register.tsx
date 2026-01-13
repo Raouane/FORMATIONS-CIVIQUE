@@ -44,17 +44,10 @@ export default function RegisterPage() {
         return;
       }
 
-      // Si l'inscription réussit, rediriger DIRECTEMENT vers pricing
-      // On ne bloque plus sur la session - la page pricing gérera ça intelligemment
-      console.log('✅ [Register] Inscription réussie, redirection directe vers pricing');
-      
-      // Récupérer le redirect depuis la query string avec valeur par défaut /pricing
+      // Redirection FORCÉE immédiate vers pricing - pas de vérification
+      console.log('✅ [Register] Inscription réussie, redirection forcée vers pricing');
       const redirect = (router.query.redirect as string) || '/pricing';
-      console.log('🔄 [Register] Redirection vers:', redirect);
-      
-      // Redirection immédiate - pas d'attente
-      router.push(redirect);
-      setLoading(false);
+      window.location.href = redirect;
     } catch (err: any) {
       setError(err.message || t('errors.emailExists'));
       setLoading(false);
