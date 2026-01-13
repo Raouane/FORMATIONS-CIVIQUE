@@ -78,14 +78,25 @@ export default function PricingPage() {
     }));
     console.log('🛒 [Pricing] Début du checkout - Plan:', planType);
     
-    // SIMPLIFICATION RADICALE : Juste getSession() et si session existe, on lance Stripe
-    const { data: { session } } = await supabase.auth.getSession();
-    
-    if (session?.access_token) {
-      console.log('✅ [Pricing] Session trouvée, lancement du paiement');
-      await proceedWithCheckout(session.access_token, planType);
+    // SIMPLIFICATION RADICALE : Ne pas attendre isPremium, juste vérifier si user existe
+    // Si user est présent, on lance Stripe directement
+    if (user || authSession?.user) {
+      console.log('✅ [Pricing] Utilisateur présent, récupération de la session...');
+      const { data: { session } } = await supabase.auth.getSession();
+      
+      if (session?.access_token) {
+        console.log('✅ [Pricing] Session trouvée, lancement du paiement');
+        await proceedWithCheckout(session.access_token, planType);
+      } else {
+        console.warn('⚠️ [Pricing] Pas de session - Affichage message');
+        alert('Veuillez vous connecter pour procéder au paiement.');
+        setLoading(prev => ({
+          ...prev,
+          [planType === 'one-time' ? 'oneTime' : 'monthly']: false,
+        }));
+      }
     } else {
-      console.warn('⚠️ [Pricing] Pas de session - Affichage message');
+      console.warn('⚠️ [Pricing] Pas d\'utilisateur - Affichage message');
       alert('Veuillez vous connecter pour procéder au paiement.');
       setLoading(prev => ({
         ...prev,
@@ -208,7 +219,7 @@ export default function PricingPage() {
         </div>
 
         {/* Message si déjà premium */}
-        {isPremium && (
+        {isPremium && !authLoading && (
           <Card className="max-w-2xl mx-auto mb-8 border-2 border-primary bg-primary/5">
             <CardContent className="pt-6 text-center">
               <div className="flex items-center justify-center gap-2 mb-4">
@@ -225,8 +236,8 @@ export default function PricingPage() {
           </Card>
         )}
 
-        {/* Grille des deux offres côte à côte - Masquée si premium */}
-        {!isPremium && (
+        {/* Grille des deux offres côte à côte - Toujours affichée si pas premium ou en cours de chargement */}
+        {(!isPremium || authLoading) && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto mb-8">
           {/* Carte de gauche : Abonnement mensuel */}
           <Card className="border-2 border-border relative">

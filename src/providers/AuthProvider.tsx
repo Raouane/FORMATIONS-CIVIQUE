@@ -52,15 +52,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           setSession(session);
           setUser(session?.user ?? null);
           
-          if (session?.user) {
-            console.log('👤 [AuthProvider] Utilisateur trouvé:', session.user.id);
-            // ATTENDRE que le profil soit chargé avant de mettre loading à false
-            await fetchUserProfile(session.user.id);
-            console.log('✅ [AuthProvider] initializeSession - Profil chargé');
-          } else {
-            console.log('👤 [AuthProvider] Aucun utilisateur connecté');
-            setIsPremium(false);
-          }
+        if (session?.user) {
+          // Charger le profil sans bloquer
+          fetchUserProfile(session.user.id).catch(() => setIsPremium(false));
+        } else {
+          setIsPremium(false);
+        }
           
           if (mounted) {
             setLoading(false);
@@ -97,12 +94,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         setUser(session?.user ?? null);
         
         if (session?.user) {
-          console.log('👤 [AuthProvider] onAuthStateChange - Chargement du profil pour:', session.user.id);
-          // ATTENDRE que le profil soit chargé avant de mettre loading à false
-          await fetchUserProfile(session.user.id);
-          console.log('✅ [AuthProvider] onAuthStateChange - Profil chargé, isPremium devrait être à jour');
+          // Charger le profil sans bloquer
+          fetchUserProfile(session.user.id).catch(() => setIsPremium(false));
         } else {
-          console.log('👤 [AuthProvider] onAuthStateChange - Aucun utilisateur, isPremium = false');
           setIsPremium(false);
         }
         
@@ -121,39 +115,27 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const fetchUserProfile = async (userId: string) => {
     try {
-      console.log('🔍 [AuthProvider] fetchUserProfile DÉBUT pour userId:', userId);
       const { data, error } = await supabase
         .from('fc_profiles')
-        .select('is_premium') // Colonne SQL avec underscore
+        .select('is_premium')
         .eq('id', userId)
         .single();
 
       if (error) {
-        console.error('❌ [AuthProvider] Erreur lors de la récupération du profil:', error);
-        console.error('❌ [AuthProvider] Détails erreur:', error.message, error.code);
+        // Si le profil n'existe pas encore, c'est normal (sera créé par trigger)
+        if (error.code === 'PGRST116') {
+          setIsPremium(false);
+          return;
+        }
         setIsPremium(false);
-        return; // Ne pas throw, juste retourner
+        return;
       }
       
-      console.log('📊 [AuthProvider] Données récupérées complètes:', JSON.stringify(data, null, 2));
-      console.log('📊 [AuthProvider] Type de data:', typeof data);
-      console.log('📊 [AuthProvider] data?.is_premium (avec underscore):', data?.is_premium);
-      console.log('📊 [AuthProvider] Type de is_premium:', typeof data?.is_premium);
-      
-      // Transformation CRITIQUE : is_premium (SQL) → isPremium (React)
-      // Vérifier explicitement que la colonne existe avec l'underscore
+      // Transformation : is_premium (SQL) → isPremium (React)
       const premiumStatus = data?.is_premium === true || data?.is_premium === 'true';
-      console.log('✅ [AuthProvider] Transformation: is_premium (DB) =', data?.is_premium, '→ isPremium (React) =', premiumStatus);
-      
-      // Mettre à jour l'état
-      console.log('🔄 [AuthProvider] setIsPremium appelé avec:', premiumStatus);
       setIsPremium(premiumStatus);
-      console.log('✅ [AuthProvider] fetchUserProfile FIN - isPremium mis à jour à:', premiumStatus);
     } catch (error) {
-      console.error('❌ [AuthProvider] Error fetching user profile:', error);
-      console.error('❌ [AuthProvider] Stack:', error instanceof Error ? error.stack : 'N/A');
       setIsPremium(false);
-      console.log('⚠️ [AuthProvider] fetchUserProfile FIN avec erreur - isPremium = false');
     }
   };
 
@@ -182,10 +164,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
 
       if (session?.user) {
-        console.log('✅ [AuthProvider] Session trouvée lors du rafraîchissement:', session.user.id);
         setSession(session);
         setUser(session.user);
-        await fetchUserProfile(session.user.id);
+        // Charger le profil sans bloquer
+        fetchUserProfile(session.user.id).catch(() => setIsPremium(false));
       } else {
         console.log('👤 [AuthProvider] Aucune session trouvée lors du rafraîchissement');
         setSession(null);
@@ -206,11 +188,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       password,
     });
     
-    // Mettre à jour le profil immédiatement après la connexion
-    // (onAuthStateChange devrait aussi le faire, mais on veut être sûr)
-    if (!error && data?.user) {
-      await fetchUserProfile(data.user.id);
-    }
+    // onAuthStateChange chargera le profil automatiquement
     
     return { error };
   };
@@ -287,7 +265,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         // Mettre à jour l'état local
         setSession(signInData.session);
         setUser(signInData.user);
-        await fetchUserProfile(signInData.user.id);
+        // onAuthStateChange chargera le profil automatiquement
 
         // Retourner un succès car l'utilisateur est maintenant connecté
         return { error: null, data: { user: signInData.user, session: signInData.session } };
@@ -313,7 +291,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         // Mettre à jour l'état local
         setSession(data.session);
         setUser(data.user);
-        await fetchUserProfile(data.user.id);
+        // onAuthStateChange chargera le profil automatiquement
       }
     } else if (!error && data.user) {
       console.log('✅ [Auth] Inscription réussie, userId:', data.user.id);
@@ -331,7 +309,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           console.log('✅ [Auth] Session récupérée après attente');
           setSession(newSession);
           setUser(newSession.user);
-          await fetchUserProfile(newSession.user.id);
+          // onAuthStateChange chargera le profil automatiquement
           return { error: null, data: { user: data.user, session: newSession } };
         } else {
           console.log('⚠️ [Auth] Pas de session après attente, le profil sera créé par onAuthStateChange');
@@ -370,12 +348,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     [user, session, loading, isPremium]
   );
 
-  // Debug: Log quand isPremium change
-  useEffect(() => {
-    if (user) {
-      console.log('🔄 [AuthProvider] isPremium a changé:', isPremium, 'pour user:', user.id);
-    }
-  }, [isPremium, user]);
+  // Pas de log de boucle - on laisse React gérer les updates
 
   return (
     <AuthContext.Provider value={contextValue}>
