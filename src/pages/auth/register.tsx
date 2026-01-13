@@ -48,14 +48,34 @@ export default function RegisterPage() {
 
       // Vérifier si l'utilisateur est vérifié (email confirmé)
       const user = data?.user;
-      const isEmailConfirmed = user?.email_confirmed_at !== null;
+      const session = data?.session;
+      
+      // email_confirmed_at est null ou undefined si l'email n'est pas confirmé
+      // Il faut vérifier qu'il existe ET qu'il n'est pas null/undefined
+      const isEmailConfirmed = !!user?.email_confirmed_at;
       
       console.log('📧 [Register] Statut vérification email:', {
         userId: user?.id,
         email: user?.email,
         emailConfirmed: isEmailConfirmed,
-        emailConfirmedAt: user?.email_confirmed_at
+        emailConfirmedAt: user?.email_confirmed_at,
+        hasSession: !!session,
+        sessionUserId: session?.user?.id
       });
+
+      // Si une session est présente dans la réponse, l'utiliser directement
+      if (session?.user) {
+        console.log('✅ [Register] Session présente dans la réponse, redirection immédiate...');
+        // Attendre un peu pour que le profil soit chargé
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        // Récupérer le redirect depuis la query string avec valeur par défaut
+        const redirect = (router.query.redirect as string) || '/profile';
+        console.log('🔄 [Register] Redirection vers:', redirect);
+        router.push(redirect);
+        setLoading(false);
+        return;
+      }
 
       if (!isEmailConfirmed) {
         // L'utilisateur doit confirmer son email
@@ -65,7 +85,7 @@ export default function RegisterPage() {
         return;
       }
 
-      // Si l'email est confirmé, attendre que la session soit créée
+      // Si l'email est confirmé mais pas de session dans la réponse, attendre que la session soit créée
       console.log('✅ [Register] Email confirmé, attente de la session...');
       
       // Attendre que la session soit créée (jusqu'à 5 secondes)
@@ -78,8 +98,8 @@ export default function RegisterPage() {
         attempts++;
         
         // Vérifier si une session existe maintenant
-        const { data: { session } } = await supabase.auth.getSession();
-        if (session?.user) {
+        const { data: { session: currentSession } } = await supabase.auth.getSession();
+        if (currentSession?.user) {
           console.log('✅ [Register] Session créée après', attempts, 'tentatives');
           sessionCreated = true;
           break;
@@ -89,7 +109,16 @@ export default function RegisterPage() {
       }
       
       if (!sessionCreated) {
+        // Si la session n'est pas créée après 5 secondes, c'est probablement que l'email n'est pas confirmé
+        // ou que la confirmation d'email est activée dans Supabase
         console.warn('⚠️ [Register] Session non créée après attente, redirection quand même...');
+        
+        // Rediriger quand même vers pricing si c'était la destination
+        const redirect = (router.query.redirect as string) || '/profile';
+        console.log('🔄 [Register] Redirection vers:', redirect);
+        router.push(redirect);
+        setLoading(false);
+        return;
       }
       
       // Attendre encore un peu pour que le profil soit chargé

@@ -9,10 +9,11 @@ interface AuthContextType {
   session: Session | null;
   loading: boolean;
   signIn: (email: string, password: string) => Promise<{ error: any }>;
-  signUp: (email: string, password: string, fullName: string) => Promise<{ error: any; data?: { user: User | null } }>;
+  signUp: (email: string, password: string, fullName: string) => Promise<{ error: any; data?: { user: User | null; session: Session | null } }>;
   signOut: () => Promise<void>;
   isPremium: boolean;
   refreshPremiumStatus: () => Promise<void>;
+  refreshAuth: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -166,6 +167,39 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
+  // Fonction publique pour rafraîchir l'état d'authentification complet
+  const refreshAuth = async () => {
+    console.log('🔄 [AuthProvider] Rafraîchissement de l\'état auth...');
+    try {
+      const { data: { session }, error } = await supabase.auth.getSession();
+      
+      if (error) {
+        console.error('❌ [AuthProvider] Erreur lors du rafraîchissement:', error);
+        setSession(null);
+        setUser(null);
+        setIsPremium(false);
+        return;
+      }
+
+      if (session?.user) {
+        console.log('✅ [AuthProvider] Session trouvée lors du rafraîchissement:', session.user.id);
+        setSession(session);
+        setUser(session.user);
+        await fetchUserProfile(session.user.id);
+      } else {
+        console.log('👤 [AuthProvider] Aucune session trouvée lors du rafraîchissement');
+        setSession(null);
+        setUser(null);
+        setIsPremium(false);
+      }
+    } catch (error) {
+      console.error('❌ [AuthProvider] Exception lors du rafraîchissement:', error);
+      setSession(null);
+      setUser(null);
+      setIsPremium(false);
+    }
+  };
+
   const signIn = async (email: string, password: string) => {
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
@@ -210,7 +244,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
 
       // Si la connexion réussit, vérifier si le profil fc_profiles existe
-      if (signInData.user) {
+      if (signInData.user && signInData.session) {
+        // Forcer la session immédiatement
+        console.log('✅ [Auth] Connexion réussie, définition de la session...');
+        await supabase.auth.setSession({
+          access_token: signInData.session.access_token,
+          refresh_token: signInData.session.refresh_token,
+        });
+
         const { data: existingProfile, error: profileCheckError } = await supabase
           .from('fc_profiles')
           .select('id')
@@ -243,30 +284,64 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           console.log('✅ [Auth] Profil fc_profiles existe déjà');
         }
 
+        // Mettre à jour l'état local
+        setSession(signInData.session);
+        setUser(signInData.user);
+        await fetchUserProfile(signInData.user.id);
+
         // Retourner un succès car l'utilisateur est maintenant connecté
-        return { error: null, data: { user: signInData.user } };
+        return { error: null, data: { user: signInData.user, session: signInData.session } };
       }
     }
 
-    // Si l'inscription a réussi, le profil sera créé par le trigger SQL
-    // On ne tente pas de créer le profil manuellement car :
-    // 1. Si l'email n'est pas confirmé, l'utilisateur n'a pas de session → erreur 401 (RLS)
-    // 2. Le trigger SQL le fera automatiquement quand l'utilisateur confirmera son email
-    // 3. Si l'email est confirmé, onAuthStateChange créera le profil
-    if (!error && data.user) {
+    // Si l'inscription a réussi et qu'une session est présente, la forcer immédiatement
+    if (!error && data.user && data.session) {
+      console.log('✅ [Auth] Inscription réussie avec session, userId:', data.user.id);
+      console.log('📧 [Auth] Email confirmé:', data.user.email_confirmed_at ? 'Oui' : 'Non');
+      console.log('🔑 [Auth] Session présente dans la réponse, définition immédiate...');
+      
+      // Forcer la session immédiatement
+      const { error: setSessionError } = await supabase.auth.setSession({
+        access_token: data.session.access_token,
+        refresh_token: data.session.refresh_token,
+      });
+
+      if (setSessionError) {
+        console.error('❌ [Auth] Erreur lors de la définition de la session:', setSessionError);
+      } else {
+        console.log('✅ [Auth] Session définie avec succès');
+        // Mettre à jour l'état local
+        setSession(data.session);
+        setUser(data.user);
+        await fetchUserProfile(data.user.id);
+      }
+    } else if (!error && data.user) {
       console.log('✅ [Auth] Inscription réussie, userId:', data.user.id);
       console.log('📧 [Auth] Email confirmé:', data.user.email_confirmed_at ? 'Oui' : 'Non');
       
-      // Si l'email est confirmé, onAuthStateChange devrait se déclencher et créer le profil
-      // Si l'email n'est pas confirmé, l'utilisateur devra confirmer avant d'avoir une session
+      // Si l'email est confirmé mais pas de session, attendre un peu et réessayer
       if (data.user.email_confirmed_at) {
-        console.log('✅ [Auth] Email confirmé, le profil sera créé par onAuthStateChange');
+        console.log('⏳ [Auth] Email confirmé mais pas de session, attente...');
+        // Attendre un peu pour que Supabase crée la session
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        // Essayer de récupérer la session
+        const { data: { session: newSession } } = await supabase.auth.getSession();
+        if (newSession) {
+          console.log('✅ [Auth] Session récupérée après attente');
+          setSession(newSession);
+          setUser(newSession.user);
+          await fetchUserProfile(newSession.user.id);
+          return { error: null, data: { user: data.user, session: newSession } };
+        } else {
+          console.log('⚠️ [Auth] Pas de session après attente, le profil sera créé par onAuthStateChange');
+        }
       } else {
         console.log('📧 [Auth] Email non confirmé, le profil sera créé après confirmation');
       }
     }
 
-    return { error, data: data ? { user: data.user } : undefined };
+    return { error, data: data ? { user: data.user, session: data.session || null } : undefined };
   };
 
   const signOut = async () => {
@@ -289,6 +364,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       signOut,
       isPremium,
       refreshPremiumStatus,
+      refreshAuth,
     }),
     // Seules les valeurs primitives/objets qui changent vraiment
     [user, session, loading, isPremium]

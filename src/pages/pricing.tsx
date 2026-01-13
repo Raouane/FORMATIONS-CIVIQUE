@@ -16,7 +16,7 @@ import { supabase } from '@/lib/supabase';
 export default function PricingPage() {
   const router = useRouter();
   const { t } = useTranslation('common');
-  const { user, session: authSession, loading: authLoading, refreshPremiumStatus, isPremium } = useAuth();
+  const { user, session: authSession, loading: authLoading, refreshPremiumStatus, isPremium, refreshAuth } = useAuth();
   const [loading, setLoading] = useState<{ oneTime: boolean; monthly: boolean }>({
     oneTime: false,
     monthly: false,
@@ -116,10 +116,23 @@ export default function PricingPage() {
     if (!currentUser) {
       console.log('🔄 [Pricing] Pas d\'utilisateur dans le contexte, tentative de récupération directe...');
       try {
+        // Essayer d'abord getSession()
         const { data: { session: directSession } } = await supabase.auth.getSession();
         if (directSession?.user) {
           currentUser = directSession.user;
           console.log('✅ [Pricing] Utilisateur trouvé via getSession()');
+        } else {
+          // Si getSession() ne fonctionne pas, essayer getUser()
+          console.log('🔄 [Pricing] Pas de session, tentative avec getUser()...');
+          const { data: { user: directUser }, error: getUserError } = await supabase.auth.getUser();
+          if (directUser && !getUserError) {
+            currentUser = directUser;
+            console.log('✅ [Pricing] Utilisateur trouvé via getUser()');
+            // Rafraîchir l'état auth pour synchroniser
+            await refreshAuth();
+          } else {
+            console.log('⚠️ [Pricing] getUser() a échoué:', getUserError?.message);
+          }
         }
       } catch (error) {
         console.error('❌ [Pricing] Erreur lors de la récupération directe:', error);
