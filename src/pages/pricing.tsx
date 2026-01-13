@@ -64,7 +64,7 @@ export default function PricingPage() {
     } else {
       console.log('ℹ️ [Pricing] Accès normal à la page pricing (pas de retour Stripe)');
     }
-  }, [router.isReady, router.query]);
+  }, [router.isReady, router.query, refreshPremiumStatus]);
 
   const handleCheckout = async (planType: 'one-time' | 'monthly') => {
     // Mettre à jour le loading pour le plan spécifique
@@ -82,29 +82,47 @@ export default function PricingPage() {
       sessionAccessToken: authSession?.access_token ? 'Présent' : 'Absent'
     });
     
-    // Attendre que l'authentification soit chargée (max 3 secondes)
+    // CRITIQUE: Attendre que l'authentification soit complètement chargée
+    // Si authLoading est true, attendre jusqu'à 5 secondes maximum
     if (authLoading) {
       console.log('⏳ [Pricing] Authentification en cours de chargement, attente...');
       let attempts = 0;
-      while (authLoading && attempts < 6) {
+      const maxAttempts = 10; // 5 secondes max (10 * 500ms)
+      
+      while (authLoading && attempts < maxAttempts) {
         await new Promise(resolve => setTimeout(resolve, 500));
         attempts++;
-        console.log(`⏳ [Pricing] Tentative ${attempts}/6...`);
+        console.log(`⏳ [Pricing] Tentative ${attempts}/${maxAttempts}...`);
+        
+        // Re-vérifier l'état depuis le contexte (mais on ne peut pas le faire directement)
+        // On attend juste que authLoading passe à false
       }
-      // Re-vérifier après l'attente
-      console.log('👤 [Pricing] État auth après attente:', { 
-        hasUser: !!user, 
-        userId: user?.id,
-        authLoading,
-        hasSession: !!authSession,
-        sessionUserId: authSession?.user?.id
-      });
+      
+      // Attendre encore un peu pour que la session soit bien stabilisée
+      await new Promise(resolve => setTimeout(resolve, 500));
+      
+      console.log('👤 [Pricing] État auth après attente complète');
     }
     
     // Vérifier si l'utilisateur est connecté (depuis user OU session)
-    const currentUser = user || authSession?.user;
+    // Utiliser une nouvelle récupération de session pour être sûr
+    let currentUser = user || authSession?.user;
     
-    console.log('🔍 [Pricing] Vérification utilisateur:', {
+    // Si toujours pas d'utilisateur, essayer de récupérer la session directement
+    if (!currentUser) {
+      console.log('🔄 [Pricing] Pas d\'utilisateur dans le contexte, tentative de récupération directe...');
+      try {
+        const { data: { session: directSession } } = await supabase.auth.getSession();
+        if (directSession?.user) {
+          currentUser = directSession.user;
+          console.log('✅ [Pricing] Utilisateur trouvé via getSession()');
+        }
+      } catch (error) {
+        console.error('❌ [Pricing] Erreur lors de la récupération directe:', error);
+      }
+    }
+    
+    console.log('🔍 [Pricing] Vérification utilisateur finale:', {
       hasUser: !!user,
       userId: user?.id,
       hasSession: !!authSession,
@@ -114,8 +132,9 @@ export default function PricingPage() {
       authLoading
     });
     
+    // Seulement maintenant, si vraiment pas d'utilisateur, rediriger
     if (!currentUser) {
-      console.error('❌ [Pricing] Utilisateur non connecté - État complet:', {
+      console.error('❌ [Pricing] Utilisateur non connecté après toutes les tentatives - État complet:', {
         user: user,
         authSession: authSession,
         authLoading,
