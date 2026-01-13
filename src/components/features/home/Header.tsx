@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { useAuth } from '@/providers/AuthProvider';
@@ -14,10 +15,14 @@ export function Header() {
   const { t } = useTranslation('common');
   const { user, isPremium } = useAuth();
 
-  // Debug: Afficher le statut premium dans la console
-  if (typeof window !== 'undefined' && user) {
-    console.log('🎯 [Header] Statut premium actuel:', isPremium, 'pour user:', user.id);
-  }
+  // Debug: Afficher le statut premium dans la console à chaque changement
+  useEffect(() => {
+    if (typeof window !== 'undefined' && user) {
+      console.log('🎯 [Header] Statut premium actuel:', isPremium, 'pour user:', user.id);
+      console.log('🎯 [Header] Type de isPremium:', typeof isPremium);
+      console.log('🎯 [Header] isPremium === true?', isPremium === true);
+    }
+  }, [isPremium, user]);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState, useMemo } from 'react';
 import { User, Session } from '@supabase/supabase-js';
 import { supabase } from '@/lib/supabase';
 
@@ -25,11 +25,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     // Récupérer la session initiale
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    supabase.auth.getSession().then(async ({ data: { session } }) => {
       setSession(session);
       setUser(session?.user ?? null);
       if (session?.user) {
-        fetchUserProfile(session.user.id);
+        // ATTENDRE que le profil soit chargé avant de mettre loading à false
+        await fetchUserProfile(session.user.id);
       }
       setLoading(false);
     });
@@ -75,10 +76,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       // Vérifier explicitement que la colonne existe avec l'underscore
       const premiumStatus = data?.is_premium === true || data?.is_premium === 'true';
       console.log('✅ [AuthProvider] Transformation: is_premium (DB) =', data?.is_premium, '→ isPremium (React) =', premiumStatus);
-      setIsPremium(premiumStatus);
       
-      // Vérification finale
-      console.log('🎯 [AuthProvider] État isPremium mis à jour à:', premiumStatus);
+      // Vérifier l'état actuel avant de mettre à jour
+      console.log('🔄 [AuthProvider] État isPremium AVANT setIsPremium:', isPremium);
+      setIsPremium(premiumStatus);
+      console.log('🎯 [AuthProvider] setIsPremium appelé avec:', premiumStatus);
+      
+      // Vérification finale - utiliser un setTimeout pour voir l'état après le re-render
+      setTimeout(() => {
+        console.log('✅ [AuthProvider] État isPremium APRÈS re-render (vérification):', premiumStatus);
+      }, 0);
     } catch (error) {
       console.error('❌ [AuthProvider] Error fetching user profile:', error);
       console.error('❌ [AuthProvider] Stack:', error instanceof Error ? error.stack : 'N/A');
@@ -97,10 +104,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const signIn = async (email: string, password: string) => {
-    const { error } = await supabase.auth.signInWithPassword({
+    const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
+    
+    // Mettre à jour le profil immédiatement après la connexion
+    // (onAuthStateChange devrait aussi le faire, mais on veut être sûr)
+    if (!error && data?.user) {
+      await fetchUserProfile(data.user.id);
+    }
+    
     return { error };
   };
 
@@ -213,19 +227,33 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setIsPremium(false);
   };
 
+  // Mémoriser l'objet value pour garantir que React détecte bien les changements
+  // On ne met dans les dépendances que les valeurs qui changent vraiment
+  // Les fonctions sont stables et n'ont pas besoin d'être dans les dépendances
+  const contextValue = useMemo(
+    () => ({
+      user,
+      session,
+      loading,
+      signIn,
+      signUp,
+      signOut,
+      isPremium,
+      refreshPremiumStatus,
+    }),
+    // Seules les valeurs primitives/objets qui changent vraiment
+    [user, session, loading, isPremium]
+  );
+
+  // Debug: Log quand isPremium change
+  useEffect(() => {
+    if (user) {
+      console.log('🔄 [AuthProvider] isPremium a changé:', isPremium, 'pour user:', user.id);
+    }
+  }, [isPremium, user]);
+
   return (
-    <AuthContext.Provider
-      value={{
-        user,
-        session,
-        loading,
-        signIn,
-        signUp,
-        signOut,
-        isPremium,
-        refreshPremiumStatus,
-      }}
-    >
+    <AuthContext.Provider value={contextValue}>
       {children}
     </AuthContext.Provider>
   );
