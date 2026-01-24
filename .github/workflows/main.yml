@@ -1,10 +1,10 @@
 name: Monitor Website
 
-on:
-  schedule:
-    # On passe à 5 minutes pour éviter la mise en veille de Render
-    - cron: '*/5 * * * *'
-  workflow_dispatch:
+# on:
+#   schedule:
+#     # On passe à 5 minutes pour éviter la mise en veille de Render
+#     - cron: '*/5 * * * *'
+#   workflow_dispatch:
 
 jobs:
   ping:
